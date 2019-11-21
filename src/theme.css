@@ -1,0 +1,218 @@
+/* line 1, src/assets/scss/theme.scss */
+
+
+/* body {
+    padding-top: 70px;
+} */
+
+
+/* line 2, src/assets/scss/theme.scss */
+
+img {
+    max-width: 100%;
+}
+
+
+/* line 5, src/assets/scss/theme.scss */
+
+a,
+.a:hover {
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+hr {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    overflow: hidden !important;
+}
+
+
+/* line 8, src/assets/scss/theme.scss */
+
+.container-fluid {
+    width: 94%;
+    margin: 0px auto;
+    max-width: 94%;
+}
+
+
+/* line 13, src/assets/scss/theme.scss */
+
+.border-round-0 {
+    border-radius: 0;
+}
+
+
+/* line 16, src/assets/scss/theme.scss */
+
+.mt-neg100 {
+    margin-top: -100px;
+}
+
+
+/* line 19, src/assets/scss/theme.scss */
+
+.min-50vh {
+    min-height: 50vh;
+}
+
+
+/* line 22, src/assets/scss/theme.scss */
+
+.dropdown-header {
+    font-size: 1.5rem;
+}
+
+
+/* line 25, src/assets/scss/theme.scss */
+
+
+/* line 28, src/assets/scss/theme.scss */
+
+footer.footer {
+    border-top: 1px solid #f1f1f1;
+}
+
+
+/* line 31, src/assets/scss/theme.scss */
+
+
+/* .nav-link,
+.dropdown-item {
+    font-weight: 700;
+} */
+
+
+/* line 32, src/assets/scss/theme.scss */
+
+
+/* .navbar {
+    padding: 0.5rem 2rem;
+} */
+
+
+/* line 34, src/assets/scss/theme.scss */
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-transition: .2s ease;
+    transition: .2s ease;
+    background-color: #008CBA;
+}
+
+
+/* line 46, src/assets/scss/theme.scss */
+
+.card {
+    border: 0 !important;
+}
+
+
+/* .card-pin {
+    margin-bottom: 25px !important
+} */
+
+
+/* line 47, src/assets/scss/theme.scss */
+
+.card-pin:hover .overlay {
+    opacity: 0.9;
+    border: 2px solid rgb(234, 236, 237);
+    background-color: rgb(0, 0, 0);
+    transition: all .25s ease-in-out !important;
+    -webkit-transition: all .25s ease-in-out !important;
+    -moz-transition: all .25s ease-in-out !important;
+    -ms-transition: all .25s ease-in-out !important;
+    -o-transition: all .25s ease-in-out !important;
+}
+
+
+/* line 55, src/assets/scss/theme.scss */
+
+.more {
+    color: white !important;
+    font-size: 14px;
+    position: relative;
+    bottom: -20px;
+    text-align: center !important;
+    text-transform: uppercase;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.more a {
+    color: #fff !important
+}
+
+
+/* line 66, src/assets/scss/theme.scss */
+
+.card-pin:hover .card-title {
+    color: #ffffff;
+    text-align: center;
+}
+
+.card-pin:hover a .card-title:hover {
+    text-decoration: underline !important
+}
+
+
+/* line 73, src/assets/scss/theme.scss */
+
+.card-pin:hover .more a:hover {
+    text-decoration: underline !important;
+    color: #792626 !important;
+}
+
+.cover .a:hover {
+    color: #792626 !important;
+    text-decoration: underline !important;
+}
+
+.card-img-top:hover {
+    opacity: .4;
+    cursor: zoom-in;
+    transform: scale(1.02, 1.02);
+    -webkit-transform: scale(1.02, 1.02);
+    -moz-transform: scale(1.02, 1.02);
+    -ms-transform: scale(1.02, 1.02);
+    -o-transform: scale(1.02, 1.02);
+    overflow: hidden;
+    transform-origin: center;
+    transition: scale 3s ease-in-out;
+    -webkit-transition: scale 3s ease-in-out;
+    -moz-transition: scale 3s ease-in-out;
+    -ms-transition: scale 3s ease-in-out;
+    -o-transition: scale 3s ease-in-out;
+}
+
+
+/* line 78, src/assets/scss/theme.scss */
+
+.card-pin:hover .download a {
+    text-decoration: none;
+    color: #df2525;
+}
+
+
+/* line 83, src/assets/scss/theme.scss */
+
+.social {
+    position: relative;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+/* line 88, src/assets/scss/theme.scss */
+
+.social .fa {
+    margin: 0 3px;
+}
