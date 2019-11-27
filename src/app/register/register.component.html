@@ -1,1 +1,139 @@
-<p>register works!</p>
+<div class="body2">
+  <app-header></app-header>
+  <div class="container mt-5 pb-5 mb-5" >
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <!-- Success message -->
+            <div class="success" *ngIf="showSucessMessage">
+                Saved successfully
+              </div>
+
+              <!-- Error message -->
+              <div class="alert" *ngIf="serverErrorMessages">
+                {{serverErrorMessages}}
+              </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn  btn-facebook" placement="top" ngbTooltip="Signup with Facebook"><i class="fab fa-facebook"></i> Facebook</button>
+                            <button type="button" class="btn  btn-twitter" placement="top" ngbTooltip="Signup with Twitter"><i class="fab fa-twitter" aria-hidden="true" ></i> Twitter</button>
+                            <button type="button" class="btn  btn-google" placement="top" ngbTooltip="Signup with Google"><i class="fab fa-google-plus-square" aria-hidden="true"></i> Google</button>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+                        <div class="row">
+                            <div class="col-sm-10 offset-sm-1">
+                                <div class="form-group">
+                                  <label for="email">E-mail</label>
+                                  <input type="text" class="form-control" #email="ngModel"
+                                  [(ngModel)]="model.email" name="email"
+                                  placeholder="Email"required [pattern]="emailRegex"
+                                  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+                                  <div *ngIf="signUpForm.submitted && email.errors" class="alert alert-danger">
+                                    <div *ngIf="email?.errors.required" class="validation-message">This field is required.</div>
+                                    <div *ngIf="email?.errors.pattern" class="validation-message">Invalid email address.</div>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" class="form-control" #fullName="ngModel"
+                                    [(ngModel)]="model.fullName" name="fullName"
+                                    placeholder="Full Name" required
+                                    [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+                                    <div *ngIf="signUpForm.submitted && !fullName.valid" class="alert alert-danger">
+                                      <label class="validation-message">This field is required.</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" #password="ngModel"
+                                        [(ngModel)]="model.password" name="password" placeholder="Password"
+                                        minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+                                        <div *ngIf="signUpForm.submitted && password.errors" class="alert alert-danger">
+                                          <label *ngIf="password?.errors.required" class="validation-message">Password is required.</label>
+                                          <label *ngIf="password?.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <input type="password" class="form-control" #confirmPassword="ngModel"
+                                        [(ngModel)]="model.confirmPassword" compare="password"
+                                        name="confirmPassword" placeholder="Confirm Password"
+                                        minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !confirmPassword.valid }">
+                                        <div *ngIf="signUpForm.submitted && confirmPassword.errors" class="alert alert-danger">
+                                          <label *ngIf="confirmPassword?.errors.required" class="validation-message">This field is required.</label>
+                                          <label *ngIf="confirmPassword?.errors.compare" class="validation-message">Passwords do not match</label>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                                <div class="form-group text-justify">
+                                    <label for="city">Address</label>
+                                    <input class="form-control" #cityCountry="ngModel" [(ngModel)]="model.cityCountry" name="cityCountry"
+                                    minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !cityCountry.valid }">
+                                    <div *ngIf="signUpForm.submitted && password.errors">
+                                      <label *ngIf="cityCountry?.errors.required" class="validation-message">This field is required.</label>
+                                      <label *ngIf="cityCountry?.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="dob">Date of Birth</label>
+                                        <input type="date" #dateOfBirth="ngModel"
+                                        [(ngModel)]="model.dateOfBirth" name="dateOfBirth"
+                                        max="3000-12-31" min="1990-01-01" class="form-control" required>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <div class="form-group">
+                                      <label for="gender" style="margin-right: 10px;"> Gender:</label>
+                                      <br>
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" class="custom-control-input" id="customRadio" name="gender" value="Male" #gender="ngModel"
+                                          [(ngModel)]="model.gender">
+                                          <label class="custom-control-label" for="customRadio">Male</label>
+                                      </div>
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" class="custom-control-input" id="customRadio2" name="gender" value="Female" name="gender" #gender="ngModel"
+                                          [(ngModel)]="model.gender">
+                                          <label class="custom-control-label" for="customRadio2">Female</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-8 offset-sm-2">
+                                <input type="submit" class="btn btn-block btn-primary" value="Sign Up">
+
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <p style="font-size: .8rem !important;margin-top: .5rem;">By clicking Sign Up, you accept the <a href="terms.html" class="text-primary">Terms of use</a></p>
+                        <p style="font-size: .8rem !important;margin-top: .5rem;">Alredy have an account? <a [routerLink]="['/login']" routerLinkActive="router-link-active">Click here to login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+  <app-home-footer></app-home-footer>
+</div>

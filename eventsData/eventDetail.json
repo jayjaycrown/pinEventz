@@ -1,0 +1,35 @@
+[
+  {
+    "id": "ev1",
+    "eventTitle": "2019 National Business Conference",
+    "eventDesc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ipsum cum atque asperiores nam sed a porro vitae magnam dolores doloribus dolor odit nesciunt accusantium quia repellat repudiandae commodi recusandae, debitis quidem vel voluptatem ipsam.",
+    "eventBanner": "assets/img/eventbanner.jpg",
+    "startDate": "Wed nov 20 2019 17:22:41 GMT+0700",
+    "endDate": "Wed dec 20 2019 17:22:41 GMT+0700",
+    "status": "public",
+    "location": "Addr location",
+    "eventCat": "Music"
+  },
+  {
+    "id": "ev2",
+    "eventTitle": "Lagos Expo 2019: Fashion",
+    "eventDesc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ipsum cum atque asperiores nam sed a porro vitae magnam dolores doloribus dolor odit nesciunt accusantium quia repellat repudiandae commodi recusandae, debitis quidem vel voluptatem ipsam.",
+    "eventBanner": "assets/img/eventbanner.jpg",
+    "startDate": "Wed nov 20 2019 17:22:41 GMT+0700",
+    "endDate": "Wed dec 20 2019 17:22:41 GMT+0700",
+    "status": "public",
+    "location": "Addr location",
+    "eventCat": "Music"
+  },
+  {
+    "id": "ev3",
+    "eventTitle": "2019 Cyberchain Conference",
+    "eventDesc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ipsum cum atque asperiores nam sed a porro vitae magnam dolores doloribus dolor odit nesciunt accusantium quia repellat repudiandae commodi recusandae, debitis quidem vel voluptatem ipsam.",
+    "eventBanner": "assets/img/eventbanner.jpg",
+    "startDate": "Wed nov 20 2019 17:22:41 GMT+0700",
+    "endDate": "Wed dec 20 2019 17:22:41 GMT+0700",
+    "status": "Private",
+    "location": "Addr location",
+    "eventCat": "Music"
+  }
+]

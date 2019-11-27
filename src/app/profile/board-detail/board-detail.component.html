@@ -1,0 +1,353 @@
+<div class="body2">
+  <app-home-header></app-home-header>
+<section class="container bodycontainer mb-5 pb-5">
+  <div class="row p-0">
+    <div class="col-md-12 ">
+      <div class="card">
+          <div class="card-body pb-0">
+              <div class="row">
+                  <!-- <div class="col-md-1 text-center">
+                      <img src="assets/img/profile.png" width="50px" height="50px" class="rounded-circle" alt="Profile picture" srcset="">
+                  </div> -->
+                  <div class="col-sm-3">
+                      <h5>{{board.name}}</h5>
+                  </div>
+                  <div class="col-sm-2">
+                    <p class="p-0 m-0">Created in <a > {{ board.cat }}</a></p>
+
+                  </div>
+                  <div class="col-sm-5">
+
+                      <p class="font9"> {{ board.desc }} </p>
+                  </div>
+                  <div class="col-sm-2 ">
+                      <div class="text-center ">
+                          <a href="#" data-toggle="modal" data-target="#editBoard">
+                              <span class="p-2 bg-light text-primary rounded-circle"><i class="fa fa-pen-alt" aria-hidden="true"></i></span> Edit Board
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+      <div class="col-md-12">
+          <div class="card-columns">
+              <div class="card p-4">
+                  <a href="" data-toggle="modal" data-target="#createEvent">
+                      <div class="card-body pt-4 pb-4 text-center">
+                          <span class=" rounded-circle p-4" style="background: #c6f4dc"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                          <br><br>
+                          <h5 class="card-title title mt-3">Create Event</h5>
+                      </div>
+                  </a>
+              </div>
+              <!-- <div class="card card-pin">
+                  <div class="card m-0">
+                      <img class="card-img-top" src="assets/img/background.jpg" alt="Card image">
+                      <div class="price">
+                          <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                      </div>
+                      <div class="overlay">
+                          <div class="price">
+                              <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                          </div>
+                          <div class="text-center">
+
+                              <div class="d-inline   check">
+                                  <a href="#" class="cover " data-placement="top " title="Pin " data-toggle="modal" data-target="#pinModal">
+                                      <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                      <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
+                                                  </span>
+                                  </a>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class=" pt-2 pb-2 pl-2 bg-light border">
+                      <div class="row">
+                          <div class="col-md-3 text-center p-0">
+                              <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                  <h5 class="text-primary">OCT</h5>
+                                  <h5>24</h5>
+                              </div>
+
+                          </div>
+                          <div class="col-md-9 pl-0">
+                              <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 National Business Conference</a> </h5>
+                              <p class="font9 m-0">Thu, Oct 3, 8:00am</p>
+                              <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                              <p class="font9 m-0">Free</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="card card-pin">
+                  <div class="card m-0">
+                      <img class="card-img-top" src="assets/img/background6.jpg" alt="Card image">
+                      <div class="price">
+                          <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                      </div>
+                      <div class="overlay">
+                          <div class="price">
+                              <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                          </div>
+                          <div class="text-center">
+
+                              <div class="d-inline   check">
+                                  <a href="#" class="cover " data-placement="top " title="Pin " data-toggle="modal" data-target="#pinModal">
+                                      <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                          <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
+                                                      </span>
+                                  </a>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class=" pt-2 pb-2 pl-2 bg-light border">
+                      <div class="row">
+                          <div class="col-md-3 text-center p-0">
+                              <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                  <h5 class="text-primary">OCT</h5>
+                                  <h5>24</h5>
+                              </div>
+
+                          </div>
+                          <div class="col-md-9 pl-0">
+                              <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 National Business Conference</a> </h5>
+                              <p class="font9 m-0">Thu, Oct 3, 8:00am</p>
+                              <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                              <p class="font9 m-0">Free</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="card card-pin">
+                  <div class="card m-0">
+                      <img class="card-img-top" src="assets/img/background3.jpg" alt="Card image">
+                      <div class="price">
+                          <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                      </div>
+                      <div class="overlay">
+                          <div class="price">
+                              <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                          </div>
+                          <div class="text-center">
+
+                              <div class="d-inline   check">
+                                  <a href="#" class="cover " data-placement="top " title="Pin " data-toggle="modal" data-target="#pinModal">
+                                      <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                      <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
+                                                  </span>
+                                  </a>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class=" pt-2 pb-2 pl-2 bg-light border">
+                      <div class="row">
+                          <div class="col-md-3 text-center p-0">
+                              <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                  <h5 class="text-primary">OCT</h5>
+                                  <h5>24</h5>
+                              </div>
+
+                          </div>
+                          <div class="col-md-9 pl-0">
+                              <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 National Business Conference</a> </h5>
+                              <p class="font9 m-0">Thu, Oct 3, 8:00am</p>
+                              <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                              <p class="font9 m-0">Free</p>
+                          </div>
+                      </div>
+                  </div>
+              </div> -->
+              <div class="card card-pin">
+                  <div class="card m-0">
+                      <img class="card-img-top" src="assets/img/eventbanner.jpg" alt="Card image">
+                      <div class="price">
+                          <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                      </div>
+                      <!-- <div class="overlay">
+                          <div class="price">
+                              <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                          </div>
+                          <div class="text-center">
+
+                              <div class="d-inline   check">
+                                  <a href="#" class="cover " data-placement="top " title="Pin " data-toggle="modal" data-target="#pinModal">
+                                      <span class="p-3 bg-custom text-primary rounded-circle ">
+                                              <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
+                                          </span>
+                                  </a>
+                              </div>
+
+                          </div>
+                      </div> -->
+                  </div>
+
+                  <div class=" pt-2 pb-2 pl-2 bg-light border">
+                      <div class="row">
+                          <div class="col-md-3 text-center p-0">
+                              <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                  <h5 class="text-primary">OCT</h5>
+                                  <h5>13</h5>
+                              </div>
+
+                          </div>
+                          <div class="col-md-9 pl-0">
+                              <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 National Business Conference</a> </h5>
+                              <p class="font9 m-0">Saturday, 10:00am</p>
+                              <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                              <p class="font9 m-0">&nbsp;</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-pin">
+                  <div class="card m-0">
+                      <img class="card-img-top" src="assets/img/eventbanner3.jpg" alt="Card image">
+                      <div class="price">
+                          <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                      </div>
+                      <!-- <div class="overlay">
+                          <div class="price">
+                              <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                          </div>
+                          <div class="text-center">
+
+                              <div class="d-inline   check">
+                                  <a href="#" class="cover " data-placement="top " title="Pin " data-toggle="modal" data-target="#pinModal">
+                                      <span class="p-3 bg-custom text-primary rounded-circle ">
+                                              <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
+                                          </span>
+                                  </a>
+                              </div>
+
+                          </div>
+                      </div> -->
+                  </div>
+
+                  <div class=" pt-2 pb-2 pl-2 bg-light border">
+                      <div class="row">
+                          <div class="col-md-3 text-center p-0">
+                              <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                  <h5 class="text-primary">OCT</h5>
+                                  <h5>20</h5>
+                              </div>
+
+                          </div>
+                          <div class="col-md-9 pl-0">
+                              <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 Charity Fundraising</a> </h5>
+                              <p class="font9 m-0">Sunday, 12:00pm</p>
+                              <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                              <p class="font9 m-0">&nbsp;</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-pin">
+                  <div class="card m-0">
+                      <img class="card-img-top" src="assets/img/eventbanner4.jpg" alt="Card image">
+                      <div class="price">
+                          <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                      </div>
+                      <!-- <div class="overlay">
+                          <div class="price">
+                              <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                          </div>
+                          <div class="text-center">
+
+                              <div class="d-inline   check">
+                                  <a href="#" class="cover " data-placement="top " title="Pin " data-toggle="modal" data-target="#pinModal">
+                                      <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                  <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
+                                              </span>
+                                  </a>
+                              </div>
+
+                          </div>
+                      </div> -->
+                  </div>
+
+                  <div class=" pt-2 pb-2 pl-2 bg-light border">
+                      <div class="row">
+                          <div class="col-md-3 text-center p-0">
+                              <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                  <h5 class="text-primary">OCT</h5>
+                                  <h5>03</h5>
+                              </div>
+
+                          </div>
+                          <div class="col-md-9 pl-0">
+                              <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 Cyberchain Conference</a> </h5>
+                              <p class="font9 m-0">Thursday, 8:00am</p>
+                              <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                              <p class="font9 m-0">&nbsp;</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-pin">
+                  <div class="card m-0">
+                      <img class="card-img-top" src="assets/img/eventbanner2.jpg" alt="Card image">
+                      <div class="price">
+                          <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                      </div>
+                      <!-- <div class="overlay">
+                          <div class="price">
+                              <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                          </div>
+                          <div class="text-center">
+
+                              <div class="d-inline   check">
+                                  <a href="#" class="cover " data-placement="top " title="Pin " data-toggle="modal" data-target="#pinModal">
+                                      <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                  <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
+                                              </span>
+                                  </a>
+                              </div>
+
+                          </div>
+                      </div> -->
+                  </div>
+
+                  <div class=" pt-2 pb-2 pl-2 bg-light border">
+                      <div class="row">
+                          <div class="col-md-3 text-center p-0">
+                              <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                  <h5 class="text-primary">SEP</h5>
+                                  <h5>13</h5>
+                              </div>
+
+                          </div>
+                          <div class="col-md-9 pl-0">
+                              <h5 class="text-black"><a href="eventDetail.html" class="text-black">LAGOS COMIC CON 2019</a> </h5>
+                              <p class="font9 m-0">Saturday, 8:00am</p>
+                              <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                              <p class="font9 m-0">&nbsp;</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+
+  </div>
+</section>
+<app-home-footer></app-home-footer>
+</div>

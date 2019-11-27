@@ -1,0 +1,1265 @@
+  <div class="body2">
+    <app-home-header></app-home-header>
+    <section class="container bodycontainer mb-5 pb-5">
+      <div class="row p-0">
+        <div class="col-md-12 ">
+          <div class="card">
+            <div class="card-body pb-0">
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <img src="assets/img/profile.png" width="100px" height="100px" class="rounded-circle" alt="Profile picture" srcset="">
+                    </div>
+                    <div class="col-md-10 ">
+                        <div class="row ">
+                            <div class="col-sm-8">
+                                <h4>Oshodi Olakunbi</h4>
+                                <br>
+                                <p class="font9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque non vel quo explicabo aut nam a et, atque debitis sapiente!</p>
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <a data-toggle="modal" data-target="#edProfile" href="#edProfile">
+                                    <span class="p-2 bg-custom text-primary rounded-circle"><i class="fa fa-cog" aria-hidden="true"></i></span> Edit Profile</a>
+                                <br>
+                                <br>
+                                <hr>
+                                <span class="font9"><a href=""  class="m-0">www.facebook.com</a></span>
+                                <br>
+                                <span class="font9"><a href=""  class="m-0">www.facebook.com</a></span>
+                                <br>
+                                <span class="font9">213, maddisson drive Il, USA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row border-top mt-2">
+                  <div class="col-sm-12 m-0"  >
+                      <ngb-tabset [justify]= 'currentJustify'>
+                          <ngb-tab >
+                              <ng-template ngbTabTitle>
+                              <div class="p-3" (click)="t.select('tab-selectbyid1')">
+                                  <a  style="cursor: pointer;" >
+                                      <span class="p-2 bg-custom text-primary rounded-circle"><i class="fas fa-table"></i></span> Boards
+                                  </a>
+                              </div>
+                            </ng-template>
+                          </ngb-tab>
+                            <ngb-tab >
+                              <ng-template ngbTabTitle>
+                                <div class= "p-3" (click)="t.select('tab-selectbyid2')">
+                                    <a  class="p-2 m-2"  style="cursor: pointer;">
+                                        <span class="p-2 bg-custom text-primary rounded-circle"><i class="fas fa-thumbtack"></i></span> Pins
+                                    </a>
+                                </div>
+                              </ng-template>
+                            </ngb-tab>
+                            <ngb-tab >
+                              <ng-template ngbTabTitle>
+                                <div class= "p-3" (click)="t.select('tab-selectbyid3')" >
+                                    <a   style="cursor: pointer;">
+                                        <span class="p-2 bg-custom text-primary rounded-circle"><i class="far fa-image"></i></span> Gallery
+                                    </a>
+                                </div>
+                              </ng-template>
+                            </ngb-tab>
+
+                            <ngb-tab >
+                              <ng-template ngbTabTitle>
+                                <div class= "p-3" (click)="t.select('tab-selectbyid4')">
+                                    <a  style="cursor: pointer;">
+                                        <span class="p-2 bg-custom text-primary rounded-circle"><i class="far fa-hand-point-right"></i></span> Followers
+                                    </a>
+                                </div>
+                              </ng-template>
+                            </ngb-tab>
+                            <ngb-tab >
+                              <ng-template ngbTabTitle>
+                                <div class= "p-3" (click)="t.select('tab-selectbyid5')">
+                                    <a   style="cursor: pointer;">
+                                        <span class="p-2 bg-custom text-primary rounded-circle"><i class="far fa-hand-point-left"></i></span> Following
+                                    </a>
+                                </div>
+                              </ng-template>
+                            </ngb-tab>
+                            <ngb-tab >
+                              <ng-template ngbTabTitle>
+                                <div class= "p-3" (click)="t.select('tab-selectbyid6')">
+                                    <a   style="cursor: pointer;">
+                                        <span class="p-2 bg-custom text-primary rounded-circle"><i class="fas fa-ticket-alt    "></i></span> Tickets
+                                    </a>
+                                </div>
+                              </ng-template>
+                            </ngb-tab>
+
+
+                        </ngb-tabset>
+                  </div>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <ngb-tabset #t="ngbTabset" justify="end">
+        <ngb-tab id="tab-selectbyid1">
+          <ng-template ngbTabContent>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <div class="text-center  pt-5">
+                              </div>
+                              <div class="card p-4">
+                                  <a  (click)="openModal()" style="cursor: pointer;">
+                                      <div class="card-body pt-4 pb-4 text-center">
+                                          <span class=" rounded-circle p-4" style="background: #c6f4dc"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                          <br><br>
+                                          <h5 class="card-title title mt-3">Create a Board</h5>
+                                      </div>
+                                  </a>
+                              </div>
+                          </div>
+                          <div class="col-sm-3" *ngFor="let board of boardDetails">
+
+                              <div class="text-center  pt-5">
+
+                              </div>
+                              <div class="card card-pin" >
+                                  <img class="card-img" [src]="board.cover" alt="" style="background: #aaa;">
+                                  <div class="overlay pt-3">
+                                      <div class="text-center mt-5">
+                                        <br/>
+                                        <div class="d-block">
+                                            <a  class="cover" (click)="getConfirmation(board.id)" style="cursor: pointer;">
+                                                <span class="p-3 bg-custom text-primary rounded-circle" placement="top" ngbTooltip="Delete Board"><i class="fa fa-trash" aria-hidden="true"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </a>
+                                            <a href="#" data-toggle="modal" data-target="#editBoard">
+                                                <span class="p-3 bg-custom text-primary rounded-circle" title="edit board"><i class="fa fa-pen-alt" aria-hidden="true"></i></span>
+                                            </a>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="text-center border pt-2 pb-2 bg-light">
+                                  <a [routerLink]="['/profile','board', board.id]" routerLinkActive="router-link-active" >
+                                      <p class="card-title title"> {{ board.name }} </p>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-selectbyid2">
+            <ng-template ngbTabContent>
+                <div class="row mt-5">
+                    <div class="col-sm-12">
+                        <div class="card-columns">
+
+                            <div class="card card-pin">
+                                <div class="card m-0">
+                                    <img class="card-img-top" src="assets/img/eventbanner.jpg" alt="Card image">
+                                    <div class="price">
+                                        <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                                    </div>
+                                    <div class="overlay">
+                                        <div class="price">
+                                            <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                                        </div>
+                                        <div class="text-center">
+
+                                            <div class="d-inline   check">
+                                                <a href="#" class="cover " data-placement="top " title="Join " data-toggle="modal" data-target="#pinModal">
+                                                    <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                            <i class="fa fa-ticket-alt"></i>
+                                                        </span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" pt-2 pb-2 pl-2 bg-light border">
+                                    <div class="row">
+                                        <div class="col-md-3 text-center p-0">
+                                            <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                                <h5 class="text-primary">OCT</h5>
+                                                <h5>13</h5>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9 pl-0">
+                                            <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 National Business Conference</a> </h5>
+                                            <p class="font9 m-0">Saturday, 10:00am</p>
+                                            <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                                            <p class="font9 m-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-pin">
+                                <div class="card m-0">
+                                    <img class="card-img-top" src="assets/img/eventbanner3.jpg" alt="Card image">
+                                    <div class="price">
+                                        <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                                    </div>
+                                    <div class="overlay">
+                                        <div class="price">
+                                            <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                                        </div>
+                                        <div class="text-center">
+
+                                            <div class="d-inline   check">
+                                                <a href="#" class="cover " data-placement="top " title="Join " data-toggle="modal" data-target="#pinModal">
+                                                    <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                            <i class="fa fa-ticket-alt"></i>
+                                                        </span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" pt-2 pb-2 pl-2 bg-light border">
+                                    <div class="row">
+                                        <div class="col-md-3 text-center p-0">
+                                            <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                                <h5 class="text-primary">OCT</h5>
+                                                <h5>20</h5>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9 pl-0">
+                                            <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 Charity Fundraising</a> </h5>
+                                            <p class="font9 m-0">Sunday, 12:00pm</p>
+                                            <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                                            <p class="font9 m-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-pin">
+                                <div class="card m-0">
+                                    <img class="card-img-top" src="assets/img/eventbanner4.jpg" alt="Card image">
+                                    <div class="price">
+                                        <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                                    </div>
+                                    <div class="overlay">
+                                        <div class="price">
+                                            <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                                        </div>
+                                        <div class="text-center">
+
+                                            <div class="d-inline   check">
+                                                <a href="#" class="cover " data-placement="top " title="Join " data-toggle="modal" data-target="#pinModal">
+                                                    <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                        <i class="fa fa-ticket-alt"></i>
+                                                    </span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" pt-2 pb-2 pl-2 bg-light border">
+                                    <div class="row">
+                                        <div class="col-md-3 text-center p-0">
+                                            <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                                <h5 class="text-primary">OCT</h5>
+                                                <h5>03</h5>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9 pl-0">
+                                            <h5 class="text-black"><a href="eventDetail.html" class="text-black">2019 Cyberchain Conference</a> </h5>
+                                            <p class="font9 m-0">Thursday, 8:00am</p>
+                                            <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                                            <p class="font9 m-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-pin">
+                                <div class="card m-0">
+                                    <img class="card-img-top" src="assets/img/eventbanner2.jpg" alt="Card image">
+                                    <div class="price">
+                                        <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                                    </div>
+                                    <div class="overlay">
+                                        <div class="price">
+                                            <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                                        </div>
+                                        <div class="text-center">
+
+                                            <div class="d-inline   check">
+                                                <a href="#" class="cover " data-placement="top " title="Join " data-toggle="modal" data-target="#pinModal">
+                                                    <span class="p-3 bg-custom text-primary rounded-circle ">
+                                                        <i class="fa fa-ticket-alt"></i>
+                                                    </span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" pt-2 pb-2 pl-2 bg-light border">
+                                    <div class="row">
+                                        <div class="col-md-3 text-center p-0">
+                                            <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                                <h5 class="text-primary">SEP</h5>
+                                                <h5>13</h5>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9 pl-0">
+                                            <h5 class="text-black"><a href="eventDetail.html" class="text-black">LAGOS COMIC CON 2019</a> </h5>
+                                            <p class="font9 m-0">Saturday, 8:00am</p>
+                                            <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
+                                            <p class="font9 m-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-selectbyid3">
+            <ng-template ngbTabContent>
+                <div class="row mt-4">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header pt-3 pb-1">
+                                <h3 class="card-title">Saved Pictures</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3  pb-3">
+                                            <div class="card">
+                                                <img class="card-img" src="assets/img/event.jpg" alt="Card image">
+                                                <div class="card-body pt-2">
+                                                    <span class="font9">Saved from</span>
+                                                    <h5 class="m-0 p-0"> Event Title</h5>
+                                                    <p class="font9 p-0 m-0">Posted by <a href="profile.html">Oshodi Olakunbi</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3  pb-3">
+                                            <div class="card card-pin">
+                                                <img class="card-img" src="assets/img/event2.jpg" alt="Card image">
+                                                <div class="card-body pt-2">
+                                                    <span class="font9">Saved from</span>
+                                                    <h5 class="m-0 p-0"> Event Title</h5>
+                                                    <p class="font9 p-0 m-0">Posted by <a href="profile.html">Oshodi Olakunbi</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3  pb-3">
+                                            <div class="card card-pin">
+                                                <img class="card-img" src="assets/img/event1.jpg" alt="Card image">
+                                                <div class="card-body pt-2">
+                                                    <span class="font9">Saved from</span>
+                                                    <h5 class="m-0 p-0"> Event Title</h5>
+                                                    <p class="font9 p-0 m-0">Posted by <a href="profile.html">Oshodi Olakunbi</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3  pb-3">
+                                            <div class="card card-pin">
+                                                <img class="card-img" src="assets/img/event3.jpg" alt=" Card image ">
+                                                <div class="card-body pt-2 ">
+                                                    <span class="font9 ">Saved from</span>
+                                                    <h5 class="m-0 p-0 "> Event Title</h5>
+                                                    <p class="font9 p-0 m-0 ">Posted by <a href="profile.html ">Oshodi Olakunbi</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pb-3 ">
+                                            <div class="card card-pin ">
+                                                <img class="card-img " src="assets/img/event3.jpg " alt="Card image ">
+                                                <div class="card-body pt-2 ">
+                                                    <span class="font9 ">Saved from</span>
+                                                    <h5 class="m-0 p-0 "> Event Title</h5>
+                                                    <p class="font9 p-0 m-0 ">Posted by <a href="profile.html ">Oshodi Olakunbi</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pb-3 ">
+                                            <div class="card card-pin ">
+                                                <img class="card-img " src="assets/img/event1.jpg " alt="Card image ">
+                                                <div class="card-body pt-2 ">
+                                                    <span class="font9 ">Saved from</span>
+                                                    <h5 class="m-0 p-0 "> Event Title</h5>
+                                                    <p class="font9 p-0 m-0 ">Posted by <a href="profile.html ">Oshodi Olakunbi</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pb-3 ">
+                                            <div class="card card-pin ">
+                                                <img class="card-img " src="assets/img/event.jpg " alt="Card image ">
+                                                <div class="card-body pt-2 ">
+                                                    <span class="font9 ">Saved from</span>
+                                                    <h5 class="m-0 p-0 "> Event Title</h5>
+                                                    <p class="font9 p-0 m-0 ">Posted by <a href="profile.html ">Oshodi Olakunbi</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pb-3 ">
+                                            <div class="card card-pin ">
+                                                <img class="card-img " src="assets/img/event2.jpg " alt="Card image ">
+                                                <div class="card-body pt-2 ">
+                                                    <span class="font9 ">Saved from</span>
+                                                    <h5 class="m-0 p-0 "> Event Title</h5>
+                                                    <p class="font9 p-0 m-0 ">Posted by <a href="profile.html ">Oshodi Olakunbi</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-selectbyid4">
+            <ng-template ngbTabContent>
+                <div class="row mt-5">
+                    <div class="col-sm-12">
+                       <div class="card">
+                          <div class="card-header">
+                              <div class="row ">
+                                  <div class="col-sm-10">
+                                      <h6 class=" pl-4 pt-2">Total <span class="">112</span></h6>
+                                  </div>
+                                  <div class="col-sm-2">
+                                      <button type="button" class="btn btn-primary pl-3 pr-3" data-toggle="modal" data-target="#modelId">
+                                          Invite Users
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                          <section>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-sm-12">
+                                    <ngb-tabset>
+                                        <ngb-tab>
+                                            <ng-template ngbTabTitle >
+                                              <div class="p-1 m-1">All</div>
+                                            </ng-template>
+                                          <ng-template ngbTabContent>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                          </ng-template>
+                                        </ngb-tab>
+                                        <ngb-tab>
+                                          <ng-template ngbTabTitle>
+                                              <div class="p-1 m-1">Personal</div>
+                                            </ng-template>
+                                          <ng-template ngbTabContent>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Belotti</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Belotti</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Belotti</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Belotti</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </ng-template>
+                                        </ngb-tab>
+                                        <ngb-tab >
+                                            <ng-template ngbTabTitle>
+                                              <div class="p-1 m-1">Business</div>
+                                            </ng-template>
+                                          <ng-template ngbTabContent>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </ng-template>
+                                        </ngb-tab>
+                                      </ngb-tabset>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                       </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-selectbyid5">
+            <ng-template ngbTabContent>
+                <div class="row mt-5">
+                    <div class="col-sm-12">
+                       <div class="card">
+                          <div class="card-header">
+                              <div class="row ">
+                                  <div class="col-sm-10">
+                                      <h6 class=" pl-4 pt-2">Total <span class="">112</span></h6>
+                                  </div>
+                                  <div class="col-sm-2">
+
+                                  </div>
+                              </div>
+                          </div>
+                          <section>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-sm-12">
+                                    <ngb-tabset>
+                                        <ngb-tab>
+                                            <ng-template ngbTabTitle >
+                                                <div class="p-1 m-1">All</div>
+                                              </ng-template>
+                                          <ng-template ngbTabContent>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                          </ng-template>
+                                        </ngb-tab>
+                                        <ngb-tab>
+                                          <ng-template ngbTabTitle>
+                                              <div class="p-1 m-1">Personal</div>
+                                          </ng-template>
+                                          <ng-template ngbTabContent>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Belotti</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Belotti</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Belotti</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Belotti</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </ng-template>
+                                        </ngb-tab>
+                                        <ngb-tab >
+                                            <ng-template ngbTabTitle>
+                                                <div class="p-1 m-1">Business</div>
+                                              </ng-template>
+                                          <ng-template ngbTabContent>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <ul class="list-group list-group-flush">
+
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item border-0">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img src="assets/img/image.png" alt="" width="50px" height="50px" style="border-radius: 50%">
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6 class="m-0"><a href="">Andreas Perriera</a></h6>
+                                                                    <span class="d-block p-0 m-0">Chicago</span>
+                                                                    <span class="d-block p-0 m-0 text-muted">United States</span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </ng-template>
+                                        </ngb-tab>
+                                      </ngb-tabset>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                       </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-selectbyid6">
+            <ng-template ngbTabContent>
+                <div class="row mt-5">
+                    <div class="col-sm-12">
+                        <div class="card">
+                          <div class="card-body">
+                            <p>working on it</p>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </section>
+    <app-home-footer></app-home-footer>
+  </div>
