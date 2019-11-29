@@ -26,8 +26,9 @@ export class BoardService {
     return this._refreshNeded$;
   }
 
+  // tslint:disable-next-line: variable-name
   getBoardById(id: any): Observable<any> {
-    return this.http.get<Board>(apiUrl + id).pipe(
+    return this.http.get<Board>(apiUrl + '/' + id).pipe(
       retry(3), catchError(this.handleError<Board>('getBoard'))
     );
   }
@@ -46,17 +47,19 @@ export class BoardService {
       })
     );
   }
-  updateBoard(id: any, board: Board): Observable<Board> {
-    return this.http.put<Board>(apiUrl + id, board, httpOptions).pipe(
+  // tslint:disable-next-line: variable-name
+  updateBoard(_id: any, board: Board): Observable<Board> {
+    return this.http.put<Board>(apiUrl + _id, board, httpOptions).pipe(
       catchError(this.handleError<Board>('updateBoard', board)), tap(() => {
         this._refreshNeded$.next();
       })
     );
   }
 
-  deleteBoard(id: any): Observable<Board> {
-    return this.http.delete<Board>(apiUrl + id, httpOptions).pipe(
-      catchError(this.handleError<Board>('board', id)), tap(() => {
+  // tslint:disable-next-line: variable-name
+  deleteBoard(_id: any): Observable<Board> {
+    return this.http.delete<Board>(apiUrl + '/' + _id, httpOptions).pipe(
+      catchError(this.handleError<Board>('board', _id)), tap(() => {
         this._refreshNeded$.next();
       })
     );

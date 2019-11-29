@@ -8,11 +8,14 @@ import { EventDetailComponent } from './home/event-detail/event-detail.component
 import { ProfileComponent } from './profile/profile.component';
 import { BoardDetailComponent } from './profile/board-detail/board-detail.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { InterestComponent } from './register/interest/interest.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
-  { path: 'login', component: AuthComponent},
+  { path: 'login', component: AuthComponent },
   { path: 'register', component: RegisterComponent },
+  {path: 'interest', component: InterestComponent },
   { path: 'event',  canActivate: [AuthGuard],
   children: [
       { path: '', component: HomeComponent,  canActivate: [AuthGuard]  },
@@ -21,8 +24,9 @@ const routes: Routes = [
   },
   { path: 'profile',  canActivate: [AuthGuard],
       children: [
-        {path: '', component: ProfileComponent},
-        {path: 'board/:boardId', component: BoardDetailComponent}
+        {path: '', component: ProfileComponent, canActivate: [AuthGuard]},
+        {path: 'edit', component: EditProfileComponent, canActivate: [AuthGuard]},
+        {path: 'board/:_id', component: BoardDetailComponent, canActivate: [AuthGuard]}
       ]
   },
   {path: '**', redirectTo: 'event', pathMatch: 'full'}

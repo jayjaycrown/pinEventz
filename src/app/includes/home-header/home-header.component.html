@@ -16,7 +16,7 @@
           </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#createEvent" data-toggle="modal" data-target="#createEvent">Create Event </a>
+                <a class="nav-link" (click)="createEvent(content)" style="cursor: pointer;">Create Event </a>
             </li>
           <li class="nav-item megamenu" ngbDropdown>
             <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown1" role="button">
@@ -142,3 +142,132 @@
   </div>
 
   </nav>
+
+
+    <ng-template #content let-modal>
+
+        <div class="modal-header">
+            <h4 class="modal-title">Create New Event</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+              <div class="container text-justify">
+                <form action="">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="eventname">Name</label>
+                                <input type="text" class="form-control" name="eventname" id="eventname" placeholder="Event Name">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group mb-0">
+                                <label for="board">Select Board</label>
+                                <select class="custom-select" name="" id="">
+                                        <option selected>Select one</option>
+                                        <option value="">Board Name 1</option>
+                                        <option value="">Board Name 2</option>
+                                    </select>
+                            </div>
+                            <span class="font9"><a (click)="openBoardModal()" style="cursor: pointer;">Or create a new Board</a></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Upload Image</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" name="boardUrl">
+
+                                    <input type="text" class="d-none" readonly>
+                                </div>
+                                <img id='img-upload' />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <label for="collaborators">Who may Pin</label>
+                                <select class="custom-select" name="collaborators" id="collaborators">
+                                    <option selected="">Choose collaborators</option>
+                                    <option value="">Music</option>
+                                    <option value="">Sport</option>
+                                    <option value="">Technology</option>
+                                    <option value="">Education</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sdate">Start Date</label>
+                                <input type="date" id="sdate" name="sdate" max="2030-12-31" min="2010-01-01" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="fdate">Finish Date</label>
+                                <input type="date" id="fdate" name="fdate" max="2030-12-31" min="2010-01-01" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" name="address" id="address" placeholder="234 Madisson Avenue, New York city">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select class="custom-select" name="status" id="status">
+                                        <option selected>Select one</option>
+                                        <option value="">Hidden</option>
+                                        <option value="">Public</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sdesc">Short Description</label>
+                                <input type="text" class="form-control" name="sdesc" id="sdesc" placeholder="Short Description">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <label for="category">Category</label>
+                                <select class="custom-select" name="category" id="category">
+                                    <option selected="">Choose Category</option>
+                                    <option value="">Music</option>
+                                    <option value="">Sport</option>
+                                    <option value="">Technology</option>
+                                    <option value="">Education</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="fdesc">Full Description</label>
+                            <textarea name="fdesc" class="form-control" id="fdesc" rows="2" placeholder="Full description"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark btn-sm" (click)="modal.close('Close click')">Close</button>
+                        <input type="submit" class="btn btn-primary btn-sm" value="Create Event">
+                    </div>
+                </form>
+
+              </div>
+          </div>
+
+      </ng-template>

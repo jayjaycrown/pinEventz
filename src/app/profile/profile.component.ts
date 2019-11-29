@@ -12,7 +12,7 @@ import { BoardModalComponent } from './board-modal/board-modal.component';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
   boardDetails: Board[] = [];
   headers: any;
   spresp: any;
@@ -56,9 +56,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.getBoards();
   }
 
-  ngOnDestroy() {
-    this.boardDet.refreshNeded$.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.boardDet.refreshNeded$.unsubscribe();
+  // }
 
   openModal() {
     const modalRef = this.modalService.open(BoardModalComponent);

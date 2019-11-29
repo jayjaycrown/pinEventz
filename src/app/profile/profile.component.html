@@ -17,8 +17,9 @@
                                 <p class="font9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque non vel quo explicabo aut nam a et, atque debitis sapiente!</p>
                             </div>
                             <div class="col-sm-4 text-right">
-                                <a data-toggle="modal" data-target="#edProfile" href="#edProfile">
-                                    <span class="p-2 bg-custom text-primary rounded-circle"><i class="fa fa-cog" aria-hidden="true"></i></span> Edit Profile</a>
+                                <a [routerLink]="[ '/profile','edit' ]" style="cursor: pointer;">
+                                  <span class="p-2 bg-custom text-primary rounded-circle"><i class="fa fa-cog" aria-hidden="true"></i></span> Edit Profile
+                                </a>
                                 <br>
                                 <br>
                                 <hr>
@@ -125,12 +126,12 @@
 
                               </div>
                               <div class="card card-pin" >
-                                  <img class="card-img" [src]="board.cover" alt="" style="background: #aaa;">
+                                  <img class="card-img" [src]="board.boardUrl" alt="" style="background: #aaa;">
                                   <div class="overlay pt-3">
                                       <div class="text-center mt-5">
                                         <br/>
                                         <div class="d-block">
-                                            <a  class="cover" (click)="getConfirmation(board.id)" style="cursor: pointer;">
+                                            <a  class="cover" (click)="getConfirmation(board._id)" style="cursor: pointer;">
                                                 <span class="p-3 bg-custom text-primary rounded-circle" placement="top" ngbTooltip="Delete Board"><i class="fa fa-trash" aria-hidden="true"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </a>
                                             <a href="#" data-toggle="modal" data-target="#editBoard">
@@ -141,8 +142,8 @@
                                   </div>
                               </div>
                               <div class="text-center border pt-2 pb-2 bg-light">
-                                  <a [routerLink]="['/profile','board', board.id]" routerLinkActive="router-link-active" >
-                                      <p class="card-title title"> {{ board.name }} </p>
+                                  <a [routerLink]="['/profile','board', board._id]" routerLinkActive="router-link-active" >
+                                      <p class="card-title title"> {{ board.boardName }} </p>
                                   </a>
                               </div>
                           </div>

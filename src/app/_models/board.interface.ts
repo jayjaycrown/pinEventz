@@ -1,8 +1,8 @@
 export interface Board {
-  id: string;
-  name: string;
-  desc: string;
-  cat: string;
-  status: string;
-  cover: string;
+  _id: string;
+  boardName: string;
+  boardDescription: string;
+  boardCategory: string;
+  boardStatus: string;
+  boardUrl: string;
 }

@@ -32,7 +32,7 @@ selectedUser: UserDetails[];
 
 constructor(private http: HttpClient, private router: Router) { }
 register(user: UserDetails) {
-    return this.http.post<UserDetails>(apiUrl + '/register', user, httpOptions)
+    return this.http.post<UserDetails>(apiUrl + '/register', user)
     .pipe(
       catchError(this.handleError('register', user))
     );

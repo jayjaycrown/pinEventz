@@ -1,0 +1,9 @@
+@import '../../../pretty-checkbox.min.css';
+
+
+.pretty input:checked ~ .state.p-primary-o .icon, .pretty input:checked ~ .state.p-primary-o .svg, .pretty input:checked ~ .state.p-primary-o i, .pretty.p-toggle .state.p-primary-o .icon, .pretty.p-toggle .state.p-primary-o .svg, .pretty.p-toggle .state.p-primary-o svg {
+  color:
+#428bca;
+stroke:
+  #428bca;
+}

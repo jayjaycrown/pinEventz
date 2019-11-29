@@ -1,0 +1,80 @@
+<div class="body2">
+  <app-home-header></app-home-header>
+  <section>
+    <div class="container bodycontainer ml-auto mr-auto mt-5 mb-5 pb-5">
+      <div class="card m-auto" style="width: 80%;">
+        <form action="">
+            <div class="card-body">
+                <img src="assets/img/image.png" alt="user Image" class="userImage float-left">
+                <h4 class="card-title text-center text-primary  mt-4">Edit Profile</h4>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="form-row">
+                    <div class="form-group col-sm-5 offset-sm-1">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="" id="" aria-describedby="email" placeholder="example@123.com">
+                    </div>
+                    <div class="form-group col-sm-5">
+                        <label for="">Password</label>
+                        <input type="button" class="btn btn-block btn-primary " data-toggle="modal" data-target="#modelId" value="Change Password">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-5 offset-sm-1">
+                        <label for="fname">First Name</label>
+                        <input type="text" class="form-control" name="fname" id="fname" placeholder="Jon">
+                    </div>
+                    <div class="form-group col-sm-5">
+                        <label for="lname">Last Name</label>
+                        <input type="text" class="form-control" name="lname" id="lname" placeholder="Snow">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 offset-sm-1">
+                        <div class="form-group">
+                            <label for="city">City, Country</label>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="Lagos, Nigeria">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-5 offset-sm-1">
+                        <div class="form-group row">
+                            <label for="dob" class="col-sm-4 col-form-label">Date of Birth</label>
+                            <div class="col-sm-6">
+                                <input type="date" class="form-control" name="dob" id="dob" placeholder="DD/MM/YYYY">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group row">
+                            <label for="gender" class="col-sm-3 col-form-label"> Gender:</label>
+                            <div class="col-sm-8 mt-2">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
+                                    <label class="custom-control-label" for="customRadio">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
+                                    <label class="custom-control-label" for="customRadio2">Female</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <input type="submit" class="btn btn-primary pl-6 pr-6" value="Save">
+                </div>
+            </div>
+        </form>
+        <div class="card-footer text-center">
+            <a [routerLink]="['/profile']">
+                <span class="p-2 bg-custom text-primary rounded-circle"><i class="far fa-hand-point-left"></i></span> Go to Profile
+            </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-home-footer></app-home-footer>
+</div>

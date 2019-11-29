@@ -39,8 +39,8 @@ export class RegisterComponent implements OnInit {
       res => {
         console.log(res);
         this.showSucessMessage = true;
-        alert('Successful');
-        this.router.navigateByUrl('/profile');
+        alert(res);
+        this.router.navigateByUrl('/interest');
       },
       err => {
         if (err.status === 422) {
@@ -48,8 +48,10 @@ export class RegisterComponent implements OnInit {
         } else {
           this.serverErrorMessages = 'Something went wrong.Please contact admin.';
           console.log(err);
+          alert(err);
         }
         console.log(err);
+        alert(err);
       }
     );
   }

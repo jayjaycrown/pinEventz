@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
       res => {
         // tslint:disable-next-line: no-string-literal
         this.userService.setToken(res['token']);
-        this.router.navigateByUrl('/event');
+        this.router.navigateByUrl('/profile');
       },
       err => {
         // this.serverErrorMessages = err.error.message;

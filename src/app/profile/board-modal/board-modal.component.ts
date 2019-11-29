@@ -20,14 +20,14 @@ import { Board } from '../../_models/board.interface';
         <div class="form-group row">
           <label for="name" class="col-sm-4 col-form-label">Board Name:  </label>
           <div class="col-sm-8">
-          <input type="text" minlength="4" class="form-control" name="name" placeholder="Board Name"
-          [(ngModel)]="model.name" #name="ngModel" [ngClass]="{ 'is-invalid': board.submitted && name.invalid }" required>
+          <input type="text" minlength="4" class="form-control" name="boardName" placeholder="Board Name"
+          [(ngModel)]="model.boardName" #boardName="ngModel" [ngClass]="{ 'is-invalid': board.submitted && boardName.invalid }" required>
           </div>
-          <div *ngIf="board.submitted && name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-            <div *ngIf="name?.errors.required">
+          <div *ngIf="board.submitted && boardName.invalid && (boardName.dirty || boardName.touched)" class="alert alert-danger">
+            <div *ngIf="boardName?.errors.required">
               Board Name is required.
             </div>
-            <div *ngIf="name?.errors.minlength">
+            <div *ngIf="boardName?.errors.minlength">
             Board Name must be at least 4 characters long.
             </div>
           </div>
@@ -35,19 +35,19 @@ import { Board } from '../../_models/board.interface';
         <div class="form-group row ">
           <label class="col-sm-4 col-form-label " for="cover">Choose file</label>
           <div class="col-sm-8">
-          <input type="file" class="form-control" name="cover" ngModel>
+          <input type="file" class="form-control" name="boardUrl" ngModel>
         </div>
         </div>
         <div class="form-group row">
             <label for="desc" class="col-sm-4 col-form-label">Board Description:  </label>
             <div class="col-sm-8">
-                <textarea name="desc"  class="form-control" rows="3" ngModel></textarea>
+                <textarea name="boardDescription"  class="form-control" rows="3" ngModel></textarea>
             </div>
         </div>
         <div class="form-group row">
             <label for="cat" class="col-sm-4 col-form-label">Categories:  </label>
             <div class="col-sm-8">
-                <select class="custom-select"  name="cat" ngModel>
+                <select class="custom-select"  name="boardCategory" ngModel>
                     <option value="sport">Sport</option>
                     <option value="music">Music</option>
                     <option value="social">Social</option>
@@ -57,7 +57,7 @@ import { Board } from '../../_models/board.interface';
         <div class="form-group row">
           <label for="status" class="col-sm-4 col-form-label">Visibility:  </label>
           <div class="col-sm-8">
-            <select class="custom-select" name="status" ngModel>
+            <select class="custom-select" name="boardStatus" ngModel>
                 <option value="private">Private</option>
                 <option value="public">Public</option>
             </select>
@@ -81,7 +81,7 @@ export class BoardModalComponent implements OnInit {
   headers: any;
   constructor(public activeModal: NgbActiveModal, private route: ActivatedRoute, private boardDet: BoardService) { }
 
-  onClickSubmit(formData) {
+  onClickSubmit(formData: Board) {
     console.log(formData);
     this.activeModal.close();
     this.boardDet.addBoard(formData).subscribe(

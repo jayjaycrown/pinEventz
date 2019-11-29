@@ -16,7 +16,7 @@ export class BoardDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       paramMap => {
-        this.boardService.getBoardById(paramMap.get('boardId')).subscribe(
+        this.boardService.getBoardById(paramMap.get('_id')).subscribe(
           data => {
             console.log(data);
             this.board = data;
