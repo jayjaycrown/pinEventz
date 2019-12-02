@@ -19,6 +19,9 @@ export class AuthComponent implements OnInit {
 
   serverErrorMessages: string;
   ngOnInit() {
+    if (this.userService.isLoggedIn()) {
+      this.router.navigateByUrl('/profile');
+    }
   }
   onSubmit(form: NgForm) {
     this.userService.login(form.value).subscribe(

@@ -13,7 +13,7 @@ const httpOptions = {
     'Content-Type':  'application/json',
     'Access-Control-Allow-Origin': '*',
     Accept: 'application/fhir+json',
-    Authorization: 'jwt-token'
+    AUTHORIZATION : ' bearer [jwt]'
   })
 };
 
@@ -29,17 +29,18 @@ export class UserService {
 
 selectedUser: UserDetails[];
 
+noAuthHeader = { headers: new HttpHeaders({ NoAuth: 'True' }) };
 
 constructor(private http: HttpClient, private router: Router) { }
 register(user: UserDetails) {
-    return this.http.post<UserDetails>(apiUrl + '/register', user)
+    return this.http.post<UserDetails>(apiUrl + '/register', user, this.noAuthHeader)
     .pipe(
       catchError(this.handleError('register', user))
     );
   }
 
   login(authCredentials: any) {
-    return this.http.post(apiUrl + '/login', authCredentials, httpOptions)
+    return this.http.post(apiUrl + '/login', authCredentials, this.noAuthHeader)
     .pipe(
       catchError(this.handleError('login', authCredentials))
     );

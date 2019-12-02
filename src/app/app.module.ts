@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpErrorInterceptor } from './_helpers/HttpErrorInterceptor';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
@@ -59,7 +60,7 @@ import { InterestComponent } from './register/interest/interest.component';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     }
   ],

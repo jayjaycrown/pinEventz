@@ -53,8 +53,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-
+  getProfile() {
     this.details.profile().subscribe(res => {
       console.log(res);
       // tslint:disable-next-line: no-string-literal
@@ -62,8 +61,9 @@ export class ProfileComponent implements OnInit {
     }, (err) => {
       console.error(err);
     });
-
-
+  }
+  ngOnInit() {
+    this.getProfile();
     this.boardDet.refreshNeded$.subscribe(() => {
       this.getBoards();
     });
