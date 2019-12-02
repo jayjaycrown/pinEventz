@@ -40,7 +40,7 @@ register(user: UserDetails) {
   }
 
   login(authCredentials: any) {
-    return this.http.post(apiUrl + '/login', authCredentials, this.noAuthHeader)
+    return this.http.post(apiUrl + '/login', authCredentials,httpOptions)
     .pipe(
       catchError(this.handleError('login', authCredentials))
     );
