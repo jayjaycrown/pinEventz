@@ -12,7 +12,6 @@
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run PinEventz:server:production --bundleDependencies all",
-    "postinstall": "ng build --aot -prod",
     "heroku-postbuild": "ng build --prod"
   },
   "private": true,
