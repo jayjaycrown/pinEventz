@@ -4,6 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Board } from '../_models/board.interface';
 import { BoardService } from '../_services/board.service';
 import { BoardModalComponent } from './board-modal/board-modal.component';
+import { UserService } from '../_services/user.service';
+import { UserDetails } from '../_models/user-details';
 
 
 
@@ -19,7 +21,9 @@ export class ProfileComponent implements OnInit {
   postdata: Board;
   boardId: any;
 
-  constructor(private boardDet: BoardService, private modalService: NgbModal) { }
+  constructor(private boardDet: BoardService, private modalService: NgbModal, private details: UserService) { }
+
+  users: UserDetails[] = [];
   currentJustify = 'fill';
 
   getBoards() {
@@ -50,6 +54,15 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.details.profile().subscribe(user => {
+      console.log(user);
+      // this.users = user;
+    }, (err) => {
+      console.error(err);
+    });
+
+
     this.boardDet.refreshNeded$.subscribe(() => {
       this.getBoards();
     });

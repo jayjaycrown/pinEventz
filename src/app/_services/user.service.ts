@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { catchError } from 'rxjs/internal/operators';
+import { catchError, retry } from 'rxjs/internal/operators';
 import { of, Observable } from 'rxjs';
 
 import { UserDetails } from '../_models/user-details';
@@ -41,6 +41,13 @@ register(user: UserDetails) {
   login(authCredentials: any) {
     return this.http.post(apiUrl + '/login', authCredentials, httpOptions);
   }
+
+  profile() {
+    return this.http.get(apiUrl + '/profile').pipe(
+      retry(3), catchError(this.handleError('profile'))
+    );
+  }
+
   logout() {
     window.localStorage.removeItem('token');
     this.router.navigateByUrl('/');
