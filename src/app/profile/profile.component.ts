@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private boardDet: BoardService, private modalService: NgbModal, private details: UserService) { }
 
-  users: UserDetails[] = [];
+  users;
   currentJustify = 'fill';
 
   getBoards() {
@@ -55,9 +55,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.details.profile().subscribe(user => {
-      console.log(user);
-      // this.users = user;
+    this.details.profile().subscribe(res => {
+      console.log(res);
+      // tslint:disable-next-line: no-string-literal
+      this.users = res['user'];
     }, (err) => {
       console.error(err);
     });

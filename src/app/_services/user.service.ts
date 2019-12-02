@@ -66,16 +66,24 @@ register(user: UserDetails) {
     }
     return this.token;
   }
-  public isLoggedIn(): boolean {
+  public isLoggedIn() {
+    const userPayload = this.getUserPayload();
+    if (userPayload) {
+      return userPayload.exp > Date.now() / 1000;
+    } else {
+      return false;
+    }
+  }
+
+  getUserPayload() {
     const token = this.getToken();
     if (token) {
-      return true;
+      const userPayload = atob(token.split('.')[1]);
+      return JSON.parse(userPayload);
     } else {
       return null;
     }
   }
-
-
 
 
 
