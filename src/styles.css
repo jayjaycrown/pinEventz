@@ -3,7 +3,7 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 @import 'theme.css';
 @import 'app.css';
-@import '../../../pretty-checkbox.min.css';
+@import 'pretty-checkbox.min.css';
 /* @import 'bootstrap-reboot.min.css'; */
 
 html {
