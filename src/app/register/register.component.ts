@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
     password: '',
     cityCountry: '',
     dateOfBirth: '',
-    gender: ''
+    gender: '',
+    confirmPassword: ''
     // checkbox: '',
   };
 

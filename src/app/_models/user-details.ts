@@ -3,6 +3,7 @@ export interface UserDetails {
   email: string;
   fullName: string;
   password: string;
+  confirmPassword: string;
   cityCountry: string;
   dateOfBirth: string;
   gender: string;
