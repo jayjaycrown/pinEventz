@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 import { Board } from '../_models/board.interface';
 import { retry, catchError, tap } from 'rxjs/internal/operators';
 
 
-const apiUrl = environment.userBaseUrl + '/board';
+const apiUrl = environment.apiBaseUrl + '/board';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',

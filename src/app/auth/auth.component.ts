@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
     email: '',
     password: ''
   };
-  successMessage: any;
+  successMessage: string;
   serverErrorMessages: string;
   ngOnInit() {
     if (this.userService.isLoggedIn()) {
@@ -32,13 +32,14 @@ export class AuthComponent implements OnInit {
         this.successMessage = res.message;
         this.userService.setToken(res.token);
         this.userService.setUser(res.user._id);
-        this.router.navigateByUrl('/event');
         this.userDetail = res.user;
         console.log(this.userDetail);
         alert(this.successMessage);
+        this.router.navigateByUrl('/event');
       },
       err => {
          this.serverErrorMessages = err.error.message;
+         alert(this.serverErrorMessages);
          console.log(err);
       }
     );

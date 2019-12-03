@@ -11,9 +11,12 @@
                     <td >
                       <img [src]="board.boardUrl" width="200px" height="180px" class="rounded" alt="Board Image" >
                     </td>
-                    <td ><h5>{{board.boardName}}</h5></td>
-                    <td ><p class="p-0 m-0">Created in <a > {{ board.boardCategory }}</a></p></td>
-                    <td   style="width: 30%; text-align: justify;"><p class="font9"> {{ board.boardDescription }} </p></td>
+                    <td >
+                      <h5>{{board.boardName}}</h5>
+                      <p>Created on : <span class="rounded badge-primary p-1"> {{ board.created_dt | date : 'MMMM d, y, h:mm:ss a z'  }}</span> </p>
+                    </td>
+                    <td ><p>Created in <a > {{ board.boardCategory }}</a></p></td>
+                    <td   style="width: 30%; text-align: justify;"><p> {{ board.boardDescription }} </p></td>
                   </tr>
 
                 </tbody>

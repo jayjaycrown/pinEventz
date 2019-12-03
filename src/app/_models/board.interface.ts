@@ -5,4 +5,5 @@ export interface Board {
   boardCategory: string;
   boardStatus: string;
   boardUrl: string;
+  created_dt: string;
 }

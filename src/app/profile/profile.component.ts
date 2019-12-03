@@ -59,24 +59,20 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit() {
 
-
-    this.route.paramMap.subscribe(
-      paramMap => {
-        this.details.profile().subscribe(
-          data => {
-            console.log(data);
-            this.profileDetails = data;
-            console.log(this.profileDetails);
-          }
-        );
-      }
-    );
+      this.details.profile().subscribe(res => {
+        console.log(res);
+        // tslint:disable-next-line: no-string-literal
+        this.users = res['user'];
+      }, (err) => {
+        console.error(err);
+      });
 
 
-    this.boardDet.refreshNeded$.subscribe(() => {
+
+      this.boardDet.refreshNeded$.subscribe(() => {
       this.getBoards();
     });
-    this.getBoards();
+      this.getBoards();
   }
 
   // ngOnDestroy() {
