@@ -74,8 +74,8 @@ register(user: UserDetails) {
   logout() {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('user');
-    this.router.navigateByUrl('/');
-    return this.http.get(apiUrl + '/logout');
+    this.router.navigateByUrl('/login');
+    // return this.http.get(apiUrl + '/logout');
 
   }
   setUser(user: string) {

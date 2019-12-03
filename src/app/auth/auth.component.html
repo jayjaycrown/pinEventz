@@ -103,9 +103,9 @@
                               <input type="password" class="form-control1" name="password" #password="ngModel"
                               [(ngModel)]="model.password" placeholder="Password" required minlength="4"
                               [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
-                            <div *ngIf="signInForm.submitted && password?.errors.minlength">
+                            <!-- <div *ngIf="signInForm.submitted && password?.errors.minlength">
                               <label class="validation-message">Minimum 4 characters.</label>
-                            </div>
+                            </div> -->
                           </div>
                           <input type="submit" class="btn btn-block btn-primary" value="Sign In">
                           <a href="#forgotPassword" data-toggle="modal" data-target="#forgotPassword">Forgot Password?</a>
