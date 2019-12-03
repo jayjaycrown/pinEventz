@@ -6,6 +6,7 @@ import { BoardService } from '../_services/board.service';
 import { BoardModalComponent } from './board-modal/board-modal.component';
 import { UserService } from '../_services/user.service';
 import { UserDetails } from '../_models/user-details';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -15,16 +16,20 @@ import { UserDetails } from '../_models/user-details';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  constructor(private boardDet: BoardService,
+              private modalService: NgbModal,
+              private details: UserService,
+              private route: ActivatedRoute) { }
   boardDetails: Board[] = [];
   headers: any;
   spresp: any;
   postdata: Board;
   boardId: any;
 
-  constructor(private boardDet: BoardService, private modalService: NgbModal, private details: UserService) { }
-
   users;
   currentJustify = 'fill';
+  profileDetails;
 
   getBoards() {
     this.boardDet.getBoard().subscribe(
@@ -52,18 +57,22 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
-  getProfile() {
-    this.details.profile().subscribe(res => {
-      console.log(res);
-      // tslint:disable-next-line: no-string-literal
-      this.users = res['user'];
-    }, (err) => {
-      console.error(err);
-    });
-  }
   ngOnInit() {
-    this.getProfile();
+
+
+    this.route.paramMap.subscribe(
+      paramMap => {
+        this.details.profile().subscribe(
+          data => {
+            console.log(data);
+            this.profileDetails = data;
+            console.log(this.profileDetails);
+          }
+        );
+      }
+    );
+
+
     this.boardDet.refreshNeded$.subscribe(() => {
       this.getBoards();
     });

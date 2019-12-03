@@ -11,7 +11,7 @@ const apiUrl = environment.userBaseUrl + '/board';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    Authorization: 'jwt-token'
+    AUTHORIZATION : ' bearer [jwt]'
   })
 };
 @Injectable({
@@ -40,9 +40,18 @@ export class BoardService {
     );
   }
 
-  addBoard(board: Board) {
-    return this.http.post<Board>(apiUrl, board, httpOptions).pipe(
-      catchError(this.handleError<Board>('addBoard', board)), tap(() => {
+  addBoard(boardName: string, boardDescription: string, boardCategory: string, boardStatus: string,  profileImage: File) {
+    const formData: any = new FormData();
+    formData.append('boardName', boardName);
+    formData.append('boardDescription', boardDescription);
+    formData.append('boardCategory', boardCategory);
+    formData.append('boardStatus', boardStatus);
+    formData.append('boardUrl', profileImage);
+    return this.http.post<Board>(apiUrl, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
+      catchError(this.handleError<Board>('addBoard', formData)), tap(() => {
         this._refreshNeded$.next();
       })
     );

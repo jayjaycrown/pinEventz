@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://fierce-tundra-96625.herokuapp.com/api',
-  userBaseUrl: 'https://fierce-tundra-96625.herokuapp.com/user'
+  apiBaseUrl: 'http://localhost:3000/api',
+  userBaseUrl: 'http://localhost:3000/user'
 };
 
 /*

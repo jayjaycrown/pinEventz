@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import { catchError, retry } from 'rxjs/internal/operators';
 import { of, Observable } from 'rxjs';
 
+import * as jwt_decode from 'jwt-decode';
+
 import { UserDetails } from '../_models/user-details';
 import { Router } from '@angular/router';
 
@@ -26,8 +28,11 @@ const httpOptions = {
 
 export class UserService {
   token: string;
+  user: string;
 
 selectedUser: UserDetails[];
+// tslint:disable-next-line: variable-name
+//  _id = this.getTokenDetails();
 
 noAuthHeader = { headers: new HttpHeaders({ NoAuth: 'True' }) };
 
@@ -45,28 +50,52 @@ register(user: UserDetails) {
       catchError(this.handleError('login', authCredentials))
     );
   }
+  // getTokenDetails() {
+  //   const token = this.getToken();
+  //   const decoded = jwt_decode(token);
+  //   console.log(decoded);
+  //   return decoded.UserId;
+  // }
+
+
+  // tslint:disable-next-line: variable-name
+  // profile(_id: string) {
+  //   return this.http.get(apiUrl + '/user/' + _id, httpOptions).pipe(
+  //     retry(3), catchError(this.handleError('profile'))
+  //   );
+  // }
 
   profile() {
-    return this.http.get(apiUrl + '/profile').pipe(
+    return this.http.get(apiUrl + '/profile', httpOptions).pipe(
       retry(3), catchError(this.handleError('profile'))
     );
   }
 
   logout() {
     window.localStorage.removeItem('token');
+    window.localStorage.removeItem('user');
     this.router.navigateByUrl('/');
     return this.http.get(apiUrl + '/logout');
 
   }
+  setUser(user: string) {
+    localStorage.setItem('user', user);
+  }
   setToken(token: string) {
     localStorage.setItem('token', token);
+
   }
   getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('token');
     }
+
     return this.token;
+
   }
+
+
+
   public isLoggedIn() {
     const userPayload = this.getUserPayload();
     if (userPayload) {

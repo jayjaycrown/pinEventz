@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BoardService } from '../../_services/board.service';
 import { Board } from '../../_models/board.interface';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-board-modal',
   template: `
-  <form #board = "ngForm" (ngSubmit) = "board.form.valid && onClickSubmit(board.value)" >
+  <form [formGroup]="form" (ngSubmit) = "onClickSubmit()" >
     <div class="modal-header">
       <h4 class="modal-title">Create Board</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -17,37 +19,36 @@ import { Board } from '../../_models/board.interface';
     </div>
     <div class="modal-body">
       <div class="container">
+      <!-- Progress Bar -->
+      <!-- Image Preview -->
+      <div class="form-group">
+        <div class="preview" *ngIf="preview && preview !== null">
+          <img [src]="preview" [alt]="form.value.name">
+        </div>
+      </div>
         <div class="form-group row">
           <label for="name" class="col-sm-4 col-form-label">Board Name:  </label>
           <div class="col-sm-8">
           <input type="text" minlength="4" class="form-control" name="boardName" placeholder="Board Name"
-          [(ngModel)]="model.boardName" #boardName="ngModel" [ngClass]="{ 'is-invalid': board.submitted && boardName.invalid }" required>
-          </div>
-          <div *ngIf="board.submitted && boardName.invalid && (boardName.dirty || boardName.touched)" class="alert alert-danger">
-            <div *ngIf="boardName?.errors.required">
-              Board Name is required.
-            </div>
-            <div *ngIf="boardName?.errors.minlength">
-            Board Name must be at least 4 characters long.
-            </div>
+          required formControlName="boardName">
           </div>
         </div>
-        <div class="form-group row ">
-          <label class="col-sm-4 col-form-label " for="cover">Choose file</label>
-          <div class="col-sm-8">
-          <input type="file" class="form-control" name="boardUrl" ngModel>
-        </div>
-        </div>
+        <!-- File Input -->
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label " for="cover">Choose file</label>
+        <input type="file" (change)="uploadFile($event)">
+      </div>
+
         <div class="form-group row">
             <label for="desc" class="col-sm-4 col-form-label">Board Description:  </label>
             <div class="col-sm-8">
-                <textarea name="boardDescription"  class="form-control" rows="3" ngModel></textarea>
+                <textarea name="boardDescription"  formControlName="boardDescription" class="form-control" rows="3" ></textarea>
             </div>
         </div>
         <div class="form-group row">
-            <label for="cat" class="col-sm-4 col-form-label">Categories:  </label>
+            <label for="cat" class="col-sm-4 col-form-label" >Categories:  </label>
             <div class="col-sm-8">
-                <select class="custom-select"  name="boardCategory" ngModel>
+                <select class="custom-select"  name="boardCategory" formControlName="boardCategory">
                     <option value="sport">Sport</option>
                     <option value="music">Music</option>
                     <option value="social">Social</option>
@@ -57,7 +58,7 @@ import { Board } from '../../_models/board.interface';
         <div class="form-group row">
           <label for="status" class="col-sm-4 col-form-label">Visibility:  </label>
           <div class="col-sm-8">
-            <select class="custom-select" name="boardStatus" ngModel>
+            <select class="custom-select" name="boardStatus"  formControlName="boardStatus">
                 <option value="private">Private</option>
                 <option value="public">Public</option>
             </select>
@@ -75,24 +76,62 @@ import { Board } from '../../_models/board.interface';
 })
 export class BoardModalComponent implements OnInit {
   model: any = {};
+  preview: string;
+  form: FormGroup;
+  percentDone: any = 0;
 
   board: Board[];
   postData: Board;
   headers: any;
-  constructor(public activeModal: NgbActiveModal, private route: ActivatedRoute, private boardDet: BoardService) { }
+  constructor(public activeModal: NgbActiveModal,
+              private route: ActivatedRoute,
+              public fileUploadService: BoardService,
+              public fb: FormBuilder,
+              public router: Router) {
+                // Reactive Form
+                this.form = this.fb.group({
+                  boardName: [''],
+                  boardStatus: [''],
+                  boardUrl: [null],
+                  boardCategory: [''],
+                  boardDescription: ['']
+                });
+               }
 
-  onClickSubmit(formData: Board) {
-    console.log(formData);
+  onClickSubmit() {
     this.activeModal.close();
-    this.boardDet.addBoard(formData).subscribe(
-      data => {
-        console.log(data);
-        return this.board.push(data);
+    this.fileUploadService.addBoard(
+      this.form.value.boardName,
+      this.form.value.boardDescription,
+      this.form.value.boardCategory,
+      this.form.value.boardStatus,
+      this.form.value.boardUrl,
+    ).subscribe((event: HttpEvent<any>) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          console.log('Request has been made!');
+          break;
+        case HttpEventType.ResponseHeader:
+          console.log('Response header has been received!');
+          break;
+        case HttpEventType.UploadProgress:
+          this.percentDone = Math.round(event.loaded / event.total * 100);
+          console.log(`Uploaded! ${this.percentDone}%`);
+          break;
+        case HttpEventType.Response:
+          console.log('Board successfully created!', event.body);
+          this.percentDone = false;
       }
-    );
+    });
   }
 
   ngOnInit() {
   }
+  // Image Preview
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({
+      boardUrl: file
+    });
 
-}
+}}

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { UserService } from '../_services/user.service';
+import { UserDetails } from '../_models/user-details';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -12,11 +13,13 @@ export class AuthComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService) { }
 
+  userDetail: UserDetails[]  = [];
+
   model = {
     email: '',
     password: ''
   };
-
+  successMessage: any;
   serverErrorMessages: string;
   ngOnInit() {
     if (this.userService.isLoggedIn()) {
@@ -26,9 +29,13 @@ export class AuthComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.userService.login(form.value).subscribe(
       res => {
-        // tslint:disable-next-line: no-string-literal
-        this.userService.setToken(res['token']);
+        this.successMessage = res.message;
+        this.userService.setToken(res.token);
+        this.userService.setUser(res.user._id);
         this.router.navigateByUrl('/profile');
+        this.userDetail = res.user;
+        console.log(this.userDetail);
+        alert(this.successMessage);
       },
       err => {
         // this.serverErrorMessages = err.error.message;
@@ -36,5 +43,4 @@ export class AuthComponent implements OnInit {
       }
     );
   }
-
 }

@@ -4,29 +4,29 @@
   <div class="row p-0">
     <div class="col-md-12 ">
       <div class="card">
-          <div class="card-body pb-0">
+          <div class="card-body p-0">
+            <table class="table table-inverse pl-2 pr-2">
+                <tbody >
+                  <tr >
+                    <td >
+                      <img [src]="board.boardUrl" width="200px" height="180px" class="rounded" alt="Board Image" >
+                    </td>
+                    <td ><h5>{{board.boardName}}</h5></td>
+                    <td ><p class="p-0 m-0">Created in <a > {{ board.boardCategory }}</a></p></td>
+                    <td   style="width: 30%; text-align: justify;"><p class="font9"> {{ board.boardDescription }} </p></td>
+                  </tr>
+
+                </tbody>
+            </table>
               <div class="row">
-                  <!-- <div class="col-md-1 text-center">
-                      <img src="assets/img/profile.png" width="50px" height="50px" class="rounded-circle" alt="Profile picture" srcset="">
-                  </div> -->
-                  <div class="col-sm-3">
-                      <h5>{{board.boardName}}</h5>
-                  </div>
-                  <div class="col-sm-2">
-                    <p class="p-0 m-0">Created in <a > {{ board.boardCategory }}</a></p>
 
-                  </div>
-                  <div class="col-sm-5">
-
-                      <p class="font9"> {{ board.boardDescription }} </p>
-                  </div>
-                  <div class="col-sm-2 ">
+                  <!-- <div class="col-sm-2 ">
                       <div class="text-center ">
                           <a href="#" data-toggle="modal" data-target="#editBoard">
                               <span class="p-2 bg-light text-primary rounded-circle"><i class="fa fa-pen-alt" aria-hidden="true"></i></span> Edit Board
                           </a>
                       </div>
-                  </div>
+                  </div> -->
               </div>
 
           </div>
