@@ -7,7 +7,7 @@ import {catchError, retry} from 'rxjs/internal/operators';
 
 
 import { EventDetails } from '../_models/event-details';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 const apiUrl = environment.userBaseUrl + '/event';
 const httpOptions = {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 import { Board } from '../_models/board.interface';
 import { retry, catchError, tap } from 'rxjs/internal/operators';
