@@ -32,14 +32,14 @@ export class AuthComponent implements OnInit {
         this.successMessage = res.message;
         this.userService.setToken(res.token);
         this.userService.setUser(res.user._id);
-        this.router.navigateByUrl('/profile');
+        this.router.navigateByUrl('/event');
         this.userDetail = res.user;
         console.log(this.userDetail);
         alert(this.successMessage);
       },
       err => {
-        // this.serverErrorMessages = err.error.message;
-        console.log(err);
+         this.serverErrorMessages = err.error.message;
+         console.log(err);
       }
     );
   }
