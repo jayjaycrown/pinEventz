@@ -78,7 +78,11 @@ export class CreateEventModalComponent implements OnInit {
   }
 
   openBoardModal() {
+<<<<<<< HEAD
      this.modalService.open(BoardModalComponent);
+=======
+    this.modalService.open(BoardModalComponent);
+>>>>>>> 48c3fedb1dfd09501fad885484718ea3ae637692
   }
 
   getBoard() {
