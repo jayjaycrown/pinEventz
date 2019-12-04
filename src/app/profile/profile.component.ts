@@ -67,8 +67,6 @@ export class ProfileComponent implements OnInit {
         console.error(err);
       });
 
-
-
       this.boardDet.refreshNeded$.subscribe(() => {
       this.getBoards();
     });

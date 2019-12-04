@@ -63,6 +63,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.evDet.refreshNeded$.subscribe(() => {
+      this.getEvents();
+    });
     this.getEvents();
   }
 
