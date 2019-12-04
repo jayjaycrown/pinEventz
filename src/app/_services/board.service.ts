@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/internal/operators';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 import { Board } from '../_models/board.interface';
 
 
 const apiUrl = environment.apiBaseUrl + '/board';
-const myBoard = environment.apiBaseUrl + '/myboard';
+// const myBoard = environment.apiBaseUrl + '/myboard';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
