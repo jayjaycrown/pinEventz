@@ -23,7 +23,7 @@ export class CreateEventModalComponent implements OnInit {
     public boardService: BoardService,
     public eventService: EventDetailService,
     public fb: FormBuilder,
-    // public modalService: NgbModal,
+    public modalService: NgbModal,
   ) {
     this.form = this.fb.group({
       eventName: [''],
@@ -78,7 +78,7 @@ export class CreateEventModalComponent implements OnInit {
   }
 
   openBoardModal() {
-    // this.modalService.open(BoardModalComponent);
+     this.modalService.open(BoardModalComponent);
   }
 
   getBoard() {

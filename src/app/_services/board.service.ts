@@ -8,6 +8,7 @@ import { Board } from '../_models/board.interface';
 
 
 const apiUrl = environment.apiBaseUrl + '/board';
+const myBoard = environment.apiBaseUrl + '/myboard';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -35,7 +36,7 @@ export class BoardService {
 
   getBoard(): Observable<any> {
     httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
-    return this.http.get<Board[]>(apiUrl, httpOptions).pipe(
+    return this.http.get<Board[]>(myBoard, httpOptions).pipe(
       retry(3), catchError(this.handleError<Board[]>('getBoard', []))
     );
   }
