@@ -25,7 +25,6 @@ import { ConpareValidatorDirective } from './_helpers/conpare-validator.directiv
 import { CreateEventModalComponent } from './includes/create-event-modal/create-event-modal.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { InterestComponent } from './register/interest/interest.component';
-import { FileInputValueAccessor } from './_helpers/file-input.accessor.directive';
 
 
 @NgModule({
@@ -45,7 +44,6 @@ import { FileInputValueAccessor } from './_helpers/file-input.accessor.directive
     CreateEventModalComponent,
     EditProfileComponent,
     InterestComponent,
-    FileInputValueAccessor,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
