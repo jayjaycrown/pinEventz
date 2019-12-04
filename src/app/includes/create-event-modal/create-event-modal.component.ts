@@ -19,7 +19,7 @@ export class CreateEventModalComponent implements OnInit {
   headers: any;
 
   constructor(
-    private activeModal: NgbActiveModal,
+    public activeModal: NgbActiveModal,
     public boardService: BoardService,
     public eventService: EventDetailService,
     public fb: FormBuilder,

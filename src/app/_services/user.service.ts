@@ -66,6 +66,8 @@ register(user: UserDetails) {
   logout() {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('user');
+    alert('Logging out now');
+    location.reload();
   }
   setUser(user: string) {
     localStorage.setItem('user', user);
