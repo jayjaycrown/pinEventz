@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
-import { catchError, retry } from 'rxjs/internal/operators';
+import { catchError, retry, tap  } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 // import * as jwt_decode from 'jwt-decode';
 import { UserDetails } from '../_models/user-details';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+import { shareReplay } from 'rxjs/operators';
 
 const apiUrl = environment.apiBaseUrl ;
 const httpOptions = {
@@ -44,10 +46,16 @@ register(user: UserDetails) {
 
   login(authCredentials: any) {
     return this.http.post(apiUrl + '/login', authCredentials, httpOptions)
-    .pipe(
+    .pipe(tap(res => this.setSession(res)), shareReplay(),
       catchError(this.handleError('Login', authCredentials))
     );
   }
+  private setSession(authResult) {
+    const expiresAt = moment().add(authResult.expiresIn, 'second');
+
+    localStorage.setItem('id_token', authResult.token);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()) );
+}
   // getTokenDetails() {
   //   const token = this.getToken();
   //   const decoded = jwt_decode(token);
@@ -64,10 +72,29 @@ register(user: UserDetails) {
   }
 
   logout() {
-    window.localStorage.removeItem('token');
+    localStorage.removeItem('token');
     window.localStorage.removeItem('user');
+    localStorage.removeItem('expires_at');
     alert('Logging out now');
     location.reload();
+  }
+
+  public isLoggedIn() {
+    return moment().isBefore(this.getExpiration());
+  }
+
+  isLoggedOut() {
+    return !this.isLoggedIn();
+  }
+
+  getExpiration() {
+    const expiration = localStorage.getItem('expires_at');
+    const expiresAt = JSON.parse(expiration);
+    return moment(expiresAt);
+  }
+
+  expiresIn(expiresIn) {
+
   }
   setUser(user: string) {
     localStorage.setItem('user', user);
@@ -80,21 +107,19 @@ register(user: UserDetails) {
     if (!this.token) {
       this.token = localStorage.getItem('token');
     }
-
     return this.token;
-
   }
 
 
 
-  public isLoggedIn() {
-    const userToken = this.getToken();
-    if (userToken) {
-      return true ;
-    } else {
-      return false;
-    }
-  }
+  // public isLoggedIn() {
+  //   const userToken = this.getToken();
+  //   if (userToken) {
+  //     return true ;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   // getUserPayload() {
   //   const token = this.getToken();

@@ -30,7 +30,8 @@ export class AuthComponent implements OnInit {
     this.userService.login(form.value).subscribe(
       res => {
         this.successMessage = res.message;
-        this.userService.setToken(res.token);
+        // this.userService.setToken(res.token);
+        // this.userService.expiresIn(res.expiresIn);
         this.userService.setUser(res.user._id);
         this.userDetail = res.user;
         console.log(this.userDetail);

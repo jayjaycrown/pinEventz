@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:3000/api',
-  userBaseUrl: 'http://localhost:3000/user'
+  apiBaseUrl: 'https://pineventz-api.herokuapp.com/api',
+  userBaseUrl: 'https://pineventz-api.herokuapp.com/user'
 };
 
 /*
