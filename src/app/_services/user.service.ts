@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { catchError, retry } from 'rxjs/internal/operators';
 import { of, Observable } from 'rxjs';
 // import * as jwt_decode from 'jwt-decode';

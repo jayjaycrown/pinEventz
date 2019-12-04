@@ -6,7 +6,7 @@ import {catchError, retry, tap} from 'rxjs/internal/operators';
 
 
 import { EventDetails } from '../_models/event-details';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 
 const apiUrl = environment.apiBaseUrl + '/event';
