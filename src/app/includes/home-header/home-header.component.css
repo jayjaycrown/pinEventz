@@ -1,0 +1,11 @@
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value{
+  background-color: #039282 !important;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+  background-color: #039282 !important;
+border-radius: 2px;
+color:  #fff;
+  padding: 2px 5px;
+  margin: 0 0.4375em 0.4375em 0;
+}

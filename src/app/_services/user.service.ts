@@ -56,12 +56,6 @@ register(user: UserDetails) {
   // }
 
 
-  // tslint:disable-next-line: variable-name
-  // profile(_id: string) {
-  //   return this.http.get(apiUrl + '/user/' + _id, httpOptions).pipe(
-  //     retry(3), catchError(this.handleError('profile'))
-  //   );
-  // }
 
   profile() {
     return this.http.get(apiUrl + '/profile', httpOptions).pipe(

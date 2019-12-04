@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientJsonpModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpErrorInterceptor } from './_helpers/HttpErrorInterceptor';
@@ -24,6 +25,7 @@ import { ConpareValidatorDirective } from './_helpers/conpare-validator.directiv
 import { CreateEventModalComponent } from './includes/create-event-modal/create-event-modal.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { InterestComponent } from './register/interest/interest.component';
+import { FileInputValueAccessor } from './_helpers/file-input.accessor.directive';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { InterestComponent } from './register/interest/interest.component';
     CreateEventModalComponent,
     EditProfileComponent,
     InterestComponent,
+    FileInputValueAccessor,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -51,6 +54,7 @@ import { InterestComponent } from './register/interest/interest.component';
     HttpClientModule,
     HttpClientJsonpModule,
     FormsModule,
+    NgSelectModule,
     ReactiveFormsModule
   ],
   entryComponents: [

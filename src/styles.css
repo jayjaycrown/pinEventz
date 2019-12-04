@@ -4,8 +4,22 @@
 @import 'theme.css';
 @import 'app.css';
 @import 'pretty-checkbox.min.css';
+@import "~@ng-select/ng-select/themes/material.theme.css";
 /* @import 'bootstrap-reboot.min.css'; */
 
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+  background-color: #039282 !important;
+  border-radius: 2px;
+  color:  #fff;
+  padding: 2px 5px;
+  margin: 0 0.4375em 0.4375em 0;
+}
+.ng-select .ng-select-container .ng-value-container .ng-placeholder{
+  color: #039282 !important;
+}
+.ng-select .ng-select-container{
+  color: #039282 !important;
+}
 html {
   /* font-family: Lato, Helvetica, sans-serif; */
   font-family: Cardo, serif !important;

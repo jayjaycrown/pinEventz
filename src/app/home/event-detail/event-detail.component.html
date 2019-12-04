@@ -12,7 +12,7 @@
               <h4 class="ml-3 font-weight-bold"> {{ events.eventName }} </h4>
               <p class="mb-0 mr-sm-3 ml-lg-3 text-justify" style="font-size: .9rem !important"> {{ events.fullDes }} </p><br>
               <p class="mb-0 mr-sm-3 ml-lg-3 text-justify font-weight-bold"> {{ events.finishDate }} {{ events.time }}  </p><br>
-              <p class="mb-0 ml-3" style="font-size: .9rem !important">By <a href="profile.html">Event Organiser</a> in <a>  </a></p>
+              <p class="mb-0 ml-3" style="font-size: .9rem !important">Poster By <a >  <span *ngFor="let org of organizer"> {{org.username}} </span> </a> in <a> {{ events.category }} </a></p>
               <br/>
               <div class="row">
                 <div class="col-lg-5 col-md-7 col-sm-8">

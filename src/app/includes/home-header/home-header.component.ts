@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../_services/user.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CreateEventModalComponent } from '../create-event-modal/create-event-modal.component';
-import { BoardModalComponent } from 'src/app/profile/board-modal/board-modal.component';
 import { Router } from '@angular/router';
-import { BoardService } from 'src/app/_services/board.service';
+
+import { UserService } from '../../_services/user.service';
+import { CreateEventModalComponent } from '../create-event-modal/create-event-modal.component';
 
 @Component({
   selector: 'app-home-header',
@@ -13,16 +12,13 @@ import { BoardService } from 'src/app/_services/board.service';
 })
 export class HomeHeaderComponent implements OnInit {
 
-  constructor(public auth: UserService, private modalService: NgbModal, private router: Router, public boardService: BoardService) { }
+  constructor(public auth: UserService, private modalService: NgbModal, private router: Router) { }
 
   collapsed = true;
   boards: any;
 
-  createEvent(content: any) {
-    this.modalService.open(content, { size: 'lg', scrollable: true });
-  }
-  openBoardModal() {
-    this.modalService.open(BoardModalComponent);
+  createEvent() {
+    this.modalService.open(CreateEventModalComponent, { size: 'lg'});
   }
 
   logout() {
@@ -31,13 +27,6 @@ export class HomeHeaderComponent implements OnInit {
     console.log('logged Out Successfully');
   }
 
-  getBoard() {
-    this.boardService.getBoard().subscribe( res => {
-      this.boards = res.data;
-      console.log(res);
-    });
-
-  }
   ngOnInit() {
   }
 

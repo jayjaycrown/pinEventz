@@ -1,130 +1,127 @@
-<ng-template #content let-modal>
-  <form action="">
-      <div class="modal-header">
-          <h4 class="modal-title">Create New Event</h4>
-          <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-    <div class="modal-body">
-        <div class="container text-justify">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="eventname">Name</label>
-                        <input type="text" class="form-control" name="eventname" id="eventname" placeholder="Event Name">
-                    </div>
+<form  [formGroup]="form" (ngSubmit)="onClickSubmit()">
+  <div class="modal-header">
+    <h4 class="modal-title">Create New Event</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="container text-justify">
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="eventName">Name</label>
+                      <input type="text" class="form-control" name="eventName"
+                      placeholder="Event Name"
+                      formControlName="eventName" required>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group mb-0">
+                      <label for="board">Select Board</label>
+                      <select class="custom-select" name="board"
+                       formControlName="board">
+                          <option *ngFor="let board of boards" value="board.boardName"> {{ board.boardName }} </option>
+                      </select>
+                  </div>
+                  <span class="font9"><a style="cursor: pointer;" (click)="openBoardModal()">Or create New Board</a></span>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Upload Image</label>
+                    <div class="input-group">
+                      <span class="btn btn-default btn-file">
+                        Browse...<input type="file" (change)="uploadFile($event)">
+                      </span>
+                  </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group mb-0">
-                        <label for="board">Select Board</label>
-                        <select class="custom-select" name="" id="">
-                                <option selected>Select one</option>
-                                <option value="">Board Name 1</option>
-                                <option value="">Board Name 2</option>
-                            </select>
-                    </div>
-                    <span class="font9"><a href="profile.html">Create New Board</a></span>
-                </div>
-            </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="address">Address</label>
+                      <input type="text" class="form-control" name="address"  placeholder="234 Madisson Avenue, New York city"  formControlName="address">
+                  </div>
+              </div>
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Upload Image</label>
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <span class="btn btn-default btn-file">
-                                    Browse...<input type="file" id="eventImg">
-                                </span>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="sdate">Start Date</label>
+                      <input type="date" name="startDate" max="2030-12-31" min="2010-01-01" class="form-control"
+                       formControlName="startDate"
+                      >
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="fdate">Finish Date</label>
+                      <input type="date" name="finishDate" max="2030-12-31" min="2010-01-01" class="form-control"
+                      formControlName="finishDate">
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group ">
+                      <label for="collaborators">Event Time</label>
+                      <input type="time" name="time"  class="form-control" formControlName="time">
+                  </div>
+              </div>
+
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="status">Status</label>
+                      <select class="custom-select" name="status" id="status" formControlName="status">
+                              <option selected>Select one</option>
+                              <option value="Hidden">Hidden</option>
+                              <option value="Public">Public</option>
+                          </select>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="sdesc">Short Description</label>
+                      <input type="text" class="form-control" name="sdesc" id="sdesc" placeholder="Short Description" formControlName="shortDes">
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group ">
+                      <label for="category">Category</label>
+                      <select class="custom-select" name="category" id="category" formControlName="category">
+                          <option selected="">Choose Category</option>
+                          <option value="Music">Music</option>
+                          <option value="Sport">Sport</option>
+                          <option value="Technology">Technology</option>
+                          <option value="Education">Education</option>
+                      </select>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="row">
+              <div class="col-sm-12">
+                  <label for="fdesc">Full Description</label>
+                  <textarea name="fdesc" class="form-control"  rows="2" placeholder="Full description" formControlName="fullDes"></textarea>
+              </div>
+          </div>
 
 
-                            </span>
+      </div>
+  </div>
 
-                            <input type="text" class="d-none" readonly>
-                        </div>
-                        <img id='img-upload' />
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group ">
-                        <label for="collaborators">Who may Pin</label>
-                        <select class="custom-select" name="collaborators" id="collaborators">
-                            <option selected="">Choose collaborators</option>
-                            <option value="">Music</option>
-                            <option value="">Sport</option>
-                            <option value="">Technology</option>
-                            <option value="">Education</option>
-                        </select>
-                    </div>
 
-                </div>
+  <div class="modal-footer">
+    <input type="submit" class="btn btn-primary btn-sm" value="Create Event">
+    <button type="button" class="btn btn-outline-dark btn-sm" (click)="activeModal.close('Close click')">Close</button>
+  </div>
 
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="sdate">Start Date</label>
-                        <input type="date" id="sdate" name="sdate" max="2030-12-31" min="2010-01-01" class="form-control">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="fdate">Finish Date</label>
-                        <input type="date" id="fdate" name="fdate" max="2030-12-31" min="2010-01-01" class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" name="address" id="address" placeholder="234 Madisson Avenue, New York city">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select class="custom-select" name="status" id="status">
-                                <option selected>Select one</option>
-                                <option value="">Hidden</option>
-                                <option value="">Public</option>
-                            </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="sdesc">Short Description</label>
-                        <input type="text" class="form-control" name="sdesc" id="sdesc" placeholder="Short Description">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group ">
-                        <label for="category">Category</label>
-                        <select class="custom-select" name="category" id="category">
-                            <option selected="">Choose Category</option>
-                            <option value="">Music</option>
-                            <option value="">Sport</option>
-                            <option value="">Technology</option>
-                            <option value="">Education</option>
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label for="fdesc">Full Description</label>
-                    <textarea name="fdesc" class="form-control" id="fdesc" rows="2" placeholder="Full description"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark btn-sm" (click)="activeModal.close('Close click')">Close</button>
-        <input type="submit" class="btn btn-primary btn-sm" value="Create Event">
-    </div>
-  </form>
-</ng-template>
+</form>

@@ -40,8 +40,8 @@ export class RegisterComponent implements OnInit {
       res => {
         console.log(res);
         this.showSucessMessage = true;
-        alert(res);
-        this.router.navigateByUrl('/interest');
+        alert(res.email);
+        this.router.navigateByUrl('/login');
       },
       err => {
         if (err.status === 422) {

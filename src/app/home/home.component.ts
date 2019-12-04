@@ -38,21 +38,21 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  addEvent() {
-    this.evDet
-      .addEvent(this.postdata)
-      .subscribe(resp => {
-        return this.spresp.push(resp);
-      });
-  }
+  // addEvent() {
+  //   this.evDet
+  //     .addEvent(this.postdata)
+  //     .subscribe(resp => {
+  //       return this.spresp.push(resp);
+  //     });
+  // }
 
-  updateEvent(id: any) {
-    this.evDet
-      .updateEvent(id, this.postdata)
-      .subscribe(resp => {
-        return this.spresp.push(resp);
-      });
-  }
+  // updateEvent(id: any) {
+  //   this.evDet
+  //     .updateEvent(id, this.postdata)
+  //     .subscribe(resp => {
+  //       return this.spresp.push(resp);
+  //     });
+  // }
 
   deleteEvent(id: any) {
     this.evDet

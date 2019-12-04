@@ -95,8 +95,9 @@
                       <div class="row">
                         <div class="col-md-6 offset-md-3">
                           <div class="form-group">
-                              <input type="email" class="form-control1" name="email" #email="ngModel"
-                              [(ngModel)]="model.email" placeholder="email"  required
+                              <input type="email" class="form-control1" name="email"  placeholder="email"
+                              required #email="ngModel"
+                              [(ngModel)]="model.email"
                               [ngClass]="{'invalid-textbox' :signInForm.submitted && !email.valid }">
 
                           </div>

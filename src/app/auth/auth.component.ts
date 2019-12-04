@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
   serverErrorMessages: string;
   ngOnInit() {
     if (this.userService.isLoggedIn()) {
-      this.router.navigateByUrl('/profile');
+      this.router.navigateByUrl('/event');
     }
   }
   onSubmit(form: NgForm) {

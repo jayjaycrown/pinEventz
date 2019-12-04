@@ -34,6 +34,7 @@ export class BoardModalComponent implements OnInit {
                }
 
   onClickSubmit() {
+    console.log(this.form.value);
     this.activeModal.close();
     this.fileUploadService.addBoard(
       this.form.value.boardName,
