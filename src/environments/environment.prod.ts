@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://pineventz-api.herokuapp.com/api',
-  userBaseUrl: 'https://pineventz-api.herokuapp.com/user'
+  apiBaseUrl: 'https://secret-beach-61811.herokuapp.com/api',
+  userBaseUrl: 'https://secret-beach-61811.herokuapp.com/user'
 };

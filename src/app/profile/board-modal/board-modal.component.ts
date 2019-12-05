@@ -42,7 +42,7 @@ export class BoardModalComponent implements OnInit {
   onClickSubmit() {
     this.Spinner.show();
     this.loader.start(10);
-    console.log(this.form.value);
+    // console.log(this.form.value);
     this.fileUploadService.addBoard(
       this.form.value.boardName,
       this.form.value.boardDescription,
@@ -59,7 +59,7 @@ export class BoardModalComponent implements OnInit {
           break;
         case HttpEventType.UploadProgress:
           this.percentDone = Math.round(event.loaded / event.total * 100);
-          console.log(`Uploaded! ${this.percentDone}%`);
+          // console.log(`Uploaded! ${this.percentDone}%`);
           break;
         case HttpEventType.Response:
           // alert(event.body.message);
