@@ -7,6 +7,10 @@
     </div>
     <div class="modal-body">
       <div class="container">
+          <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+              <p style="color: white">Please Wait. </p>
+              </ngx-spinner>
+          <p *ngIf="percentDone"><ngb-progressbar type="success" [value]="percentDone" [striped]="true">{{ percentDone }}</ngb-progressbar></p>
         <div class="form-group row">
           <label for="name" class="col-sm-4 col-form-label">Board Name:  </label>
           <div class="col-sm-8">

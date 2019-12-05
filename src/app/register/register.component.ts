@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingBarService } from '@ngx-loading-bar/core';
+
 
 import { UserService } from '../_services/user.service';
 import { UserDetails } from '../_models/user-details';
@@ -12,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, public loader: LoadingBarService) { }
   userDetails: UserDetails[];
 // tslint:disable-next-line: max-line-length
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -35,24 +37,29 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    this.loader.start(10);
+    // console.log(form.value);
     this.userService.register(form.value).subscribe(
       res => {
         console.log(res);
         this.showSucessMessage = true;
         alert(res.email);
         this.router.navigateByUrl('/login');
+        this.loader.stop();
       },
       err => {
         if (err.status === 422) {
           this.serverErrorMessages = err.error.join('<br/>');
+          this.loader.stop();
         } else {
           this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+          this.loader.stop();
           console.log(err);
           alert(err);
         }
         console.log(err);
         alert(err);
+        this.loader.stop();
       }
     );
   }

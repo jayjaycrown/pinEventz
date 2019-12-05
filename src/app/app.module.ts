@@ -7,6 +7,10 @@ import { HttpClientJsonpModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule  } from '@ngx-loading-bar/router';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { HttpErrorInterceptor } from './_helpers/HttpErrorInterceptor';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -53,7 +57,11 @@ import { InterestComponent } from './register/interest/interest.component';
     HttpClientJsonpModule,
     FormsModule,
     NgSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingBarRouterModule,
+    LoadingBarModule,
+    LoadingBarHttpClientModule,
+    NgxSpinnerModule
   ],
   entryComponents: [
     BoardModalComponent,

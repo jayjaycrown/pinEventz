@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { LoadingBarService } from '@ngx-loading-bar/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+
 
 import { BoardService } from '../../_services/board.service';
 import { Board } from '../../_models/board.interface';
@@ -22,7 +26,9 @@ export class BoardModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal,
               public fileUploadService: BoardService,
               public fb: FormBuilder,
-              public router: Router) {
+              public router: Router,
+              public loader: LoadingBarService,
+              private Spinner: NgxSpinnerService) {
                 // Reactive Form
                 this.form = this.fb.group({
                   boardName: [''],
@@ -34,8 +40,9 @@ export class BoardModalComponent implements OnInit {
                }
 
   onClickSubmit() {
+    this.Spinner.show();
+    this.loader.start(10);
     console.log(this.form.value);
-    this.activeModal.close();
     this.fileUploadService.addBoard(
       this.form.value.boardName,
       this.form.value.boardDescription,
@@ -55,10 +62,14 @@ export class BoardModalComponent implements OnInit {
           console.log(`Uploaded! ${this.percentDone}%`);
           break;
         case HttpEventType.Response:
-          alert(event.body.message);
+          // alert(event.body.message);
           console.log('Board successfully created!', event.body);
           this.percentDone = false;
+          this.Spinner.hide();
+          this.activeModal.close();
       }
+      this.loader.stop();
+      this.Spinner.hide();
     });
   }
 

@@ -15,7 +15,7 @@ export class AuthGuard  {
   //   this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
   // }
   canActivate() {
-    if (!this.authService.isLoggedIn()) {
+    if (this.authService.isLoggedOut()) {
       this.router.navigateByUrl('/');
       return false;
     }

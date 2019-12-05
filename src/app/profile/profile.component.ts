@@ -1,12 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Board } from '../_models/board.interface';
 import { BoardService } from '../_services/board.service';
 import { BoardModalComponent } from './board-modal/board-modal.component';
 import { UserService } from '../_services/user.service';
-import { UserDetails } from '../_models/user-details';
-import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -20,7 +19,7 @@ export class ProfileComponent implements OnInit {
   constructor(private boardDet: BoardService,
               private modalService: NgbModal,
               private details: UserService,
-              private route: ActivatedRoute) { }
+              private Spinner: NgxSpinnerService) { }
   boardDetails: Board[] = [];
   headers: any;
   spresp: any;
@@ -32,10 +31,13 @@ export class ProfileComponent implements OnInit {
   profileDetails;
 
   getBoards() {
+    this.Spinner.show();
+    // this.SpinnerService.show();
     this.boardDet.getBoard().subscribe(
       data => {
         console.log(data);
         this.boardDetails = data;
+        this.Spinner.hide();
       }
     );
   }
@@ -43,34 +45,37 @@ export class ProfileComponent implements OnInit {
    getConfirmation(id: any) {
     const retVal = confirm('Are you sure you really want to delete this Board?');
     if ( retVal === true ) {
-      this.deleteBoard(id);
-      return true;
+      return this.deleteBoard(id);
     } else {
        return false;
     }
  }
 
   deleteBoard(id: any) {
+    this.Spinner.show();
     this.boardDet.deleteBoard(id).subscribe(
       data => {
+        this.Spinner.hide();
         return this.boardDetails.push(data);
       }
     );
   }
   ngOnInit() {
+    this.Spinner.show();
 
-      this.details.profile().subscribe(res => {
-        console.log(res);
+    this.details.profile().subscribe(res => {
+        // console.log(res);
         // tslint:disable-next-line: no-string-literal
         this.users = res['user'];
       }, (err) => {
         console.error(err);
       });
 
-      this.boardDet.refreshNeded$.subscribe(() => {
+    this.boardDet.refreshNeded$.subscribe(() => {
       this.getBoards();
     });
-      this.getBoards();
+    this.getBoards();
+    this.Spinner.hide();
   }
 
   // ngOnDestroy() {

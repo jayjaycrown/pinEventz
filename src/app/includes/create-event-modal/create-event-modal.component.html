@@ -7,6 +7,7 @@
   </div>
   <div class="modal-body">
       <div class="container text-justify">
+          <p *ngIf="percentDone"><ngb-progressbar type="success" [value]="percentDone" [striped]="true">{{ percentDone }}</ngb-progressbar></p>
           <div class="row">
               <div class="col-sm-6">
                   <div class="form-group">

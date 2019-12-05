@@ -41,6 +41,8 @@ register(user: UserDetails) {
     return this.http.post<UserDetails>(apiUrl + '/register', user, this.noAuthHeader)
     .pipe(
       catchError(this.handleError('Register', user))
+      // this.loader.stop();
+
     );
   }
 
@@ -72,54 +74,56 @@ register(user: UserDetails) {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    this.isLoggedOut();
+    localStorage.removeItem('id_token');
     window.localStorage.removeItem('user');
     localStorage.removeItem('expires_at');
     alert('Logging out now');
     location.reload();
   }
-
-  public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+  public issLoggedIn() {
+    const userToken = this.getToken();
+    if (userToken) {
+      // console.log(userToken);
+      return true ;
+    } else {
+      return false;
+    }
   }
+
+  // public isLoggedIn() {
+  //   const abc = moment().isBefore(this.getExpiration());
+  //   console.log(abc);
+  //   return moment().isBefore(this.getExpiration());
+  // }
 
   isLoggedOut() {
-    return !this.isLoggedIn();
+    return !this.issLoggedIn();
   }
 
-  getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
-  }
+  // getExpiration() {
+  //   const expiration = localStorage.getItem('expires_at');
+  //   const expiresAt = JSON.parse(expiration);
+  //   return moment(expiresAt);
+  // }
 
-  expiresIn(expiresIn) {
-
-  }
   setUser(user: string) {
     localStorage.setItem('user', user);
   }
-  setToken(token: string) {
-    localStorage.setItem('token', token);
+  // setToken(token: string) {
+  //   localStorage.setItem('token', token);
 
-  }
+  // }
   getToken(): string {
     if (!this.token) {
-      this.token = localStorage.getItem('token');
+      this.token = localStorage.getItem('id_token');
     }
     return this.token;
   }
 
 
 
-  // public isLoggedIn() {
-  //   const userToken = this.getToken();
-  //   if (userToken) {
-  //     return true ;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+
 
   // getUserPayload() {
   //   const token = this.getToken();

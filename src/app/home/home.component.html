@@ -30,7 +30,8 @@
                   </div>
                 </div>
                 <div class="col-md-9">
-                  <h5 class="text-black"><a [routerLink]="['/', 'event', events._id]" [state]= [eventId] class="text-black">{{ events.eventName }}</a> </h5>
+                  <h5 class="text-black"><a [routerLink]="['/', 'event', events._id]"  [state]= "[eventId]" routerLinkActive="disabled"
+                    [routerLinkActiveOptions]="{ exact:true }" class="text-black">{{ events.eventName }}</a> </h5>
                     <p class="font9 m-0">{{events.startDate | date}} - {{events.finishDate | date}} </p>
                     <p class="font9 m-0"> {{events.address}} </p>
                     <p class="font9 m-0">&nbsp;</p>

@@ -42,7 +42,6 @@ export class CreateEventModalComponent implements OnInit {
   }
 
   onClickSubmit() {
-    this.activeModal.close();
     console.log(this.form.value);
     this.eventService.addEvent(
       this.form.value.eventName,
@@ -73,6 +72,7 @@ export class CreateEventModalComponent implements OnInit {
           alert(event.body.message);
           console.log('Board successfully created!', event.body);
           this.percentDone = false;
+          this.activeModal.close();
       }
     });
   }
