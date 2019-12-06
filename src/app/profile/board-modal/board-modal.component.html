@@ -21,13 +21,13 @@
         <!-- File Input -->
       <div class="form-group row">
         <label class="col-sm-4 col-form-label " for="cover">Choose file</label>
-        <input type="file" (change)="uploadFile($event)">
+        <input type="file" (change)="uploadFile($event)" required>
       </div>
 
         <div class="form-group row">
             <label for="desc" class="col-sm-4 col-form-label">Board Description:  </label>
             <div class="col-sm-8">
-                <textarea name="boardDescription"  formControlName="boardDescription" class="form-control" rows="3" ></textarea>
+                <textarea name="boardDescription"  formControlName="boardDescription" required class="form-control" rows="3" ></textarea>
             </div>
         </div>
         <div class="form-group row">
@@ -43,7 +43,7 @@
         <div class="form-group row">
           <label for="status" class="col-sm-4 col-form-label">Visibility:  </label>
           <div class="col-sm-8">
-            <select class="custom-select" name="boardStatus"  formControlName="boardStatus">
+            <select class="custom-select" name="boardStatus"  formControlName="boardStatus" required>
                 <option value="private">Private</option>
                 <option value="public">Public</option>
             </select>
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <input type="submit" class="btn btn-primary btn-sm" value="Create Board">
+      <input type="submit" class="btn btn-primary btn-sm" value="Create Board" [disabled]="!form.valid">
       <button type="button" class="btn btn-outline-dark btn-sm" (click)="activeModal.close('Close click')">Close</button>
     </div>
 </form>

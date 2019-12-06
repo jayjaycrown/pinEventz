@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { catchError, retry, tap  } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 // import * as jwt_decode from 'jwt-decode';
@@ -114,6 +114,10 @@ register(user: UserDetails) {
   //   localStorage.setItem('token', token);
 
   // }
+  getUser() {
+      this.user = localStorage.getItem('user');
+      return this.user;
+  }
   getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('id_token');

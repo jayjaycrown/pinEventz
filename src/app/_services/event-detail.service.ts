@@ -6,7 +6,7 @@ import {catchError, retry, tap} from 'rxjs/internal/operators';
 
 
 import { EventDetails } from '../_models/event-details';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 
 const apiUrl = environment.apiBaseUrl + '/event';
@@ -33,7 +33,13 @@ export class EventDetailService {
       retry(3), catchError(this.handleError<EventDetails>('getEvent'))
       );
    }
-
+   postComment(comment: any, id: any) {
+     return this.http.post(apiUrl + '/' + id + '/comment', comment).pipe(
+      catchError(this.handleError<EventDetails[]>('postComment', comment)), tap(() => {
+        this._refreshNeded$.next();
+      })
+     );
+   }
 
   getEvent(): Observable<any> {
     httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
@@ -56,7 +62,7 @@ export class EventDetailService {
     formData.append('status', status);
     formData.append('category', category);
     formData.append('time', time);
-    return this.http.post<EventDetails>(apiUrl, formData, {
+    return this.http.post<EventDetails>(apiUrl,  formData, {
       reportProgress: true,
       observe: 'events'
     }).pipe(

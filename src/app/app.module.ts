@@ -29,6 +29,7 @@ import { ConpareValidatorDirective } from './_helpers/conpare-validator.directiv
 import { CreateEventModalComponent } from './includes/create-event-modal/create-event-modal.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { InterestComponent } from './register/interest/interest.component';
+import { CommentModalComponent } from './includes/comment-modal/comment-modal.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { InterestComponent } from './register/interest/interest.component';
     CreateEventModalComponent,
     EditProfileComponent,
     InterestComponent,
+    CommentModalComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -66,6 +68,7 @@ import { InterestComponent } from './register/interest/interest.component';
   entryComponents: [
     BoardModalComponent,
     CreateEventModalComponent,
+    CommentModalComponent,
   ],
   providers: [
     {

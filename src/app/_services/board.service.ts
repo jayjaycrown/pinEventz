@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/internal/operators';
 
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { Board } from '../_models/board.interface';
 
 
@@ -11,7 +11,9 @@ const apiUrl = environment.apiBaseUrl + '/board';
 // const myBoard = environment.apiBaseUrl + '/myboard';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': '*',
+    Accept: 'application/fhir+json',
     AUTHORIZATION : ' bearer [jwt]'
   })
 };
@@ -48,6 +50,7 @@ export class BoardService {
     formData.append('boardCategory', boardCategory);
     formData.append('boardStatus', boardStatus);
     formData.append('boardUrl', profileImage);
+    httpOptions.headers = httpOptions.headers.set('Access-Control-Allow-Origin', '*');
     return this.http.post<Board>(apiUrl, formData, {
       reportProgress: true,
       observe: 'events'

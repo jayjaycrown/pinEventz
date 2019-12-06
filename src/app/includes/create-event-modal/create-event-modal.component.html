@@ -14,7 +14,7 @@
                       <label for="eventName">Name</label>
                       <input type="text" class="form-control" name="eventName"
                       placeholder="Event Name"
-                      formControlName="eventName" required>
+                      formControlName="eventName" >
                   </div>
               </div>
               <div class="col-sm-6">
@@ -22,7 +22,7 @@
                       <label for="board">Select Board</label>
                       <select class="custom-select" name="board"
                        formControlName="board">
-                          <option *ngFor="let board of boards" value="board.boardName"> {{ board.boardName }} </option>
+                          <option *ngFor="let board of boards" [value]="board.boardName"> {{ board.boardName }} </option>
                       </select>
                   </div>
                   <span class="font9"><a style="cursor: pointer;" (click)="openBoardModal()">Or create New Board</a></span>
@@ -34,7 +34,7 @@
                     <label>Upload Image</label>
                     <div class="input-group">
                       <span class="btn btn-default btn-file">
-                        Browse...<input type="file" (change)="uploadFile($event)">
+                        Browse...<input type="file" (change)="uploadFile($event)" required>
                       </span>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
 
 
   <div class="modal-footer">
-    <input type="submit" class="btn btn-primary btn-sm" value="Create Event">
+    <input type="submit" class="btn btn-primary btn-sm" value="Create Event" [disabled]="!form.valid">
     <button type="button" class="btn btn-outline-dark btn-sm" (click)="activeModal.close('Close click')">Close</button>
   </div>
 

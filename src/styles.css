@@ -28,7 +28,7 @@ html {
 body {
   /* background: url(assets/img/back.jfif) !important; */
   /* margin-bottom: 50px; */
-  font-family: Lato, Helvetica, sans-serif !important;
+  font-family:  Neue Plak,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Tahoma,Arial,sans-serif !important;
   /* padding-top: 70px; */
   /* min-height: 100vh; */
 }
@@ -74,6 +74,9 @@ h6 {
 .h6,
 h6 {
   font-size: .9rem !important;
+}
+h5{
+  font-weight: 700 !important;
 }
 
 p {

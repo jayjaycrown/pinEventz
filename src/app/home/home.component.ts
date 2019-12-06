@@ -30,13 +30,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getEventById(id: any) {
-    this.evDet.getEventById(id)
-      .subscribe(data => {
-        console.log(data);
-        this.eventId = data;
-      });
-  }
+  // getEventById(id: any) {
+  //   this.evDet.getEventById(id)
+  //     .subscribe(data => {
+  //       console.log(data);
+  //       this.eventId = data;
+  //     });
+  // }
 
   // addEvent() {
   //   this.evDet

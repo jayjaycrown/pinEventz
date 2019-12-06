@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpEventType, HttpEvent } from '@angular/common/http';
 
 import { BoardModalComponent } from '../../profile/board-modal/board-modal.component';
@@ -26,17 +26,17 @@ export class CreateEventModalComponent implements OnInit {
     public modalService: NgbModal,
   ) {
     this.form = this.fb.group({
-      eventName: [''],
-      address: [''],
-      shortDes: [''],
-      fullDes: [''],
+      eventName: ['',  Validators.required],
+      address: ['',  Validators.required],
+      shortDes: ['',  Validators.required],
+      fullDes: ['',  Validators.required],
       eventUrl: null,
-      startDate: [''],
-      finishDate: [''],
-      board: [''],
-      status: [''],
-      category: [''],
-      time: [''],
+      startDate: ['',  Validators.required],
+      finishDate: ['',  Validators.required],
+      board: ['',  Validators.required],
+      status: ['',  Validators.required],
+      category: ['',  Validators.required],
+      time: ['',  Validators.required],
 
     });
   }
