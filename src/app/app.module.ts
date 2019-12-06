@@ -11,6 +11,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule  } from '@ngx-loading-bar/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { HttpErrorInterceptor } from './_helpers/HttpErrorInterceptor';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -63,7 +64,8 @@ import { CommentModalComponent } from './includes/comment-modal/comment-modal.co
     LoadingBarRouterModule,
     LoadingBarModule,
     LoadingBarHttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    OrderModule
   ],
   entryComponents: [
     BoardModalComponent,

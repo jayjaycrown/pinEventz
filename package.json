@@ -39,6 +39,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "mongoose": "^5.7.12",
+    "ngx-order-pipe": "^2.0.4",
     "ngx-spinner": "^8.0.3",
     "path": "^0.12.7",
     "rxjs": "~6.4.0",

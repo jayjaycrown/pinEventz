@@ -194,7 +194,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-                    <div *ngFor="let comment of comments">
+                    <div *ngFor="let comment of (comments | orderBy:'created_dt': reverse)">
                         <div class="row  pl-3">
                             <div class="col-md-2">
                                 <img src="assets/img/image.png" alt="" class=" rounded-circle mt-1" width="50px" height="50px">
