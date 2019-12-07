@@ -10,11 +10,21 @@ import { BoardDetailComponent } from './profile/board-detail/board-detail.compon
 import { AuthGuard } from './_helpers/auth.guard';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { InterestComponent } from './register/interest/interest.component';
+import { RequestResetComponent } from './request-reset/request-reset.component';
+import { ResponseResetComponent } from './response-reset/response-reset.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
   { path: 'login', component: AuthComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: 'request-reset-password',
+    component: RequestResetComponent,
+  },
+  {
+      path: 'response-reset-password/:token',
+      component: ResponseResetComponent
+    },
   {path: 'interest', component: InterestComponent },
   { path: 'event',  canActivate: [AuthGuard],
   children: [

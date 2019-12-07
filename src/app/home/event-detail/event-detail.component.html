@@ -31,7 +31,13 @@
                     <a  class="btn btn-secondary btn-sm " (click)="open(content)">
                         Comments
                     </a>
-                    <button *ngIf="showEdit" class="btn btn-warning btn-sm " (click)="editEvent()">Edit</button>
+                    <button *ngIf="showEdit" class="btn btn-outline-warning btn-sm "  (click)="editEvent(edit)"  ngbPopover="Edit this event" triggers="mouseenter:mouseleave" popoverTitle="Edit Event" container="body">
+                        <i class="fa fa-pen" aria-hidden="true"></i>
+                    </button>
+                    <button *ngIf="showEdit" class="btn  btn-outline-danger btn-sm " (click)="delete()"
+                    ngbPopover="Delete this event" triggers="mouseenter:mouseleave" popoverTitle="Delete Event" container="body">
+                        <i class="fa fa-trash " aria-hidden="true"></i>
+                    </button>
                   </div>
                 </div>
                   <div class="col-md-3 ">
@@ -235,4 +241,135 @@
         </div>
     </div>
 
-  </ng-template>
+</ng-template>
+
+<ng-template #edit let-modal>
+    <form  [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Event</h4>
+          <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container text-justify">
+                <p *ngIf="percentDone"><ngb-progressbar type="success" [value]="percentDone" [striped]="true">{{ percentDone }}</ngb-progressbar></p>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="eventName">Name</label>
+                            <input type="text" class="form-control" name="eventName"
+                            placeholder="Event Name"
+                            formControlName="eventName" >
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group mb-0">
+                            <label for="board">Select Board</label>
+                            <select class="custom-select" name="board"
+                              formControlName="board">
+                                <option *ngFor="let board of boards" [value]="board.boardName"> {{ board.boardName }} </option>
+                            </select>
+                        </div>
+                        <span class="font9"><a style="cursor: pointer;" (click)="openBoardModal()">Or create New Board</a></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Upload Image</label>
+                          <div class="input-group">
+                            <span class="btn btn-default btn-file">
+                              Browse...<input type="file" (change)="uploadFile($event)" required>
+                            </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" name="address"  placeholder="234 Madisson Avenue, New York city"  formControlName="address">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="sdate">Start Date</label>
+                            <input type="date" name="startDate" max="2030-12-31" min="2010-01-01" class="form-control"
+                              formControlName="startDate"
+                            >
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="fdate">Finish Date</label>
+                            <input type="date" name="finishDate" max="2030-12-31" min="2010-01-01" class="form-control"
+                            formControlName="finishDate">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group ">
+                            <label for="collaborators">Event Time</label>
+                            <input type="time" name="time"  class="form-control" formControlName="time">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select class="custom-select" name="status" id="status" formControlName="status">
+                                    <option selected>Select one</option>
+                                    <option value="Hidden">Hidden</option>
+                                    <option value="Public">Public</option>
+                                </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="sdesc">Short Description</label>
+                            <input type="text" class="form-control" name="sdesc" id="sdesc" placeholder="Short Description" formControlName="shortDes">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group ">
+                            <label for="category">Category</label>
+                            <select class="custom-select" name="category" id="category" formControlName="category">
+                                <option selected="">Choose Category</option>
+                                <option value="Music">Music</option>
+                                <option value="Sport">Sport</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Education">Education</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="fdesc">Full Description</label>
+                        <textarea name="fdesc" class="form-control"  rows="2" placeholder="Full description" formControlName="fullDes"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-primary btn-sm" value="Create Event" [disabled]="!form.valid">
+          <button type="button" class="btn btn-outline-dark btn-sm" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+
+      </form>
+</ng-template>

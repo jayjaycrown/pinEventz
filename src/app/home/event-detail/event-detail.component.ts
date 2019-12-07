@@ -40,14 +40,14 @@ model = {
   open(content) {
     this.modalService.open(content, { scrollable: true });
   }
+  editEvent(edit) {
+    this.modalService.open(edit, {scrollable: true});
+  }
   onSubmit(form: NgForm) {
     this.model.text = '';
     this.evDet.postComment(form.value, this.id).subscribe(data => {
       // console.log(data);
     });
-  }
-  editEvent() {
-    alert(' working on this');
   }
 
   // updateEvent(id: any) {

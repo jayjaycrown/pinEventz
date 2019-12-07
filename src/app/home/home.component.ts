@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { EventDetailService } from '../_services/event-detail.service';
 import { EventDetails } from '../_models/event-details';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateEventModalComponent } from '../includes/create-event-modal/create-event-modal.component';
+import { UserService } from '../_services/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,12 +23,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   eventId: any;
 
 
-  constructor(private evDet: EventDetailService) { }
+  constructor(private evDet: EventDetailService,
+              private modalService: NgbModal,
+              private auth: UserService,
+              private router: Router) { }
 
+  createEvent() {
+    this.modalService.open(CreateEventModalComponent, { size: 'lg'});
+  }
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['login']);
+    console.log('logged Out Successfully');
+  }
   getEvents() {
     this.evDet.getEvent().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.eventDetails = data;
       }
     );

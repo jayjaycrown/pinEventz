@@ -9,10 +9,11 @@
 
       <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <form class="form-inline my-2 my-lg-0 ml-3">
+              <div class="form-inline my-2 my-lg-0 ml-3">
                   <i class="fa fa-search " aria-hidden="true "></i>
-                  <input class="form-control mr-sm-2 border-0" type="text" placeholder="Search Event">
-              </form>
+                  <input class="form-control mr-sm-2 border-0" type="text" placeholder="Search Event"
+                  [(ngModel)]="searchText">
+              </div>
           </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">

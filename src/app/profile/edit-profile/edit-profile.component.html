@@ -3,81 +3,93 @@
   <section>
     <div class="container bodycontainer ml-auto mr-auto mt-5 mb-5 pb-5">
       <div class="card m-auto" style="width: 80%;">
-          <p *ngIf="percentDone"><ngb-progressbar type="success" [value]="percentDone" [striped]="true">{{ percentDone }}</ngb-progressbar></p>
-
-        <form [formGroup]="form" (ngSubmit)="onClickSubmit()">
-            <div class="card-body">
-                <img src="user.userProfile || assets/img/image.png" alt="user Image" class="userImage float-left">
-                <h4 class="card-title text-center text-primary  mt-4">Edit Profile</h4>
-                <div class="clearfix"></div>
-                <hr>
-
-                <!-- <div class="input-group text-center ml-auto mr-auto">
-                    <span class="btn btn-file2 ml-auto mr-auto" >
-                        <img src="assets/img/profile.png" class="userImage" ><br>
-                        Select Profile picture
-                        <input type="file" >
-                    </span>
-                </div> -->
-
-                <div class="clearfix"></div>
-                <hr>
-                <div class="form-row">
-                    <div class="form-group col-sm-5 offset-sm-1">
-                        <label for="">Email</label>
-                        <input type="email" class="form-control" name="email"  aria-describedby="email"
-                         placeholder="example@123.com" [value]="user.email"  formControlName="email" required>
-                    </div>
-                    <div class="form-group col-sm-5">
-                        <label for="">Password</label>
-                        <input type="file" class="form-control" (change)="uploadFile($event)" required>
-                        <!-- <button type="button" class="btn btn-block btn-primary " >Change Password</button> -->
-                    </div>
+        <div class="card-body">
+              <img [src]="user.profileUrl "  class="userImage float-left">
+              <h4 class="card-title text-center text-primary  mt-4">Edit Profile</h4>
+              <div class="clearfix"></div>
+              <hr>
+          <form [formGroup]="form" (ngSubmit)="onClickSubmit()">
+            <p *ngIf="percentDone"><ngb-progressbar type="success" [value]="percentDone" [striped]="true">{{ percentDone }}</ngb-progressbar></p>
+            <div class="form-row">
+                <div class="form-group col-sm-5 offset-sm-1">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" name="email"
+                      placeholder="example@123.com" [value]="user.email"  formControlName="email" required>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-sm-5 offset-sm-1">
-                        <label for="fname">Full Name</label>
-                        <input type="text" class="form-control" name="fullName" placeholder="Jon"
-                         [value]="user.fullName"  formControlName="fullName" required>
-                    </div>
-                    <div class="form-group col-sm-5">
-                        <label for="city">City, Country</label>
-                        <input type="text" class="form-control" name="cityCountry"
-                         [value]="user.cityCountry"  formControlName="cityCountry" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-sm-5 offset-sm-1">
-                        <div class="form-group row">
-                            <label for="dob" class="col-sm-4 col-form-label">Date of Birth</label>
-                            <div class="col-sm-6">
-                                <input type="date" class="form-control" name="dateOfBirth" placeholder="DD/MM/YYYY"  formControlName="dateOfBirth" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-5">
-                        <div class="form-group row">
-                            <label for="gender" class="col-sm-3 col-form-label"> Gender:</label>
-                            <div class="col-sm-8 mt-2">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="customRadio" name="gender" value="customEx" formControlName="gender" value="male" required>
-                                    <label class="custom-control-label" for="customRadio">Male</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="customRadio2" name="gender" value="customEx" formControlName="gender"  value="female" required>
-                                    <label class="custom-control-label" for="customRadio2">Female</label>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer text-center">
-                    <input type="submit" class="btn btn-primary pl-6 pr-6" value="Save" [disabled]="!form.valid">
+                <div class="form-group col-sm-5">
+                    <label for="">Select Profile Picture</label>
+                    <input type="file" class="form-control" (change)="uploadFile($event)" required>
+                    <!-- <button type="button" class="btn btn-block btn-primary " >Change Password</button> -->
                 </div>
             </div>
-        </form>
+            <div class="form-row">
+                <div class="form-group col-sm-5 offset-sm-1">
+                    <label for="fname">Full Name</label>
+                    <input type="text" class="form-control" name="fullName" placeholder="Kodehead Isma'eel"
+                      [value]="user.fullName"  formControlName="fullName" required>
+                </div>
+                <div class="form-group col-sm-5">
+                    <label for="city">City, Country</label>
+                    <input type="text" class="form-control" name="cityCountry"
+                      [value]="user.cityCountry"  formControlName="cityCountry" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-sm-5 offset-sm-1">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <div class="form-row">
+                <div class="col-sm-5 offset-sm-1">
+                    <div class="form-group row">
+                        <label for="dob" class="col-sm-4 col-form-label">Date of Birth</label>
+                        <div class="col-sm-6">
+                            <input type="date" class="form-control" name="dateOfBirth" placeholder="DD/MM/YYYY"  formControlName="dateOfBirth" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group row">
+                        <label for="gender" class="col-sm-3 col-form-label"> Gender:</label>
+                        <div class="col-sm-8 mt-2">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="customRadio" name="gender"  formControlName="gender" value="male" required>
+                                <label class="custom-control-label" for="customRadio">Male</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="customRadio2" name="gender" formControlName="gender"  value="female" required>
+                                <label class="custom-control-label" for="customRadio2">Female</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer text-center">
+                <input type="submit" class="btn btn-primary pl-6 pr-6" value="Save" [disabled]="!form.valid">
+            </div>
+          </form>
+        </div>
+
         <div class="card-footer text-center">
             <a [routerLink]="['/profile']">
                 <span class="p-2 bg-custom text-primary rounded-circle"><i class="far fa-hand-point-left"></i></span> Go to Profile

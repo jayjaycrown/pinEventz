@@ -42,21 +42,21 @@ export class RegisterComponent implements OnInit {
     // console.log(form.value);
     this.userService.register(form.value).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.showSucessMessage = true;
-        alert('registration Successfull');
-        this.router.navigateByUrl('/login');
+        setTimeout(() => {
+          this.router.navigate(['login']);
+        }, 3000);
         this.loader.stop();
       },
       err => {
-        if (err.status === 422) {
-          this.serverErrorMessages = err.error.join('<br/>');
+        if (err.error.msg) {
+          this.serverErrorMessages = err.error.msg[0].message;
           this.loader.stop();
-        } else {
-          this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+        }
+        if (err.error.message) {
+          this.serverErrorMessages = err.error.message;
           this.loader.stop();
-          console.log(err);
-          alert(err);
         }
         console.log(err);
         alert(err);

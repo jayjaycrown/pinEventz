@@ -46,8 +46,6 @@ register(user: UserDetails) {
     return this.http.post<UserDetails>(apiUrl + '/register', user, this.noAuthHeader)
     .pipe(
       catchError(this.handleError('Register', user))
-      // this.loader.stop();
-
     );
   }
 
@@ -77,15 +75,18 @@ register(user: UserDetails) {
       retry(3), catchError(this.handleError('profile'))
     );
   }
-  editProfile(email: string, fullName: string, cityCountry: string, dateOfBirth: string, profileImage: File,   gender: string) {
+  editProfile(email: string, fullName: string, cityCountry: string, dateOfBirth: string,
+              gender: string, password: string, profileImage: File) {
     const formData: any = new FormData();
     formData.append('email', email);
     formData.append('fullName', fullName);
     formData.append('cityCountry', cityCountry);
     formData.append('dateOfBirth', dateOfBirth);
     formData.append('gender', gender);
+    formData.append('password', password);
     formData.append('profileUrl', profileImage);
-    return this.http.post<UserDetails>(apiUrl + '/editprofile', formData, {
+    httpOptions.headers = httpOptions.headers.set('Access-Control-Allow-Origin', '*');
+    return this.http.put(apiUrl + '/editprofile', formData, {
       reportProgress: true,
       observe: 'events'
     })
@@ -150,13 +151,39 @@ register(user: UserDetails) {
   }
 
 
+  requestReset(body): Observable<any> {
+    return this.http.post(`${apiUrl}/resetpassword`, body) .pipe(
+      catchError(this.handleError<UserDetails>('requestReset', body)), tap(() => {
+        this._refreshNeded$.next();
+      })
 
+    );
+  }
+
+  newPassword(body): Observable<any> {
+    return this.http.post(`${apiUrl}/new-password`, body)
+    .pipe(
+      catchError(this.handleError<UserDetails>('newPassword', body)), tap(() => {
+        this._refreshNeded$.next();
+      })
+
+    );
+  }
+
+  ValidPasswordToken(body): Observable<any> {
+    return this.http.post(`${apiUrl}/valid-password-token`, body) .pipe(
+      catchError(this.handleError<UserDetails>('ValidPasswordToken', body)), tap(() => {
+        this._refreshNeded$.next();
+      })
+
+    );
+  }
 
 
   // getUserPayload() {
   //   const token = this.getToken();
   //   if (token) {
-  //     const userPayload = atob(token.split('.')[1]);
+  //     const userPayload = atob(token.split('.')  [1]);
   //     return JSON.parse(userPayload);
   //   } else {
   //     return null;

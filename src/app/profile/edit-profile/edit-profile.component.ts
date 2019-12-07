@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { LoadingBarService } from '@ngx-loading-bar/core';
+import { Router } from '@angular/router';
+
+import { MustMatch } from '../../_helpers/must-match.validator';
 
 
 import { UserService } from '../../_services/user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -20,27 +22,33 @@ export class EditProfileComponent implements OnInit {
   successMessage: any;
   serverErrorMessages: any;
 
-  constructor( private userService: UserService, public fb: FormBuilder, private router: Router,  public loader: LoadingBarService) {
+  constructor( public userService: UserService, public fb: FormBuilder, public router: Router,  public loader: LoadingBarService) {
     this.form = this.fb.group({
-      email: ['' ],
-      fullName: ['' ],
-      cityCountry: ['' ],
-      dateOfBirth: ['' ],
-      profileUrl: [null],
-      gender: ['' ],
-
-    });
+      email: [''],
+      fullName: [''],
+      cityCountry: [''],
+      dateOfBirth: [''],
+      gender: [''],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      confirmPassword: ['', Validators.required],
+      profileUrl: [null]
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+  });
 }
+get f() { return this.form.controls; }
 
 
   onClickSubmit() {
-    console.log(this.form.value);
+    this.loader.start(10);
+    // console.log(this.form.value);
     this.userService.editProfile(
       this.form.value.email,
       this.form.value.fullName,
       this.form.value.cityCountry,
       this.form.value.dateOfBirth,
       this.form.value.gender,
+      this.form.value.password,
       this.form.value.profileUrl,
     ).subscribe(
       (event: HttpEvent<any>) => {
@@ -53,26 +61,31 @@ export class EditProfileComponent implements OnInit {
           break;
         case HttpEventType.UploadProgress:
           this.percentDone = Math.round(event.loaded / event.total * 100);
-          console.log(`Uploaded! ${this.percentDone}%`);
+          // console.log(`Uploaded! ${this.percentDone}%`);
           break;
         case HttpEventType.Response:
           alert(event.body.message);
           console.log('Profile successfully Updated!', event.body);
           this.percentDone = false;
-
+          this.loader.stop();
+          this.router.navigateByUrl('/profile');
       }
-    },
-    res => {
-      this.successMessage = res.message;
-
-      alert(this.successMessage);
-      this.loader.stop();
-      this.router.navigateByUrl('/profile');
-    }
-    );
+    });
   }
 
-    // Image Preview
+  getUser() {
+    this.userService.profile().subscribe(res => {
+      // tslint:disable-next-line: no-string-literal
+      this.user = res['user'];
+    }, (err) => {
+      console.error(err);
+    });
+  }
+
+  ngOnInit() {
+    this.getUser();
+  }
+      // Image Preview
     uploadFile(event: { target: HTMLInputElement; }) {
       const file = (event.target as HTMLInputElement).files[0];
       this.form.patchValue({
@@ -80,16 +93,4 @@ export class EditProfileComponent implements OnInit {
       });
 
   }
-
-  ngOnInit() {
-    // tslint:disable-next-line: deprecation
-    this.userService.profile().subscribe(res => {
-
-          // tslint:disable-next-line: no-string-literal
-          this.user = res['user'];
-        }, (err) => {
-          console.error(err);
-        });
-      }
-
 }

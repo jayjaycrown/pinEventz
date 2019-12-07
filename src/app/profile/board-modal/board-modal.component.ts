@@ -3,13 +3,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 
 import { BoardService } from '../../_services/board.service';
 import { Board } from '../../_models/board.interface';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
-import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-board-modal',
@@ -42,7 +42,7 @@ export class BoardModalComponent implements OnInit {
   onClickSubmit() {
     this.Spinner.show();
     this.loader.start(10);
-    console.log(this.form.value);
+    // console.log(this.form.value);
     this.fileUploadService.addBoard(
       this.form.value.boardName,
       this.form.value.boardDescription,
@@ -67,8 +67,9 @@ export class BoardModalComponent implements OnInit {
           this.percentDone = false;
           this.Spinner.hide();
           this.activeModal.close();
+          this.loader.stop();
       }
-      this.loader.stop();
+
       this.Spinner.hide();
     });
   }
@@ -81,7 +82,6 @@ export class BoardModalComponent implements OnInit {
     this.form.patchValue({
       boardUrl: file
     });
-
-}
+  }
 
 }

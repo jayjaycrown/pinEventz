@@ -31,6 +31,9 @@ import { CreateEventModalComponent } from './includes/create-event-modal/create-
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { InterestComponent } from './register/interest/interest.component';
 import { CommentModalComponent } from './includes/comment-modal/comment-modal.component';
+import { RequestResetComponent } from './request-reset/request-reset.component';
+import { ResponseResetComponent } from './response-reset/response-reset.component';
+import { FilterPipe } from './_helpers/filter.pipe';
 
 
 @NgModule({
@@ -51,6 +54,9 @@ import { CommentModalComponent } from './includes/comment-modal/comment-modal.co
     EditProfileComponent,
     InterestComponent,
     CommentModalComponent,
+    RequestResetComponent,
+    ResponseResetComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
