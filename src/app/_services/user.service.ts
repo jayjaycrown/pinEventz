@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { catchError, retry, tap  } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { of, Observable, Subject } from 'rxjs';
 // import * as jwt_decode from 'jwt-decode';
 import { UserDetails } from '../_models/user-details';
 import { Router } from '@angular/router';
@@ -35,6 +35,11 @@ selectedUser: UserDetails[];
 //  _id = this.getTokenDetails();
 
 noAuthHeader = { headers: new HttpHeaders({ NoAuth: 'True' }) };
+  // tslint:disable-next-line: variable-name
+  private _refreshNeded$ = new Subject<UserDetails>();
+  get refreshNeded$() {
+    return this._refreshNeded$;
+  }
 
 constructor(private http: HttpClient, private router: Router) { }
 register(user: UserDetails) {
@@ -70,6 +75,25 @@ register(user: UserDetails) {
   profile() {
     return this.http.get(apiUrl + '/profile', httpOptions).pipe(
       retry(3), catchError(this.handleError('profile'))
+    );
+  }
+  editProfile(email: string, fullName: string, cityCountry: string, dateOfBirth: string, profileImage: File,   gender: string) {
+    const formData: any = new FormData();
+    formData.append('email', email);
+    formData.append('fullName', fullName);
+    formData.append('cityCountry', cityCountry);
+    formData.append('dateOfBirth', dateOfBirth);
+    formData.append('gender', gender);
+    formData.append('profileUrl', profileImage);
+    return this.http.post<UserDetails>(apiUrl + '/editprofile', formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+    .pipe(
+      catchError(this.handleError<UserDetails>('editProfile', formData)), tap(() => {
+        this._refreshNeded$.next();
+      })
+
     );
   }
 

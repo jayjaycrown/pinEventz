@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="card-columns p-2">
-          <div class="card card-pin" *ngFor="let events of eventDetails">
+          <div class="card card-pin" *ngFor="let events of (eventDetails | orderBy:'created_dt': reverse)">
             <div class="card m-0">
               <img class="card-img-top" [src]="events.eventUrl" alt="Card image">
               <div class="price">

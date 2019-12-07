@@ -14,15 +14,15 @@
               </div>
             <div class="card">
                 <div class="card-body">
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" class="btn  btn-facebook" placement="top" ngbTooltip="Signup with Facebook"><i class="fab fa-facebook"></i> Facebook</button>
                             <button type="button" class="btn  btn-twitter" placement="top" ngbTooltip="Signup with Twitter"><i class="fab fa-twitter" aria-hidden="true" ></i> Twitter</button>
                             <button type="button" class="btn  btn-google" placement="top" ngbTooltip="Signup with Google"><i class="fab fa-google-plus-square" aria-hidden="true"></i> Google</button>
                         </div>
-                    </div>
-                    <br>
-                    <hr>
+                    </div> -->
+                    <!-- <br>
+                    <hr> -->
                     <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
                         <div class="row">
                             <div class="col-sm-10 offset-sm-1">
@@ -81,24 +81,24 @@
                                     <label for="city">Address</label>
                                     <input class="form-control" #cityCountry="ngModel" [(ngModel)]="model.cityCountry" name="cityCountry"
                                     minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !cityCountry.valid }">
-                                    <div *ngIf="signUpForm.submitted && password.errors">
+                                    <div *ngIf="signUpForm.submitted && cityCountry.errors" class="alert alert-danger">
                                       <label *ngIf="cityCountry?.errors.required" class="validation-message">This field is required.</label>
                                       <label *ngIf="cityCountry?.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-5">
+                                  <!-- <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="dob">Date of Birth</label>
                                         <input type="date" #dateOfBirth="ngModel"
                                         [(ngModel)]="model.dateOfBirth" name="dateOfBirth"
                                         max="3000-12-31" min="1990-01-01" class="form-control" required>
                                     </div>
-                                  </div>
-                                  <div class="col-md-7">
+                                  </div> -->
+                                  <div class="col-md-12">
                                     <div class="form-group">
                                       <label for="gender" style="margin-right: 10px;"> Gender:</label>
-                                      <br>
+
                                       <div class="custom-control custom-radio custom-control-inline">
                                           <input type="radio" class="custom-control-input" id="customRadio" name="gender" value="Male" #gender="ngModel"
                                           [(ngModel)]="model.gender">
@@ -118,7 +118,7 @@
                         <br>
                         <div class="row">
                             <div class="col-sm-8 offset-sm-2">
-                                <input type="submit" class="btn btn-block btn-primary" value="Sign Up">
+                                <input type="submit" class="btn btn-block btn-primary" value="Sign Up" [disabled]="!signUpForm.valid">
 
                             </div>
                         </div>

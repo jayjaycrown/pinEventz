@@ -11,7 +11,7 @@ import { EventDetails } from '../_models/event-details';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-
+  reverse = true;
   eventDetails: EventDetails[] = [];
   headers: any;
   spresp: any;

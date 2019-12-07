@@ -42,7 +42,7 @@ export class BoardModalComponent implements OnInit {
   onClickSubmit() {
     this.Spinner.show();
     this.loader.start(10);
-    // console.log(this.form.value);
+    console.log(this.form.value);
     this.fileUploadService.addBoard(
       this.form.value.boardName,
       this.form.value.boardDescription,

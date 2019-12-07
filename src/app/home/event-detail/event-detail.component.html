@@ -2,7 +2,7 @@
   <app-home-header></app-home-header>
   <section class="container bodycontainer mb-5 pb-5">
     <div class="row">
-      <div class="col-md-12 p-0">
+      <div class="col-md-12">
         <div class="card">
           <div class="row mr-lg-3">
             <div class="col-md-4">
@@ -15,7 +15,7 @@
               <p class="mb-0 ml-3" style="font-size: .9rem !important">Poster By <a >  <span *ngFor="let org of organizer"> {{org.username}} </span> </a> in <a> {{ events.category }} </a></p>
               <br/>
               <div class="row">
-                <div class="col-lg-5 col-md-7 col-sm-8">
+                <div class="col-md-4 ">
                   <div class="ml-3 mb-3 ">
                     <a name="social" id="" href="#" class="btn btn-facebook btn-sm   border-round" ngbPopover="Share on Facebook" triggers="mouseenter:mouseleave" popoverTitle="Facebook" > <i class="fab fa-facebook" aria-hidden="true"></i> </a>
                     <a ngbPopover="Share on Twitter" triggers="mouseenter:mouseleave" popoverTitle="Twitter" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-twitter" aria-hidden="true"></i> </a>
@@ -25,16 +25,17 @@
 
                   </div>
                 </div>
-                <div class="col-lg-3 col-md-5 col-sm-6">
+                <div class="col-md-4">
                   <div class="ml-3 mb-3">
                     <a name="" id="" class="btn btn-sm btn-primary " href="#" role="button">Join</a>
                     <a  class="btn btn-secondary btn-sm " (click)="open(content)">
                         Comments
                     </a>
+                    <button *ngIf="showEdit" class="btn btn-warning btn-sm " (click)="editEvent()">Edit</button>
                   </div>
                 </div>
-                  <div class="col-lg-3 col-md-5 col-sm-6">
-                      <div class=" mb-3">
+                  <div class="col-md-3 ">
+                      <div class=" mb-3 ml-3">
                           <form action="" class="d-inline">
                               <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip"  data-placement="top" title="Like">
                                   <i class="fa fa-thumbs-up  text-primary" aria-hidden="true"></i>
@@ -52,11 +53,12 @@
                           </form>
                       </div>
                   </div>
-                  <div class="col-sm-1">
-                      <div class="ml-3">
+                  <div class="col-md-1">
+                      <div class="ml-3 mb-3">
                           <button class="btn btn-outline-secondary btn-sm " data-toggle="modal" data-target="#locateId"  ngbPopover="Viw the event location on the map" triggers="mouseenter:mouseleave" popoverTitle="Location" container="body">
                               <i class="fas fa-map-marker-alt"></i>
                           </button>
+
                       </div>
                   </div>
               </div>
@@ -67,116 +69,117 @@
       </div>
   </div>
   <div class="row mt-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Event Gallery</h3>
-                </div>
-                <div class="card-body">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-3  pb-3">
-                                <div class="card card-pin">
-                                    <img class="card-img" src="assets/img/event.jpg" alt="Card image">
-                                    <div class="overlay pt-3">
-                                        <div class="text-center mt-5 pt-2">
-                                            <form action="" class="d-inline text-center">
-                                                <!-- <button type="submit" class="btn btn-warning p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Save">
-                                                            <i class="far fa-save" style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button> -->
-                                                <button type="submit" class="btn btn-danger p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="fas fa-trash" style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button>
-                                            </form>
-                                            <form action="" class="d-inline text-center">
-                                                <!-- <button type="submit" class="btn btn-info p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Like">
-                                                            <i class="far fa-thumbs-up " style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button> -->
-                                                <button type="submit" class="btn btn-danger p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Dislike">
-                                                            <i class="far fa-thumbs-down " style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button>
-                                            </form>
-                                        </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Event Gallery</h3>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3  pb-3">
+                            <div class="card card-pin">
+                                <img class="card-img" src="assets/img/event.jpg" alt="Card image">
+                                <div class="overlay pt-3">
+                                    <div class="text-center mt-5 pt-2">
+                                        <form action="" class="d-inline text-center">
+                                            <!-- <button type="submit" class="btn btn-warning p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Save">
+                                                        <i class="far fa-save" style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button> -->
+                                            <button type="submit" class="btn btn-danger p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="fas fa-trash" style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button>
+                                        </form>
+                                        <form action="" class="d-inline text-center">
+                                            <!-- <button type="submit" class="btn btn-info p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Like">
+                                                        <i class="far fa-thumbs-up " style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button> -->
+                                            <button type="submit" class="btn btn-danger p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Dislike">
+                                                        <i class="far fa-thumbs-down " style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3  pb-3">
-                                <div class="card card-pin">
-                                    <img class="card-img" src="assets/img/event2.jpg" alt="Card image">
-                                    <div class="overlay pt-3">
-                                        <div class="text-center mt-5 pt-2">
-                                            <form action="" class="d-inline text-center">
-                                                <button type="submit" class="btn btn-warning p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Save">
-                                                            <i class="far fa-save" style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button>
-                                                <!-- <button type="submit" class="btn btn-danger p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="fas fa-trash" style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button> -->
-                                            </form>
-                                            <form action="" class="d-inline text-center">
-                                                <!-- <button type="submit" class="btn btn-info p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Like">
-                                                            <i class="far fa-thumbs-up " style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button> -->
-                                                <button type="submit" class="btn btn-info p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Like">
-                                                            <i class="far fa-thumbs-up " style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3  pb-3">
-                                <div class="card card-pin">
-                                    <img class="card-img" src="assets/img/event3.jpg" alt="Card image">
-                                    <div class="overlay pt-3">
-                                        <div class="text-center mt-5 pt-2">
-                                            <form action="" class="d-inline text-center">
-                                                <!-- <button type="submit" class="btn btn-warning p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Save">
-                                                            <i class="far fa-save" style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button> -->
-                                                <button type="submit" class="btn btn-danger p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="fas fa-trash" style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button>
-                                            </form>
-                                            <form action="" class="d-inline text-center">
-                                                <button type="submit" class="btn btn-danger p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Dislike">
-                                                            <i class="far fa-thumbs-down " style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button>
-                                                <!-- <button type="submit" class="btn btn-danger p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Dislike">
-                                                            <i class="far fa-thumbs-down " style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button> -->
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3  pb-3">
-                                <div class="card card-pin">
-                                    <img class="card-img" src="assets/img/event1.jpg" alt="Card image">
-                                    <div class="overlay pt-3">
-                                        <div class="text-center mt-5 pt-2" style="padding-left: 30%">
-                                            <form action="" class="form-inline text-center">
-                                                <button type="submit" class="btn btn-warning p-3 rounded-circle mr-2" title="Save">
-                                                            <i class="far fa-save" style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button>
-                                                <button type="submit" class="btn btn-info p-3 rounded-circle" title="Like">
-                                                            <i class="far fa-thumbs-up " style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button>
-                                                <!-- <button type="submit" class="btn btn-danger p-3 rounded-circle">
-                                                            <i class="far fa-thumbs-down " style="font-size: 1.5em !important; margin: -2px;"></i>
-                                                        </button> -->
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
+                        <div class="col-md-3  pb-3">
+                            <div class="card card-pin">
+                                <img class="card-img" src="assets/img/event2.jpg" alt="Card image">
+                                <div class="overlay pt-3">
+                                    <div class="text-center mt-5 pt-2">
+                                        <form action="" class="d-inline text-center">
+                                            <button type="submit" class="btn btn-warning p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Save">
+                                                        <i class="far fa-save" style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button>
+                                            <!-- <button type="submit" class="btn btn-danger p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="fas fa-trash" style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button> -->
+                                        </form>
+                                        <form action="" class="d-inline text-center">
+                                            <!-- <button type="submit" class="btn btn-info p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Like">
+                                                        <i class="far fa-thumbs-up " style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button> -->
+                                            <button type="submit" class="btn btn-info p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Like">
+                                                        <i class="far fa-thumbs-up " style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3  pb-3">
+                            <div class="card card-pin">
+                                <img class="card-img" src="assets/img/event3.jpg" alt="Card image">
+                                <div class="overlay pt-3">
+                                    <div class="text-center mt-5 pt-2">
+                                        <form action="" class="d-inline text-center">
+                                            <!-- <button type="submit" class="btn btn-warning p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Save">
+                                                        <i class="far fa-save" style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button> -->
+                                            <button type="submit" class="btn btn-danger p-3 rounded-circle mr-2" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="fas fa-trash" style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button>
+                                        </form>
+                                        <form action="" class="d-inline text-center">
+                                            <button type="submit" class="btn btn-danger p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Dislike">
+                                                        <i class="far fa-thumbs-down " style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button>
+                                            <!-- <button type="submit" class="btn btn-danger p-3 rounded-circle" data-toggle="tooltip" data-placement="top" title="Dislike">
+                                                        <i class="far fa-thumbs-down " style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button> -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3  pb-3">
+                            <div class="card card-pin">
+                                <img class="card-img" src="assets/img/event1.jpg" alt="Card image">
+                                <div class="overlay pt-3">
+                                    <div class="text-center mt-5 pt-2" style="padding-left: 30%">
+                                        <form action="" class="form-inline text-center">
+                                            <button type="submit" class="btn btn-warning p-3 rounded-circle mr-2" title="Save">
+                                                        <i class="far fa-save" style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button>
+                                            <button type="submit" class="btn btn-info p-3 rounded-circle" title="Like">
+                                                        <i class="far fa-thumbs-up " style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button>
+                                            <!-- <button type="submit" class="btn btn-danger p-3 rounded-circle">
+                                                        <i class="far fa-thumbs-down " style="font-size: 1.5em !important; margin: -2px;"></i>
+                                                    </button> -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-
-
         </div>
+    </div>
+
+  </div>
   </section>
   <app-home-footer></app-home-footer>
 </div>

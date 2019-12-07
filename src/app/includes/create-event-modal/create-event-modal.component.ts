@@ -30,7 +30,7 @@ export class CreateEventModalComponent implements OnInit {
       address: ['',  Validators.required],
       shortDes: ['',  Validators.required],
       fullDes: ['',  Validators.required],
-      eventUrl: null,
+      eventUrl: [null],
       startDate: ['',  Validators.required],
       finishDate: ['',  Validators.required],
       board: ['',  Validators.required],

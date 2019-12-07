@@ -22,9 +22,10 @@ export class AuthComponent implements OnInit {
   };
   successMessage: string;
   serverErrorMessages: string;
+
   ngOnInit() {
     if (this.userService.issLoggedIn()) {
-      console.log('user is loggedin');
+      // console.log('user is loggedin');
       this.router.navigateByUrl('/event');
     }
   }
@@ -37,7 +38,7 @@ export class AuthComponent implements OnInit {
         // this.userService.expiresIn(res.expiresIn);
         this.userService.setUser(res.user._id);
         this.userDetail = res.user;
-        console.log(this.userDetail);
+        // console.log(this.userDetail);
         alert(this.successMessage);
         this.loader.stop();
         this.router.navigateByUrl('/event');

@@ -32,6 +32,7 @@ export class EventDetailComponent implements OnInit {
   id = this.route.snapshot.paramMap.get('eventId');
 
 comments: any;
+  showEdit = false;
 model = {
   text: ''
 };
@@ -45,7 +46,17 @@ model = {
       // console.log(data);
     });
   }
+  editEvent() {
+    alert(' working on this');
+  }
 
+  // updateEvent(id: any) {
+  //   this.evDet
+  //     .updateEvent(id, this.postdata)
+  //     .subscribe(resp => {
+  //       return this.spresp.push(resp);
+  //     });
+  // }
   getUser() {
     this.user = localStorage.getItem('user');
     // console.log('UserId is: ' + this.user);
@@ -62,7 +73,12 @@ getEventById() {
        // console.log(this.comments);
         // console.log( this.comments.created_dt);
         this.organizer = data.organizer;
-        // console.log(this.organizer);
+        console.log( 'Organizer Id' + this.organizer[0].id);
+        console.log('User Id' + this.user);
+        if (this.organizer[0].id ===  this.user) {
+          this.showEdit = !this.showEdit;
+        }
+        console.log(this.showEdit);
       });
     }
   );
@@ -73,9 +89,13 @@ getEventById() {
       this.getEventById();
     });
     this.getEventById();
+    this.getUser();
+    console.log('Organizer Id' + this.organizer[0].id);
+    console.log('User Id' + this.user);
+
 
   }
-    // this.getUser();
+
 
   //   if (this.id != null) {
   //    console.log('id: ' + this.id);

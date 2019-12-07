@@ -29,7 +29,8 @@ export class RegisterComponent implements OnInit {
     cityCountry: '',
     dateOfBirth: '',
     gender: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    eventUrl: ''
     // checkbox: '',
   };
 
@@ -43,7 +44,7 @@ export class RegisterComponent implements OnInit {
       res => {
         console.log(res);
         this.showSucessMessage = true;
-        alert(res.email);
+        alert('registration Successfull');
         this.router.navigateByUrl('/login');
         this.loader.stop();
       },

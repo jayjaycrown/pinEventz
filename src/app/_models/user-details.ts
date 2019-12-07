@@ -7,5 +7,6 @@ export interface UserDetails {
   cityCountry: string;
   dateOfBirth: string;
   gender: string;
+  eventUrl: string;
   // checkbox: string;
 }
