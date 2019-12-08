@@ -92,8 +92,8 @@ getEventById() {
     });
     this.getEventById();
     this.getUser();
-    console.log('Organizer Id' + this.organizer[0].id);
-    console.log('User Id' + this.user);
+    // console.log('Organizer Id' + this.organizer[0].id);
+    // console.log('User Id' + this.user);
 
 
   }

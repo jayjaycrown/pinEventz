@@ -16,6 +16,7 @@ export class HomeHeaderComponent implements OnInit {
 
   collapsed = true;
   boards: any;
+  users;
 
   createEvent() {
     this.modalService.open(CreateEventModalComponent, { size: 'lg'});
@@ -28,6 +29,12 @@ export class HomeHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.profile().subscribe(res => {
+      // tslint:disable-next-line: no-string-literal
+      this.users = res['user'];
+    }, (err) => {
+      console.error(err);
+    });
   }
 
 }
