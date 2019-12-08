@@ -29,6 +29,7 @@ export class EventDetailComponent implements OnInit {
   events: EventDetails;
    organizer: any;
    user: any;
+
   id = this.route.snapshot.paramMap.get('eventId');
 
 comments: any;
@@ -49,6 +50,7 @@ model = {
       // console.log(data);
     });
   }
+  delete() {}
 
   // updateEvent(id: any) {
   //   this.evDet

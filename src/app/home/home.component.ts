@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   spresp: any;
   postdata: EventDetails;
   eventId: any;
+  collapsed = true;
+  searchText: any;
 
 
   constructor(private evDet: EventDetailService,
