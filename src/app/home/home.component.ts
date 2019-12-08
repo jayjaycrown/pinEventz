@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+  users;
   reverse = true;
   eventDetails: EventDetails[] = [];
   headers: any;
@@ -84,6 +85,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.getEvents();
     });
     this.getEvents();
+
+    this.auth.profile().subscribe(res => {
+      // tslint:disable-next-line: no-string-literal
+      this.users = res['user'];
+    }, (err) => {
+      console.error(err);
+    });
   }
 
   ngOnDestroy() {
