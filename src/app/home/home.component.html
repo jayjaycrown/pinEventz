@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white">
             <div class="container">
                 <a class="navbar-brand" [routerLink]="['/event']" >
-                    <img [src]="users.profileUrl" width="160px" height="40px" alt="">
+                    <img src="assets/img/logo.png" width="160px" height="40px" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
                   <span class="navbar-toggler-icon"></span>
@@ -94,7 +94,7 @@
 
                     <li class="nav-item megamenu" ngbDropdown >
                       <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown3" role="button">
-                          <img src="assets/img/profile.png" width="40px" height="40px" style="border-radius: 50%" alt="" srcset="">
+                          <img [src]="users.profileUrl" width="40px" height="40px" style="border-radius: 50%" alt="" srcset="">
                       </a>
                       <!-- <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
                         <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Action</a>
