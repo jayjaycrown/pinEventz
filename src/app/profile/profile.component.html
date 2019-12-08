@@ -14,7 +14,7 @@
                             <div class="col-sm-8">
                                 <h4> {{ users.fullName }} </h4>
                                 <br>
-                                <p class="font9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque non vel quo explicabo aut nam a et, atque debitis sapiente!</p>
+                                <br>
                             </div>
                             <div class="col-sm-4 text-right">
                                 <a [routerLink]="[ '/profile','edit' ]" style="cursor: pointer;">
@@ -27,7 +27,7 @@
                                 <br>
                                 <span class="font9"><a href=""  class="m-0">www.facebook.com</a></span>
                                 <br>
-                                <span class="font9">213, maddisson drive Il, USA</span>
+                                <span class="font9">{{ users.cityCountry }}</span>
                             </div>
                         </div>
                     </div>
