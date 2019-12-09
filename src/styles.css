@@ -5,9 +5,7 @@
 @import 'app.css';
 @import 'pretty-checkbox.min.css';
 @import "~@ng-select/ng-select/themes/material.theme.css";
-@import url('https://fonts.googleapis.com/css?family=Cardo|Lato&display=swap&subset=greek,greek-ext');
-/* @import 'bootstrap-reboot.min.css'; */
-
+@import url('https://fonts.googleapis.com/css?family=Cardo|Lora&display=swap&subset=greek,greek-ext');
 .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
   background-color: #039282 !important;
   border-radius: 2px;
@@ -22,8 +20,7 @@
   color: #039282 !important;
 }
 html {
-  /* font-family: Lato, Helvetica, sans-serif; */
-  font-family: Cardo, serif !important;
+  font-family: 'Lora', serif;
 }
 
 body {
@@ -48,8 +45,7 @@ body {
   background: #eaeced;
   /* margin-bottom: 100px; */
   font-size: 1rem !important;
-  /* font-family: Lato, Helvetica, sans-serif !important; */
-  font-family: Cardo, serif !important;
+  font-family:'Lora', serif !important;
   min-height: 100vh;
   /* padding-top: 70px; */
 }
@@ -68,8 +64,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Lato, Helvetica, sans-serif;
-  /* font-family: Cardo, serif !important; */
+  font-family: Cardo, serif !important;
 }
 
 .h6,
@@ -81,7 +76,7 @@ h5{
 }
 
 p {
-  font-family: Lato, Helvetica, sans-serif;
+  font-family: 'Lora', serif;
 }
 
 .bg-custom {
