@@ -5,6 +5,7 @@
 @import 'app.css';
 @import 'pretty-checkbox.min.css';
 @import "~@ng-select/ng-select/themes/material.theme.css";
+@import url('https://fonts.googleapis.com/css?family=Cardo|Lato&display=swap&subset=greek,greek-ext');
 /* @import 'bootstrap-reboot.min.css'; */
 
 .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
