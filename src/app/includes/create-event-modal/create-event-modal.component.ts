@@ -55,8 +55,8 @@ export class CreateEventModalComponent implements OnInit {
       this.form.value.status,
       this.form.value.category,
       this.form.value.time,
-
-    ).subscribe((event: HttpEvent<any>) => {
+)
+.subscribe((event: HttpEvent<any>) => {
       switch (event.type) {
         case HttpEventType.Sent:
           console.log('Request has been made!');
@@ -70,7 +70,7 @@ export class CreateEventModalComponent implements OnInit {
           break;
         case HttpEventType.Response:
           alert(event.body.message);
-          console.log('Board successfully created!', event.body);
+          console.log('event successfully created!', event.body);
           this.percentDone = false;
           this.activeModal.close();
       }

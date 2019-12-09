@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientJsonpModule } from '@angular/common/http';
@@ -79,6 +79,7 @@ import { FilterPipe } from './_helpers/filter.pipe';
     CommentModalComponent,
   ],
   providers: [
+    NgbActiveModal,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

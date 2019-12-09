@@ -9,6 +9,9 @@ import { Board } from '../../_models/board.interface';
   styleUrls: ['./board-detail.component.css']
 })
 export class BoardDetailComponent implements OnInit {
+  event: any;
+  reverse = true;
+  pinned: any;
 
   constructor(private route: ActivatedRoute, private boardService: BoardService) { }
   board: Board;
@@ -20,6 +23,9 @@ export class BoardDetailComponent implements OnInit {
           data => {
             console.log(data);
             this.board = data;
+            this.event = data.events;
+            this.pinned = data.pinneds;
+            console.log(this.pinned);
           }
         );
       }

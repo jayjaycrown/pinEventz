@@ -22,7 +22,7 @@
                       <label for="board">Select Board</label>
                       <select class="custom-select" name="board"
                        formControlName="board">
-                          <option *ngFor="let board of boards" [value]="board.boardName"> {{ board.boardName }} </option>
+                          <option *ngFor="let board of boards" [value]="board._id"> {{ board.boardName }} </option>
                       </select>
                   </div>
                   <span class="font9"><a style="cursor: pointer;" (click)="openBoardModal()">Or create New Board</a></span>

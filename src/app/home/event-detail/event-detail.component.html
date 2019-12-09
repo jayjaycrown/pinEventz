@@ -34,7 +34,7 @@
                     <button *ngIf="showEdit" class="btn btn-outline-warning btn-sm "  (click)="editEvent(edit)"  ngbPopover="Edit this event" triggers="mouseenter:mouseleave" popoverTitle="Edit Event" container="body">
                         <i class="fa fa-pen" aria-hidden="true"></i>
                     </button>
-                    <button *ngIf="showEdit" class="btn  btn-outline-danger btn-sm " (click)="delete()"
+                    <button *ngIf="showEdit" class="btn  btn-outline-danger btn-sm " (click)="getConfirmation(events._id)"
                     ngbPopover="Delete this event" triggers="mouseenter:mouseleave" popoverTitle="Delete Event" container="body">
                         <i class="fa fa-trash " aria-hidden="true"></i>
                     </button>
@@ -244,10 +244,10 @@
 </ng-template>
 
 <ng-template #edit let-modal>
-    <!-- <form  [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <form  [formGroup]="form" (ngSubmit)="onClickSubmit()">
         <div class="modal-header">
           <h4 class="modal-title">Edit Event</h4>
-          <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -258,7 +258,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="eventName">Name</label>
-                            <input type="text" class="form-control" name="eventName"
+                            <input type="text" class="form-control" name="eventName" [value]="events.eventName"
                             placeholder="Event Name"
                             formControlName="eventName" >
                         </div>
@@ -279,8 +279,8 @@
                         <div class="form-group">
                           <label>Upload Image</label>
                           <div class="input-group">
-                            <span class="btn btn-default btn-file">
-                              Browse...<input type="file" (change)="uploadFile($event)" required>
+                            <span class="btn btn-primary">
+                              <input type="file" class="form-control" (change)="uploadFile($event)" required>
                             </span>
                         </div>
                       </div>
@@ -288,7 +288,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" name="address"  placeholder="234 Madisson Avenue, New York city"  formControlName="address">
+                            <input type="text" class="form-control" name="address" [value]="events.address"  placeholder="234 Madisson Avenue, New York city"  formControlName="address">
                         </div>
                     </div>
 
@@ -299,7 +299,7 @@
                         <div class="form-group">
                             <label for="sdate">Start Date</label>
                             <input type="date" name="startDate" max="2030-12-31" min="2010-01-01" class="form-control"
-                              formControlName="startDate"
+                              formControlName="startDate" [value]="events.startDate"
                             >
                         </div>
                     </div>
@@ -307,7 +307,7 @@
                         <div class="form-group">
                             <label for="fdate">Finish Date</label>
                             <input type="date" name="finishDate" max="2030-12-31" min="2010-01-01" class="form-control"
-                            formControlName="finishDate">
+                            formControlName="finishDate" [value]="events.finishDate">
                         </div>
                     </div>
                 </div>
@@ -316,7 +316,7 @@
                     <div class="col-sm-6">
                         <div class="form-group ">
                             <label for="collaborators">Event Time</label>
-                            <input type="time" name="time"  class="form-control" formControlName="time">
+                            <input type="time" name="time"  class="form-control" formControlName="time" [value]="events.time">
                         </div>
                     </div>
 
@@ -336,7 +336,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="sdesc">Short Description</label>
-                            <input type="text" class="form-control" name="sdesc" id="sdesc" placeholder="Short Description" formControlName="shortDes">
+                            <input type="text" class="form-control" name="shortDes" [value]="events.shortDes" placeholder="Short Description" formControlName="shortDes">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -357,7 +357,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <label for="fdesc">Full Description</label>
-                        <textarea name="fdesc" class="form-control"  rows="2" placeholder="Full description" formControlName="fullDes"></textarea>
+                        <textarea name="fullDes" class="form-control" [value]="events.fullDes"  rows="2" placeholder="Full description" formControlName="fullDes"></textarea>
                     </div>
                 </div>
 
@@ -368,8 +368,8 @@
 
         <div class="modal-footer">
           <input type="submit" class="btn btn-primary btn-sm" value="Create Event" [disabled]="!form.valid">
-          <button type="button" class="btn btn-outline-dark btn-sm" (click)="activeModal.close('Close click')">Close</button>
+          <button type="button" class="btn btn-outline-dark btn-sm" (click)="modal.close('Close click')">Close</button>
         </div>
 
-      </form> -->
+      </form>
 </ng-template>
