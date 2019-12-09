@@ -5,7 +5,7 @@
 @import 'app.css';
 @import 'pretty-checkbox.min.css';
 @import "~@ng-select/ng-select/themes/material.theme.css";
-@import url('https://fonts.googleapis.com/css?family=Cardo|Lora&display=swap&subset=greek,greek-ext');
+@import url('https://fonts.googleapis.com/css?family=Cardo:700|Lora&display=swap&subset=greek,greek-ext');
 .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
   background-color: #039282 !important;
   border-radius: 2px;
