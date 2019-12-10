@@ -23,6 +23,10 @@ export class BoardDetailComponent implements OnInit {
 createEvent() {
   this.modalService.open(CreateEventModalComponent, { size: 'lg'});
 }
+
+unpin() {
+  alert('Working on it');
+}
   ngOnInit() {
     this.route.paramMap.subscribe(
       paramMap => {

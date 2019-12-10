@@ -1,6 +1,6 @@
 <div class="body2">
   <app-home-header></app-home-header>
-  <section class="container bodycontainer mb-5 pb-5">
+  <section class="container-fluid mt-5  mb-5 pb-5">
     <div class="row p-0">
       <div class="col-md-12 ">
         <div class="card">
@@ -56,13 +56,23 @@
                         <div class="price">
                             <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
                         </div>
-
+                        <div class="overlay">
+                            <div class="text-center">
+                              <div class="d-inline   check">
+                                <a style="cursor: pointer;" class="cover " ngbPopover="Unpin this Event from your Board" triggers="mouseenter:mouseleave" popoverTitle="Unpin Event" container="body" (click)="unpin()">
+                                  <span class="p-3 bg-danger text-white rounded-circle">
+                                    <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
+                                  </span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
                     </div>
 
                     <div class=" pt-2 pb-2 pl-2 bg-light border">
                         <div class="row">
                             <div class="col-md-3 text-center p-0">
-                                <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                <div class="bg-custom2 ml-3 mr-3 rounded pt-2 pb-2 shadow-sm">
                                   <h5 class="text-primary"> {{event.startDate | date: 'MMM dd'}} </h5>
                                 </div>
 

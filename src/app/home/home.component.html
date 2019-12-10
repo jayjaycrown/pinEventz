@@ -161,11 +161,11 @@
             <div class=" pt-2 pb-2 pl-2 pr-1 bg-light border">
               <div class="row">
                 <div class="col-md-3 text-center p-0">
-                  <div class="bg-custom2 ml-3 mr-3 rounded  pt-2 pb-2 shadow-sm">
+                  <div class="bg-custom2 ml-3 mr-3 rounded pt-2 pb-2 shadow-sm">
                     <h5 class="text-primary"> {{events.startDate | date: 'MMM dd'}} </h5>
                   </div>
                 </div>
-                <div class="col-md-9  pl-0">
+                <div class="col-md-9">
                   <h5 class="text-black"><a [routerLink]="['/', 'event', events._id]"  [state]= "[eventId]" routerLinkActive="disabled"
                     [routerLinkActiveOptions]="{ exact:true }" class="text-black">{{ events.eventName }}</a> </h5>
                     <p class="font9 m-0">{{events.startDate | date}} - {{events.finishDate | date}} </p>
