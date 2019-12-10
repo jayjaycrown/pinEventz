@@ -386,7 +386,7 @@
       <div class="container-fluid">
         <div class="form-group mb-0">
           <label for="board">Select Board</label>
-          <select class="custom-select" name="boardId" #boardId="ngModel"  [(ngModel)]="model.boardId">
+          <select class="custom-select" name="boardId" #boardId="ngModel"  [(ngModel)]="boardModel.boardId">
               <option *ngFor="let board of boards" [value]="board._id"> {{ board.boardName }} </option>
           </select>
       </div>

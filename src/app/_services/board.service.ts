@@ -67,14 +67,30 @@ export class BoardService {
     );
   }
   // tslint:disable-next-line: variable-name
-  updateBoard(_id: any, board: Board): Observable<Board> {
-    return this.http.put<Board>(apiUrl + _id, board, httpOptions).pipe(
-      catchError(this.handleError<Board>('updateBoard', board)), tap(() => {
+  // updateBoard(_id: any, board: Board): Observable<Board> {
+  //   return this.http.put<Board>(apiUrl + _id, board, httpOptions).pipe(
+  //     catchError(this.handleError<Board>('updateBoard', board)), tap(() => {
+  //       this._refreshNeded$.next();
+  //     })
+  //   );
+  // }
+  updateBoard(boardName: string, boardDescription: string, boardCategory: string, boardStatus: string,  profileImage: File) {
+    const formData: any = new FormData();
+    formData.append('boardName', boardName);
+    formData.append('boardDescription', boardDescription);
+    formData.append('boardCategory', boardCategory);
+    formData.append('boardStatus', boardStatus);
+    formData.append('boardUrl', profileImage);
+    httpOptions.headers = httpOptions.headers.set('Access-Control-Allow-Origin', '*');
+    return this.http.put(apiUrl, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
+      catchError(this.handleError<Board>('addBoard', formData)), tap(() => {
         this._refreshNeded$.next();
       })
     );
   }
-
   // tslint:disable-next-line: variable-name
   deleteBoard(_id: any): Observable<Board> {
     return this.http.delete<Board>(apiUrl + '/' + _id, httpOptions).pipe(

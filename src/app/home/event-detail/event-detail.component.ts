@@ -65,6 +65,9 @@ comments: any;
 model = {
   text: ''
 };
+boardModel = {
+  boardId: ''
+};
 
 activeModals() {
   return this.activeModal.close();
