@@ -73,7 +73,7 @@ activeModals() {
   return this.activeModal.close();
 }
 open(content) {
-  this.activeModal = this.modalService.open(content);
+  this.activeModal = this.modalService.open(content, {scrollable: true});
 }
   // getDismissReason(reason: any) {
   //   throw new Error("Method not implemented.");

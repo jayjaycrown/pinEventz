@@ -129,7 +129,7 @@ export class EventDetailService {
   private log(message: string) {
 
     console.log(message);
-    alert(message);
+    // alert(message);
   }
 
 

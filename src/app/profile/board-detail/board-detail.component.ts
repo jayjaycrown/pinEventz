@@ -42,8 +42,9 @@ unpin() {
                // console.log(element);
                this.eventDetail.getEventById(pins).subscribe(
                  el => {
-                   this.PinnedEvents.push(el);
-                   console.log(this.PinnedEvents);
+                  this.PinnedEvents.push(el);
+                  console.log(this.PinnedEvents);
+                  this.PinnedEvents = this.PinnedEvents.filter(item => item !== undefined);
                  }
                );
             }
