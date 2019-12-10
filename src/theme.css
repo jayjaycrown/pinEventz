@@ -178,7 +178,7 @@ footer.footer {
 
 .card-img-top:hover {
     opacity: .4;
-    cursor: zoom-in;
+    /* cursor: zoom-in; */
     transform: scale(1.02, 1.02);
     -webkit-transform: scale(1.02, 1.02);
     -moz-transform: scale(1.02, 1.02);

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal, NgbModalConfig, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalConfig, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { OrderPipe } from 'ngx-order-pipe';
 
 
@@ -22,7 +22,10 @@ export class EventDetailComponent implements OnInit {
   form: any;
   boards: any;
   percentDone: any = 0;
-  modalRef: any;
+  successMessage: any;
+  closeResult: string;
+  modalReference: NgbModalRef<any>;
+  activeModal: NgbActiveModal;
   constructor(
               public config: NgbModalConfig,
               public router: Router,
@@ -30,7 +33,6 @@ export class EventDetailComponent implements OnInit {
               private route: ActivatedRoute,
               private evDet: EventDetailService,
               private modalService: NgbModal,
-              public activeModal: NgbActiveModal,
               public userService: UserService,
               public orderPipe: OrderPipe,
               public fb: FormBuilder) {
@@ -67,23 +69,37 @@ model = {
 activeModals() {
   return this.activeModal.close();
 }
+open(content) {
+  this.activeModal = this.modalService.open(content);
+}
+  // getDismissReason(reason: any) {
+  //   throw new Error("Method not implemented.");
+  // }
 
-  open(content) {
-    this.modalService.open(content, { scrollable: true });
-  }
   editEvent(edit) {
-    this.modalService.open(edit, { size: 'lg'});
+    this.activeModal = this.modalService.open(edit, { size: 'lg'});
+  }
+  pinEvent(pin) {
+    this.activeModal = this.modalService.open(pin);
   }
   onSubmit(form: NgForm) {
     this.model.text = '';
-    this.evDet.postComment(form.value, this.id).subscribe(data => {
-      // console.log(data);
-    });
+    this.evDet.postComment(form.value, this.id).subscribe();
+  }
+  submitPin(pinEvent: NgForm) {
+    this.evDet.pinEvent(pinEvent.value, this.id).subscribe(
+     res => {
+      alert(res.message);
+      this.activeModal.close();
+     },
+     err => {
+       alert(err);
+       this.activeModal.close();
+     }
+    );
   }
 
-
   onClickSubmit() {
-    // console.log(this.form.value);
     console.log(this.id);
     this.evDet.updateEvent(
       this.id,
@@ -116,11 +132,10 @@ activeModals() {
           console.log('Board successfully created!', event.body);
           this.percentDone = false;
           this.activeModal.close();
-          this.closeModal();
       }
     });
   }
-  closeModal() { this.modalRef.close(); }
+
 
   getConfirmation(id: any) {
     const retVal = confirm('Are you sure you really want to delete this Event?');

@@ -1,7 +1,7 @@
 <div class="body2">
   <div>
     <nav class="navbar navbar-expand-md navbar-light bg-white">
-      <div class="container">
+      <div class="container-fluid">
           <a class="navbar-brand" [routerLink]="['/event']" >
               <img src="assets/img/logo.png" width="160px" height="40px" alt="">
           </a>
@@ -147,7 +147,7 @@
     </nav>
   </div>
   <section class="mt-5 mb-5">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="card-columns p-2">
           <div class="card card-pin" *ngFor="let events of (eventDetails  | orderBy:'startDate': reverse  | filter: searchText: 'eventName')">
@@ -156,26 +156,16 @@
               <div class="price">
                   <h2 class="d-inline"><span class="badge badge-default ">Free</span></h2>
               </div>
-              <div class="overlay">
-                <div class="text-center">
-                  <div class="d-inline   check">
-                    <a href="#" class="cover " data-placement="top " title="Pin " data-toggle="modal" data-target="#pinModal">
-                      <span class="p-3 bg-custom text-primary rounded-circle ">
-                        <i class="fas fa-thumbtack " style="font-size: 1.5em !important; margin: -2px; "></i>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
+
             </div>
             <div class=" pt-2 pb-2 pl-2 pr-1 bg-light border">
               <div class="row">
                 <div class="col-md-3 text-center p-0">
-                  <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                  <div class="bg-custom2 ml-3 mr-3 rounded  pt-2 pb-2 shadow-sm">
                     <h5 class="text-primary"> {{events.startDate | date: 'MMM dd'}} </h5>
                   </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9  pl-0">
                   <h5 class="text-black"><a [routerLink]="['/', 'event', events._id]"  [state]= "[eventId]" routerLinkActive="disabled"
                     [routerLinkActiveOptions]="{ exact:true }" class="text-black">{{ events.eventName }}</a> </h5>
                     <p class="font9 m-0">{{events.startDate | date}} - {{events.finishDate | date}} </p>

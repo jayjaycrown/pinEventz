@@ -42,21 +42,21 @@
                 </div>
                   <div class="col-md-3 ">
                       <div class=" mb-3 ml-3">
-                          <form action="" class="d-inline">
+
                               <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip"  data-placement="top" title="Like">
                                   <i class="fa fa-thumbs-up  text-primary" aria-hidden="true"></i>
                               </button>
-                          </form>
-                          <form action="" class="d-inline">
-                              <button class="btn btn-outline-warning btn-sm" type="button" data-toggle="modal" data-target="#pinModal"  ngbPopover="Pin this Event to your Board" triggers="mouseenter:mouseleave" popoverTitle="Pin Event" container="body">
+
+
+                              <button class="btn btn-outline-warning btn-sm" type="button" (click)="pinEvent(pin)"   ngbPopover="Pin this Event to your Board" triggers="mouseenter:mouseleave" popoverTitle="Pin Event" container="body">
                                   <i class="fas fa-thumbtack" aria-hidden="true"></i>
                               </button>
-                          </form>
-                          <form action="" class="d-inline">
+
+
                               <button class="btn btn-outline-secondary btn-sm" type="button"  ngbPopover="Follow the Event Organizer" triggers="mouseenter:mouseleave" popoverTitle="Follow" container="body">
                                   <i class="far fa-hand-point-right" aria-hidden="true"></i>
                               </button>
-                          </form>
+
                       </div>
                   </div>
                   <div class="col-md-1">
@@ -268,7 +268,7 @@
                             <label for="board">Select Board</label>
                             <select class="custom-select" name="board"
                               formControlName="board">
-                                <option *ngFor="let board of boards" [value]="board.boardName"> {{ board.boardName }} </option>
+                                <option *ngFor="let board of boards" [value]="board._id"> {{ board.boardName }} </option>
                             </select>
                         </div>
                         <span class="font9"><a style="cursor: pointer;" (click)="openBoardModal()">Or create New Board</a></span>
@@ -372,4 +372,32 @@
         </div>
 
       </form>
+</ng-template>
+
+<ng-template #pin let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Pin Event</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #pin="ngForm" (ngSubmit)="pin.valid && submitPin(pin)">
+    <div class="modal-body">
+      <div class="container-fluid">
+        <div class="form-group mb-0">
+          <label for="board">Select Board</label>
+          <select class="custom-select" name="boardId" #boardId="ngModel"  [(ngModel)]="model.boardId">
+              <option *ngFor="let board of boards" [value]="board._id"> {{ board.boardName }} </option>
+          </select>
+      </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        <button class="btn btn-primary" type="submit" >
+               Pin To Board
+        </button>
+    </div>
+  </form>
+
 </ng-template>

@@ -47,7 +47,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     );
   }
-
+  pinEvent(content) {
+    this.modalService.open(content);
+  }
   // getEventById(id: any) {
   //   this.evDet.getEventById(id)
   //     .subscribe(data => {

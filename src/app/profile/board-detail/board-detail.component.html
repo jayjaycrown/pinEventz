@@ -1,88 +1,88 @@
 <div class="body2">
   <app-home-header></app-home-header>
-<section class="container bodycontainer mb-5 pb-5">
-  <div class="row p-0">
-    <div class="col-md-12 ">
-      <div class="card">
-          <div class="card-body p-0">
-            <table class="table table-inverse pl-2 pr-2">
-                <tbody >
-                  <tr >
-                    <td >
-                      <img [src]="board.boardUrl" width="200px" height="180px" class="rounded" alt="Board Image" >
-                    </td>
-                    <td >
-                      <h5>{{board.boardName}}</h5>
-                      <p>Created on : <span class="rounded badge-primary p-1"> {{ board.created_dt | date : 'MMMM d, y, h:mm:ss a z'  }}</span> </p>
-                    </td>
-                    <td ><p>Created in <a > {{ board.boardCategory }}</a></p></td>
-                    <td   style="width: 30%; text-align: justify;"><p> {{ board.boardDescription }} </p></td>
-                  </tr>
+  <section class="container bodycontainer mb-5 pb-5">
+    <div class="row p-0">
+      <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body p-0">
+              <table class="table table-inverse pl-2 pr-2">
+                  <tbody >
+                    <tr >
+                      <td >
+                        <img [src]="board.boardUrl" width="200px" height="180px" class="rounded" alt="Board Image" >
+                      </td>
+                      <td >
+                        <h5>{{board.boardName}}</h5>
+                        <p>Created on : <span class="rounded badge-primary p-1"> {{ board.created_dt | date : 'MMMM d, y, h:mm:ss a z'  }}</span> </p>
+                      </td>
+                      <td ><p>Created in <a > {{ board.boardCategory }}</a></p></td>
+                      <td   style="width: 30%; text-align: justify;"><p> {{ board.boardDescription }} </p></td>
+                    </tr>
 
-                </tbody>
-            </table>
-              <div class="row">
+                  </tbody>
+              </table>
+                <div class="row">
 
-                  <!-- <div class="col-sm-2 ">
-                      <div class="text-center ">
-                          <a href="#" data-toggle="modal" data-target="#editBoard">
-                              <span class="p-2 bg-light text-primary rounded-circle"><i class="fa fa-pen-alt" aria-hidden="true"></i></span> Edit Board
-                          </a>
-                      </div>
-                  </div> -->
-              </div>
+                    <!-- <div class="col-sm-2 ">
+                        <div class="text-center ">
+                            <a href="#" data-toggle="modal" data-target="#editBoard">
+                                <span class="p-2 bg-light text-primary rounded-circle"><i class="fa fa-pen-alt" aria-hidden="true"></i></span> Edit Board
+                            </a>
+                        </div>
+                    </div> -->
+                </div>
 
-          </div>
+            </div>
 
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-5">
-      <div class="col-md-12">
-          <div class="card-columns">
-              <div class="card p-4">
-                  <a href="" data-toggle="modal" data-target="#createEvent">
-                      <div class="card-body pt-4 pb-4 text-center">
-                          <span class=" rounded-circle p-4" style="background: #c6f4dc"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                          <br><br>
-                          <h5 class="card-title title mt-3">Create Event</h5>
-                      </div>
-                  </a>
-              </div>
-              <div class="card card-pin" *ngFor="let ev of (event | orderBy:'created_dt': reverse)">
-                  <div class="card m-0">
-                      <img class="card-img-top" [src]="ev.eventUrl" alt="Card image">
-                      <div class="price">
-                          <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
-                      </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card-columns">
+                <div class="card p-4">
+                    <a href="" (click)="createEvent()">
+                        <div class="card-body pt-4 pb-4 text-center">
+                            <span class=" rounded-circle p-4" style="background: #c6f4dc"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                            <br><br>
+                            <h5 class="card-title title mt-3">Create Event</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="card card-pin"  *ngFor="let event of (PinnedEvents | orderBy:'created_dt': reverse)">
+                    <div class="card m-0">
+                        <img class="card-img-top" [src]="event.eventUrl" alt="Card image">
+                        <div class="price">
+                            <h2 class="d-inline"><span class="badge badge-default p-0 ">Free</span></h2>
+                        </div>
 
-                  </div>
+                    </div>
 
-                  <div class=" pt-2 pb-2 pl-2 bg-light border">
-                      <div class="row">
-                          <div class="col-md-3 text-center p-0">
-                              <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
-                                  <h5 class="text-primary">OCT</h5>
-                                  <h5>13</h5>
-                              </div>
+                    <div class=" pt-2 pb-2 pl-2 bg-light border">
+                        <div class="row">
+                            <div class="col-md-3 text-center p-0">
+                                <div class="bg-custom2 ml-3 mr-3 rounded p-2 shadow-sm">
+                                  <h5 class="text-primary"> {{event.startDate | date: 'MMM dd'}} </h5>
+                                </div>
 
-                          </div>
-                          <div class="col-md-9 pl-0">
-                              <h5 class="text-black"><a href="eventDetail.html" class="text-black"> {{ev.eventName}} </a> </h5>
-                              <p class="font9 m-0">Saturday, 10:00am</p>
-                              <p class="font9 m-0">Eko Hotels & Suites, Lagos, LA</p>
-                              <p class="font9 m-0">&nbsp;</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                            </div>
+                            <div class="col-md-9">
+                              <h5 class="text-black"><a [routerLink]="['/', 'event', event._id]"  [state]= "[eventId]" routerLinkActive="disabled"
+                                [routerLinkActiveOptions]="{ exact:true }" class="text-black">{{ event.eventName }}</a> </h5>
+                                <p class="font9 m-0">{{event.startDate | date}} - {{event.finishDate | date}} </p>
+                                <p class="font9 m-0"> {{event.address}} </p>
+                                <p class="font9 m-0">&nbsp;</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-          </div>
-      </div>
+            </div>
+        </div>
 
-  </div>
-</section>
+    </div>
+  </section>
 <app-home-footer></app-home-footer>
 </div>

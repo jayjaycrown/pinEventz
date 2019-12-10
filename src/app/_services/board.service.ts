@@ -8,7 +8,7 @@ import { Board } from '../_models/board.interface';
 
 
 const apiUrl = environment.apiBaseUrl + '/board';
-// const myBoard = environment.apiBaseUrl + '/myboard';
+const pinUrl = environment.apiBaseUrl + '/pinned';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -33,6 +33,12 @@ export class BoardService {
   getBoardById(id: any): Observable<any> {
     return this.http.get<Board>(apiUrl + '/' + id).pipe(
       retry(3), catchError(this.handleError<Board>('getBoard'))
+    );
+  }
+
+  getPinById(id: any): Observable<any> {
+    return this.http.get(pinUrl + '/' + id).pipe(
+      retry(3), catchError(this.handleError('getPinById'))
     );
   }
 

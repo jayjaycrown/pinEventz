@@ -42,6 +42,14 @@ export class EventDetailService {
      );
    }
 
+   pinEvent(boardId: any, id: any) {
+    return this.http.post(apiUrl + '/' + id, boardId).pipe(
+     catchError(this.handleError('pinEvent', boardId)), tap(() => {
+       this._refreshNeded$.next();
+     })
+    );
+  }
+
   getEvent(): Observable<any> {
     httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
     return this.http.get<EventDetails[]>(apiUrl, httpOptions).pipe(
@@ -112,13 +120,17 @@ export class EventDetailService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
+      this.log(`${operation} failed: ${error.error.message}`);
+      // alert(error);
       return of(result as T);
     };
   }
 
   private log(message: string) {
+
     console.log(message);
     alert(message);
   }
+
+
  }
