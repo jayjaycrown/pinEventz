@@ -1,7 +1,10 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalConfig, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { OrderPipe } from 'ngx-order-pipe';
+
+import { GeocodeService } from '../../_services/geocode.service';
+import { Location } from '../../_models/location';
 
 
 import { EventDetailService } from '../../_services/event-detail.service';
@@ -26,7 +29,26 @@ export class EventDetailComponent implements OnInit {
   closeResult: string;
   modalReference: NgbModalRef<any>;
   activeModal: NgbActiveModal;
+  loading: boolean;
+  address = '';
+  location: Location;
+  reverse = true;
+  events: EventDetails[];
+  organizer: any;
+  user: any;
+
+  id = this.route.snapshot.paramMap.get('eventId');
+  comments: any;
+  showEdit = false;
+  model = {
+    text: ''
+  };
+  boardModel = {
+    boardId: ''
+  };
   constructor(
+              private geocodeService: GeocodeService,
+              private ref: ChangeDetectorRef,
               public config: NgbModalConfig,
               public router: Router,
               public boardService: BoardService,
@@ -51,39 +73,22 @@ export class EventDetailComponent implements OnInit {
                   time: ['',  Validators.required],
 
                 });
-
                }
-  reverse = true;
-  events;
-   organizer: any;
-   user: any;
 
-  id = this.route.snapshot.paramMap.get('eventId');
-
-comments: any;
-  showEdit = false;
-model = {
-  text: ''
-};
-boardModel = {
-  boardId: ''
-};
-
-activeModals() {
-  return this.activeModal.close();
-}
-open(content) {
-  this.activeModal = this.modalService.open(content, {scrollable: true});
-}
-  // getDismissReason(reason: any) {
-  //   throw new Error("Method not implemented.");
-  // }
-
-  editEvent(edit) {
+  activeModals() {
+    return this.activeModal.close();
+  }
+  open(content: any) {
+    this.activeModal = this.modalService.open(content, {scrollable: true});
+  }
+  editEvent(edit: any) {
     this.activeModal = this.modalService.open(edit, { size: 'lg'});
   }
-  pinEvent(pin) {
+  pinEvent(pin: any) {
     this.activeModal = this.modalService.open(pin);
+  }
+  join(register: any) {
+    this.activeModal = this.modalService.open(register);
   }
   onSubmit(form: NgForm) {
     this.model.text = '';
@@ -103,7 +108,7 @@ open(content) {
   }
 
   onClickSubmit() {
-    console.log(this.id);
+    // console.log(this.id);
     this.evDet.updateEvent(
       this.id,
       this.form.value.eventName,
@@ -132,7 +137,7 @@ open(content) {
           break;
         case HttpEventType.Response:
           alert(event.body.message);
-          console.log('Board successfully created!', event.body);
+          console.log('Board successfully edited!', event.body);
           this.percentDone = false;
           this.activeModal.close();
       }
@@ -172,14 +177,30 @@ open(content) {
 }
 
 getEventById() {
+  this.loading = true;
   this.route.paramMap.subscribe(
     paramMap => {
       this.evDet.getEventById(paramMap.get('eventId')).subscribe(data => {
         console.log(data);
         this.events = data;
         this.comments = data.comments;
-       // console.log(this.comments);
-        // console.log( this.comments.created_dt);
+        this.address = data.address;
+        console.log(this.address);
+        this.geocodeService.geocodeAddress(this.address)
+        .subscribe((location: Location) => {
+          this.location = location;
+          console.log(this.location);
+        }
+        );
+
+
+
+        // tslint:disable-next-line: prefer-for-of
+        for (let i = 0; i < this.comments.length; i++) {
+          const element = this.comments[i].authorId;
+          // console.log(element);
+        }
+
         this.organizer = data.organizer;
         // console.log( 'Organizer Id' + this.organizer[0].id);
         // console.log('User Id' + this.user);
@@ -213,6 +234,7 @@ getBoard() {
 }
 
   ngOnInit() {
+    // this.showLocations();
     this.evDet.refreshNeded$.subscribe(() => {
       this.getEventById();
     });
@@ -222,6 +244,17 @@ getBoard() {
 
 
   }
+  // showLocations() {
+  //   this.addressToCoordinates();
+  // }
+  // addressToCoordinates() {
+  //   this.loading = true;
+  //   this.geocodeService.geocodeAddress(this.address)
+  //     .subscribe((location: Location) => {
+  //       this.location = location;
+  //     }
+  //     );
+  // }
 
 
   //   if (this.id != null) {

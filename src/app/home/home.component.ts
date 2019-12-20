@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  users;
+  users: any;
   reverse = true;
   eventDetails: EventDetails[] = [];
   headers: any;

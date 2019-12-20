@@ -40,9 +40,12 @@ body {
 .font9 {
   font-size: .9rem !important;
 }
+.font8 {
+  font-size: .8rem !important;
+}
 
 .body2 {
-  background: #eaeced;
+  background: #e8ecf1;
   /* margin-bottom: 100px; */
   font-size: 1rem !important;
   font-family:'Lora', serif !important;
@@ -460,8 +463,9 @@ ul.footernav>li>a {
 }
 
 .card {
-  box-shadow: 0px 0px 6px 0px rgba(104, 104, 104, 0.69) !important;
-  border-radius: 6px !important;
+  box-shadow: 0px 0px 0px 0px rgba(104, 104, 104, 0.69) !important;
+  border-radius: 0px !important;
+  border: 1px solid rgb(235, 235, 235) !important;
 }
 
 .card-footer {
@@ -665,6 +669,14 @@ ul.footernav>li>a {
   left: 45%;
 }
 
+.labels {
+  background-color: #E9ECEF;
+  display: block;
+  text-align: center !important;
+  width: 100% !important;
+  margin-bottom: 1rem;
+  color: rgb(0, 0, 0);
+}
 .price {
   position: absolute;
   top: 1rem;

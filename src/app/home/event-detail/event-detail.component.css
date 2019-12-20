@@ -1,0 +1,9 @@
+.comments {
+  max-height: 400px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+agm-map {
+  height: 300px;
+}

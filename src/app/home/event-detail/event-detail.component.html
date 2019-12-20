@@ -3,7 +3,180 @@
   <section class="container bodycontainer mb-5 pb-5">
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            Advertisement
+          </div>
+        </div>
+        <div class="card  mb-4">
+         <div class="row p-0 m-0">
+           <div class="col-md-3 col-sm-12">
+              <img [src]="events.eventUrl" class="imgEv2" alt="" srcset="">
+           </div>
+           <div class="col-md-9 col-sm-12">
+             <div class="row mb-3 mb-md-0">
+               <div class="col-md-9">
+                  <h4 class="ml-3  mt-2"> {{ events.eventName }} </h4>
+               </div>
+               <div class="col-md-3 pt-2">
+                  <div *ngIf="showEdit;then editDelete else registerBtn">here is ignored</div>
+                  <ng-template #editDelete>
+                    <div class="button-group" role="group" aria-label="Basic example">
+                        <button type="button"  class="btn btn-warning btn-sm "  (click)="editEvent(edit)">
+                            <i class="fa fa-pen" aria-hidden="true"></i> Edit
+                        </button>
+                        <button type="button" class="btn  btn-danger btn-sm " (click)="getConfirmation(events._id)">
+                            <i class="fa fa-trash " aria-hidden="true"></i> Delete
+                        </button>
+                    </div>
+
+                  </ng-template>
+                  <ng-template #registerBtn>
+                      <a name="" id="" class="btn btn-sm btn-primary btn-block" (click)="join(register)" role="button">Register</a>
+                  </ng-template>
+
+
+
+               </div>
+             </div>
+
+              <div class="row">
+                <div class="col-3">
+                    <span class="labels">Time</span>
+
+                    <span class="labels">Venue</span>
+
+                    <span class="labels">Created By</span>
+                </div>
+                <div class="col-9">
+                  <p><i class="far fa-clock" style="padding-right: 5px;"> </i> {{ events.startDate| date : 'EEEE, MMMM d, y' }} at {{ events.time  }} <span class="font8" style="padding-left: 15px;"> <a href=""> <i class="fa fa-plus"></i> Add to calender</a></span></p>
+
+                  <p><i class="fas fa-map-marker-alt" style="padding-right: 5px;"></i> {{ events.address }} </p>
+
+                  <p><i class="fas fa-user" style="padding-right: 5px;"></i>   <a href=""><span *ngFor="let org of organizer"> {{org.username}} </span></a> in <a> {{ events.category }} </a></p>
+                </div>
+              </div>
+              <div class="row d-sm-block d-md-none">
+                  <div class="col-md-4 ">
+                    <div class=" mb-3 ">
+                      <a name="social" id="" href="#" class="btn btn-facebook btn-sm   border-round" ngbPopover="Share on Facebook" triggers="mouseenter:mouseleave" popoverTitle="Facebook" > <i class="fab fa-facebook" aria-hidden="true"></i> </a>
+                      <a ngbPopover="Share on Twitter" triggers="mouseenter:mouseleave" popoverTitle="Twitter" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-twitter" aria-hidden="true"></i> </a>
+                      <a ngbPopover="Share on GooglePlus" triggers="mouseenter:mouseleave" popoverTitle="Google Plus" name="" id="" class="btn btn-google btn-sm  border-round" href="#" role="button"><i class="fab fa-google" aria-hidden="true"></i> </a>
+                      <a ngbPopover="Share on LinkedIn" triggers="mouseenter:mouseleave" popoverTitle="LinkedIn" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-linkedin" aria-hidden="true"></i> </a>
+                      <a ngbPopover="Share on Instagram" triggers="mouseenter:mouseleave" popoverTitle="Instagram" name="" id="" class="btn btn-google btn-sm  border-round" href="#" role="button"><i class="fab fa-instagram" aria-hidden="true"></i> </a>
+
+                    </div>
+                  </div>
+                  <div class="col-md-4 p-md-0">
+                    <div class=" mb-3">
+
+                      <a  class="btn btn-secondary btn-sm " (click)="open(content)">
+                          Comments
+                      </a>
+
+                    </div>
+                  </div>
+                    <div class="col-md-3 ">
+                        <div class=" mb-3">
+
+                                <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip"  data-placement="top" title="Like">
+                                    <i class="fa fa-thumbs-up  text-primary" aria-hidden="true"></i>
+                                </button>
+
+
+                                <button class="btn btn-outline-warning btn-sm" type="button" (click)="pinEvent(pin)"   ngbPopover="Pin this Event to your Board" triggers="mouseenter:mouseleave" popoverTitle="Pin Event" container="body">
+                                    <i class="fas fa-thumbtack" aria-hidden="true"></i>
+                                </button>
+
+
+                                <button class="btn btn-outline-secondary btn-sm" type="button"  ngbPopover="Follow the Event Organizer" triggers="mouseenter:mouseleave" popoverTitle="Follow" container="body">
+                                    <i class="far fa-hand-point-right" aria-hidden="true"></i>
+                                </button>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="ml-3 mb-3">
+                            <button class="btn btn-outline-secondary btn-sm " data-toggle="modal" data-target="#locateId"  ngbPopover="Viw the event location on the map" triggers="mouseenter:mouseleave" popoverTitle="Location" container="body">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+           </div>
+         </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-lg-8 col-md-6">
+            <div class="card">
+              <div class="card-body">
+                  <img [src]="events.eventUrl" class="" alt="" srcset="">
+                  <h4 class=""> {{ events.eventName }} </h4>
+                  <h6 class=""> {{ events.shortDes }} </h6>
+                  <p class="text-justify" style="font-size: .9rem !important"> {{ events.fullDes }} </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 d-none d-sm-none d-md-block">
+            <div class="card">
+              <agm-map [latitude]="location?.lat" [longitude]="location?.lng" [zoom]="7">
+                <agm-marker [latitude]="location?.lat" [longitude]="location?.lng">
+                </agm-marker>
+              </agm-map>
+            </div>
+            <br>
+            <div class="card">
+              <div class="">
+                <div class="comments">
+                  <h5 class="pt-2 pl-2">Comments</h5>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div *ngFor="let comment of (comments | orderBy:'created_dt': reverse)">
+                                <div class="row  pl-3">
+                                    <div class="col-md-2">
+                                        <img src="assets/img/image.png" alt="" class=" rounded-circle mt-1" width="50px" height="50px">
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        <h6 class="m-0 d-inline" ><a href=""> {{comment.authorName}} </a> <span style="font-size: 12px !important" class=" p-0 m-0 text-black-50"> {{ comment.created_dt | date: 'MMM dd' }}  at  {{ comment.created_dt | date: 'HH mm' }} </span></h6>
+                                        <p style="font-size: 12px !important" class=""> {{comment.text}} </p>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="row p-2" style="overflow-x: hidden !important">
+                        <div class="col-md-12">
+                            <h6 class="m-0 d-inline"><a href="">Me</a> <span class=" p-0 m-0 text-black-50" style="font-size: 12px !important"> Now</span></h6>
+                            <form #comment="ngForm" (ngSubmit)="comment.valid && onSubmit(comment)">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="text" placeholder="Enter your comment here" required #text="ngModel"  [(ngModel)]="model.text"
+                                    [ngClass]="{'invalid-textbox' :comment.submitted && !text.valid }">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                                                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- <div class="card">
           <div class="row mr-lg-3">
             <div class="col-md-4">
               <img [src]="events.eventUrl" class="imgEv" alt="" srcset="">
@@ -11,7 +184,7 @@
             <div class="col-md-8 pt-lg-3 pb-lg-3 pl-sm-3">
               <h4 class="ml-3 font-weight-bold"> {{ events.eventName }} </h4>
               <p class="mb-0 mr-sm-3 ml-lg-3 text-justify" style="font-size: .9rem !important"> {{ events.fullDes }} </p><br>
-              <p class="mb-0 mr-sm-3 ml-lg-3 text-justify font-weight-bold"> {{ events.finishDate| date }} {{ events.time }}  </p><br>
+              <p class="mb-0 mr-sm-3 ml-lg-3 text-justify font-weight-bold"> {{ events.startDate| date }} {{ events.time }}  </p><br>
               <p class="mb-0 ml-3" style="font-size: .9rem !important">Poster By <a >  <span *ngFor="let org of organizer"> {{org.username}} </span> </a> in <a> {{ events.category }} </a></p>
               <br/>
               <div class="row">
@@ -25,9 +198,9 @@
 
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 p-md-0">
                   <div class="ml-3 mb-3">
-                    <a name="" id="" class="btn btn-sm btn-primary " href="#" role="button">Join</a>
+                    <a name="" id="" class="btn btn-sm btn-primary " (click)="join(register)" role="button">Register</a>
                     <a  class="btn btn-secondary btn-sm " (click)="open(content)">
                         Comments
                     </a>
@@ -71,7 +244,7 @@
             </div>
           </div>
 
-        </div>
+        </div> -->
       </div>
   </div>
   <div class="row mt-4">
@@ -367,7 +540,7 @@
 
 
         <div class="modal-footer">
-          <input type="submit" class="btn btn-primary btn-sm" value="Create Event" [disabled]="!form.valid">
+          <input type="submit" class="btn btn-primary btn-sm" value="Edit Event" [disabled]="!form.valid">
           <button type="button" class="btn btn-outline-dark btn-sm" (click)="modal.close('Close click')">Close</button>
         </div>
 
@@ -399,5 +572,58 @@
         </button>
     </div>
   </form>
+
+</ng-template>
+
+<ng-template #register let-modal>
+  <div style="background: #f1f3f6;">
+      <div class="modal-header bg-white">
+          <h5>Attendee Details</h5>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 text-left">
+                <p>{{ events.eventName }}</p>
+              </div>
+              <div class="col-sm-4 text-right">
+                <p><i class="far fa-clock"></i> {{ events.startDate| date }} {{ events.time }} </p>
+              </div>
+            </div>
+            <div class="col-md-12 bg-white pb-2 pt-2 rounded">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text"
+                    class="form-control " name="name" id="name" aria-describedby="helpId" placeholder="Attendee's Name">
+              </div>
+              <div class="form-group">
+                <label for="email">Name</label>
+                <input type="email"
+                    class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="Attendee's email">
+              </div>
+            </div>
+            <br>
+            <div class="text-center">
+                <span class="font9">I accept the <a target="_blank" href="">Terms of Service</a> and have read the <a target="_blank" href="">Privacy Policy</a>.</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="container">
+            <div class="col-md-8 offset-md-2">
+                <button class="btn btn-primary btn-block" type="submit" >
+                  Register
+                </button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+  </div>
 
 </ng-template>

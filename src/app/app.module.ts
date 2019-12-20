@@ -12,6 +12,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule  } from '@ngx-loading-bar/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { OrderModule } from 'ngx-order-pipe';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
 import { HttpErrorInterceptor } from './_helpers/HttpErrorInterceptor';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -60,6 +61,9 @@ import { FilterPipe } from './_helpers/filter.pipe';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAZvnWdcnW-U9NEpQKGeJNyoJEbalo6vO8'
+    }),
     NgbModule,
     AppRoutingModule,
     HttpClientModule,
@@ -80,6 +84,7 @@ import { FilterPipe } from './_helpers/filter.pipe';
   ],
   providers: [
     NgbActiveModal,
+    GoogleMapsAPIWrapper,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
