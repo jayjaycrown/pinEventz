@@ -19,7 +19,7 @@
                   <h4 class="ml-3  mt-2"> {{ events.eventName }} </h4>
                </div>
                <div class="col-md-3 pt-2">
-                  <div *ngIf="showEdit;then editDelete else registerBtn">here is ignored</div>
+                  <div *ngIf="showEdit;then editDelete else registerBtn"></div>
                   <ng-template #editDelete>
                     <div class="button-group" role="group" aria-label="Basic example">
                         <button type="button"  class="btn btn-warning btn-sm "  (click)="editEvent(edit)">
@@ -41,23 +41,29 @@
              </div>
 
               <div class="row">
-                <div class="col-3">
+                <div class="col-sm-3">
                     <span class="labels">Time</span>
-
-                    <span class="labels">Venue</span>
-
-                    <span class="labels">Created By</span>
                 </div>
-                <div class="col-9">
-                  <p><i class="far fa-clock" style="padding-right: 5px;"> </i> {{ events.startDate| date : 'EEEE, MMMM d, y' }} at {{ events.time  }} <span class="font8" style="padding-left: 15px;"> <a href=""> <i class="fa fa-plus"></i> Add to calender</a></span></p>
+                <div class="col-sm-9">
+                    <p><i class="far fa-clock" style="padding-right: 5px;"> </i> {{ events.startDate| date : 'EEEE, MMMM d, y' }} at {{ events.time  }} <span class="font8" style="padding-left: 15px;"> <a href=""> <i class="fa fa-plus"></i> Add to calender</a></span></p>
+                </div>
 
-                  <p><i class="fas fa-map-marker-alt" style="padding-right: 5px;"></i> {{ events.address }} </p>
+                <div class="col-sm-3">
+                    <span class="labels">Venue</span>
+                </div>
+                <div class="col-sm-9">
+                    <p><i class="fas fa-map-marker-alt" style="padding-right: 5px;"></i> {{ events.address }} </p>
+                </div>
+                <div class="col-sm-3">
+                    <span class="labels">Created By</span>
 
+                </div>
+                <div class="col-sm-9">
                   <p><i class="fas fa-user" style="padding-right: 5px;"></i>   <a href=""><span *ngFor="let org of organizer"> {{org.username}} </span></a> in <a> {{ events.category }} </a></p>
                 </div>
               </div>
               <div class="row d-sm-block d-md-none">
-                  <div class="col-md-4 ">
+                  <!-- <div class="col-md-4 ">
                     <div class=" mb-3 ">
                       <a name="social" id="" href="#" class="btn btn-facebook btn-sm   border-round" ngbPopover="Share on Facebook" triggers="mouseenter:mouseleave" popoverTitle="Facebook" > <i class="fab fa-facebook" aria-hidden="true"></i> </a>
                       <a ngbPopover="Share on Twitter" triggers="mouseenter:mouseleave" popoverTitle="Twitter" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-twitter" aria-hidden="true"></i> </a>
@@ -66,8 +72,8 @@
                       <a ngbPopover="Share on Instagram" triggers="mouseenter:mouseleave" popoverTitle="Instagram" name="" id="" class="btn btn-google btn-sm  border-round" href="#" role="button"><i class="fab fa-instagram" aria-hidden="true"></i> </a>
 
                     </div>
-                  </div>
-                  <div class="col-md-4 p-md-0">
+                  </div> -->
+                  <div class="col-3 pl-1">
                     <div class=" mb-3">
 
                       <a  class="btn btn-secondary btn-sm " (click)="open(content)">
@@ -76,7 +82,16 @@
 
                     </div>
                   </div>
-                    <div class="col-md-3 ">
+                  <div class="col-3 pl-2">
+                    <div class=" mb-3">
+
+                      <a  class="btn btn-secondary btn-sm " (click)="map(OpenMap)">
+                           <i class="fa fa-map-marker" aria-hidden="true"></i> Map
+                      </a>
+
+                    </div>
+                  </div>
+                    <div class="col-4 p-0">
                         <div class=" mb-3">
 
                                 <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip"  data-placement="top" title="Like">
@@ -95,8 +110,8 @@
 
                         </div>
                     </div>
-                    <div class="col-md-1">
-                        <div class="ml-3 mb-3">
+                    <div class="col-1">
+                        <div class="mb-3">
                             <button class="btn btn-outline-secondary btn-sm " data-toggle="modal" data-target="#locateId"  ngbPopover="Viw the event location on the map" triggers="mouseenter:mouseleave" popoverTitle="Location" container="body">
                                 <i class="fas fa-map-marker-alt"></i>
                             </button>
@@ -113,10 +128,17 @@
           <div class="col-lg-8 col-md-6">
             <div class="card">
               <div class="card-body">
-                  <img [src]="events.eventUrl" class="" alt="" srcset="">
+                <img [src]="events.eventUrl" class="" alt="" srcset="">
                   <h4 class=""> {{ events.eventName }} </h4>
                   <h6 class=""> {{ events.shortDes }} </h6>
-                  <p class="text-justify" style="font-size: .9rem !important"> {{ events.fullDes }} </p>
+                  <div class="text-justify" style="font-size: .9rem !important"> {{ events.fullDes }} </div>
+                  <div class=" mb-3 mt-3 text-right">
+                    <a name="social" id="" href="#" class="btn btn-facebook btn-sm   border-round" ngbPopover="Share on Facebook" triggers="mouseenter:mouseleave" popoverTitle="Facebook" > <i class="fab fa-facebook" aria-hidden="true"></i> </a>
+                    <a ngbPopover="Share on Twitter" triggers="mouseenter:mouseleave" popoverTitle="Twitter" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-twitter" aria-hidden="true"></i> </a>
+                    <a ngbPopover="Share on GooglePlus" triggers="mouseenter:mouseleave" popoverTitle="Google Plus" name="" id="" class="btn btn-google btn-sm  border-round" href="#" role="button"><i class="fab fa-google" aria-hidden="true"></i> </a>
+                    <a ngbPopover="Share on LinkedIn" triggers="mouseenter:mouseleave" popoverTitle="LinkedIn" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-linkedin" aria-hidden="true"></i> </a>
+                    <a ngbPopover="Share on Instagram" triggers="mouseenter:mouseleave" popoverTitle="Instagram" name="" id="" class="btn btn-google btn-sm  border-round" href="#" role="button"><i class="fab fa-instagram" aria-hidden="true"></i> </a>
+                  </div>
               </div>
             </div>
           </div>
@@ -176,75 +198,7 @@
 
 
 
-        <!-- <div class="card">
-          <div class="row mr-lg-3">
-            <div class="col-md-4">
-              <img [src]="events.eventUrl" class="imgEv" alt="" srcset="">
-            </div>
-            <div class="col-md-8 pt-lg-3 pb-lg-3 pl-sm-3">
-              <h4 class="ml-3 font-weight-bold"> {{ events.eventName }} </h4>
-              <p class="mb-0 mr-sm-3 ml-lg-3 text-justify" style="font-size: .9rem !important"> {{ events.fullDes }} </p><br>
-              <p class="mb-0 mr-sm-3 ml-lg-3 text-justify font-weight-bold"> {{ events.startDate| date }} {{ events.time }}  </p><br>
-              <p class="mb-0 ml-3" style="font-size: .9rem !important">Poster By <a >  <span *ngFor="let org of organizer"> {{org.username}} </span> </a> in <a> {{ events.category }} </a></p>
-              <br/>
-              <div class="row">
-                <div class="col-md-4 ">
-                  <div class="ml-3 mb-3 ">
-                    <a name="social" id="" href="#" class="btn btn-facebook btn-sm   border-round" ngbPopover="Share on Facebook" triggers="mouseenter:mouseleave" popoverTitle="Facebook" > <i class="fab fa-facebook" aria-hidden="true"></i> </a>
-                    <a ngbPopover="Share on Twitter" triggers="mouseenter:mouseleave" popoverTitle="Twitter" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-twitter" aria-hidden="true"></i> </a>
-                    <a ngbPopover="Share on GooglePlus" triggers="mouseenter:mouseleave" popoverTitle="Google Plus" name="" id="" class="btn btn-google btn-sm  border-round" href="#" role="button"><i class="fab fa-google" aria-hidden="true"></i> </a>
-                    <a ngbPopover="Share on LinkedIn" triggers="mouseenter:mouseleave" popoverTitle="LinkedIn" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-linkedin" aria-hidden="true"></i> </a>
-                    <a ngbPopover="Share on Instagram" triggers="mouseenter:mouseleave" popoverTitle="Instagram" name="" id="" class="btn btn-google btn-sm  border-round" href="#" role="button"><i class="fab fa-instagram" aria-hidden="true"></i> </a>
 
-                  </div>
-                </div>
-                <div class="col-md-4 p-md-0">
-                  <div class="ml-3 mb-3">
-                    <a name="" id="" class="btn btn-sm btn-primary " (click)="join(register)" role="button">Register</a>
-                    <a  class="btn btn-secondary btn-sm " (click)="open(content)">
-                        Comments
-                    </a>
-                    <button *ngIf="showEdit" class="btn btn-outline-warning btn-sm "  (click)="editEvent(edit)"  ngbPopover="Edit this event" triggers="mouseenter:mouseleave" popoverTitle="Edit Event" container="body">
-                        <i class="fa fa-pen" aria-hidden="true"></i>
-                    </button>
-                    <button *ngIf="showEdit" class="btn  btn-outline-danger btn-sm " (click)="getConfirmation(events._id)"
-                    ngbPopover="Delete this event" triggers="mouseenter:mouseleave" popoverTitle="Delete Event" container="body">
-                        <i class="fa fa-trash " aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
-                  <div class="col-md-3 ">
-                      <div class=" mb-3 ml-3">
-
-                              <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip"  data-placement="top" title="Like">
-                                  <i class="fa fa-thumbs-up  text-primary" aria-hidden="true"></i>
-                              </button>
-
-
-                              <button class="btn btn-outline-warning btn-sm" type="button" (click)="pinEvent(pin)"   ngbPopover="Pin this Event to your Board" triggers="mouseenter:mouseleave" popoverTitle="Pin Event" container="body">
-                                  <i class="fas fa-thumbtack" aria-hidden="true"></i>
-                              </button>
-
-
-                              <button class="btn btn-outline-secondary btn-sm" type="button"  ngbPopover="Follow the Event Organizer" triggers="mouseenter:mouseleave" popoverTitle="Follow" container="body">
-                                  <i class="far fa-hand-point-right" aria-hidden="true"></i>
-                              </button>
-
-                      </div>
-                  </div>
-                  <div class="col-md-1">
-                      <div class="ml-3 mb-3">
-                          <button class="btn btn-outline-secondary btn-sm " data-toggle="modal" data-target="#locateId"  ngbPopover="Viw the event location on the map" triggers="mouseenter:mouseleave" popoverTitle="Location" container="body">
-                              <i class="fas fa-map-marker-alt"></i>
-                          </button>
-
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-
-        </div> -->
       </div>
   </div>
   <div class="row mt-4">
@@ -363,6 +317,23 @@
   <app-home-footer></app-home-footer>
 </div>
 
+<ng-template #OpenMap let-modal>
+  <div class="modal-header">
+      <h5 class="modal-title d-inline"> {{events.address}} </h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+  </div>
+  <div class="modal-body">
+      <div class="card">
+          <agm-map [latitude]="location?.lat" [longitude]="location?.lng" [zoom]="7">
+            <agm-marker [latitude]="location?.lat" [longitude]="location?.lng">
+            </agm-marker>
+          </agm-map>
+        </div>
+  </div>
+
+</ng-template>
 
 <ng-template #content let-modal>
 

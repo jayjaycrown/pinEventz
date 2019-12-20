@@ -81,6 +81,9 @@ export class EventDetailComponent implements OnInit {
   open(content: any) {
     this.activeModal = this.modalService.open(content, {scrollable: true});
   }
+  map(OpenMap: any) {
+    this.activeModal = this.modalService.open(OpenMap);
+  }
   editEvent(edit: any) {
     this.activeModal = this.modalService.open(edit, { size: 'lg'});
   }
