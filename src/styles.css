@@ -795,3 +795,7 @@ code {
   transform: translateZ(0);
   z-index: 660;
 }
+
+button, a {
+  cursor: pointer !important;
+}

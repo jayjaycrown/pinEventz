@@ -111,7 +111,8 @@
           <div class="row">
               <div class="col-sm-12">
                   <label for="fdesc">Full Description</label>
-                  <textarea name="fdesc" class="form-control"  rows="2" placeholder="Full description" formControlName="fullDes"></textarea>
+                  <angular-editor formControlName="fullDes" name="fullDes" [config]="editorConfig"></angular-editor>
+
               </div>
           </div>
 

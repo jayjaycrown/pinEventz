@@ -6,7 +6,6 @@ import { OrderPipe } from 'ngx-order-pipe';
 import { GeocodeService } from '../../_services/geocode.service';
 import { Location } from '../../_models/location';
 
-
 import { EventDetailService } from '../../_services/event-detail.service';
 import { EventDetails } from '../../_models/event-details';
 import { UserService } from 'src/app/_services/user.service';
@@ -33,7 +32,7 @@ export class EventDetailComponent implements OnInit {
   address = '';
   location: Location;
   reverse = true;
-  events: EventDetails[];
+  events;
   organizer: any;
   user: any;
 
@@ -45,6 +44,10 @@ export class EventDetailComponent implements OnInit {
   };
   boardModel = {
     boardId: ''
+  };
+  joinModel = {
+    name: '',
+    email: ''
   };
   constructor(
               private geocodeService: GeocodeService,
@@ -74,6 +77,7 @@ export class EventDetailComponent implements OnInit {
 
                 });
                }
+
 
   activeModals() {
     return this.activeModal.close();
@@ -107,6 +111,20 @@ export class EventDetailComponent implements OnInit {
        alert(err);
        this.activeModal.close();
      }
+    );
+  }
+  joinEvent(ticket: NgForm) {
+    this.joinModel.email = '';
+    this.joinModel.name = '';
+    console.log(ticket.value);
+    this.evDet.buyTicket(this.id, ticket.value).subscribe(
+      res => {
+        alert(res.message);
+        this.activeModal.close();
+      },
+      err => {
+        alert(err.message);
+      }
     );
   }
 

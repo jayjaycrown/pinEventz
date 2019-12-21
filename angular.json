@@ -24,6 +24,9 @@
               "src/assets"
             ],
             "styles": [
+
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               {
                 "input": "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
               },
@@ -92,6 +95,9 @@
               "src/assets"
             ],
             "styles": [
+              
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -146,6 +152,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "PinEventz"
 }

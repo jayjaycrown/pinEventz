@@ -40,7 +40,14 @@ export class EventDetailService {
         this._refreshNeded$.next();
       })
      );
-   }
+  }
+  buyTicket(id: any, ticket: any) {
+    return this.http.post(apiUrl + '/' + id + '/ticket', ticket).pipe(
+      catchError(this.handleError('buyTicket', ticket)), tap(() => {
+        this._refreshNeded$.next();
+      })
+    );
+  }
 
    pinEvent(boardId: any, id: any) {
     return this.http.post(apiUrl + '/' + id, boardId).pipe(

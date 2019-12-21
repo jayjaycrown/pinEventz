@@ -6,6 +6,7 @@ import { HttpEventType, HttpEvent } from '@angular/common/http';
 import { BoardModalComponent } from '../../profile/board-modal/board-modal.component';
 import { EventDetailService } from '../../_services/event-detail.service';
 import { BoardService } from '../../_services/board.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-create-event-modal',
@@ -40,6 +41,51 @@ export class CreateEventModalComponent implements OnInit {
 
     });
   }
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '200px',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      {class: 'arial', name: 'Arial'},
+      {class: 'times-new-roman', name: 'Times New Roman'},
+      {class: 'calibri', name: 'Calibri'},
+      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+    ],
+    customClasses: [
+    {
+      name: 'quote',
+      class: 'quote',
+    },
+    {
+      name: 'redText',
+      class: 'redText'
+    },
+    {
+      name: 'titleText',
+      class: 'titleText',
+      tag: 'h1',
+    },
+  ],
+  uploadUrl: 'v1/image',
+  sanitize: true,
+  toolbarPosition: 'top',
+  toolbarHiddenButtons: [
+    ['bold', 'italic'],
+    ['fontSize']
+  ]
+  };
 
   onClickSubmit() {
     console.log(this.form.value);

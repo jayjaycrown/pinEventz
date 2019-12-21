@@ -554,7 +554,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form>
+        <form #join="ngForm" (ngSubmit)="join.valid && joinEvent(join)">
         <div class="modal-body">
           <div class="container">
             <div class="row">
@@ -569,17 +569,17 @@
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text"
-                    class="form-control " name="name" id="name" aria-describedby="helpId" placeholder="Attendee's Name">
+                    class="form-control " name="name" #name="ngModel"  [(ngModel)]="joinModel.name" placeholder="Attendee's Name">
               </div>
               <div class="form-group">
                 <label for="email">Name</label>
                 <input type="email"
-                    class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="Attendee's email">
+                    class="form-control" name="email" #email="ngModel"  [(ngModel)]="joinModel.email" placeholder="Attendee's email">
               </div>
             </div>
             <br>
             <div class="text-center">
-                <span class="font9">I accept the <a target="_blank" href="">Terms of Service</a> and have read the <a target="_blank" href="">Privacy Policy</a>.</span>
+                <span class="font9">I accept the <a target="_blank" >Terms of Service</a> and have read the <a target="_blank" >Privacy Policy</a>.</span>
             </div>
 
           </div>

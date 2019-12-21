@@ -13,6 +13,7 @@ import { LoadingBarRouterModule  } from '@ngx-loading-bar/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { OrderModule } from 'ngx-order-pipe';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { HttpErrorInterceptor } from './_helpers/HttpErrorInterceptor';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -35,6 +36,9 @@ import { CommentModalComponent } from './includes/comment-modal/comment-modal.co
 import { RequestResetComponent } from './request-reset/request-reset.component';
 import { ResponseResetComponent } from './response-reset/response-reset.component';
 import { FilterPipe } from './_helpers/filter.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 @NgModule({
@@ -65,6 +69,7 @@ import { FilterPipe } from './_helpers/filter.pipe';
       apiKey: 'AIzaSyAZvnWdcnW-U9NEpQKGeJNyoJEbalo6vO8'
     }),
     NgbModule,
+    AngularEditorModule ,
     AppRoutingModule,
     HttpClientModule,
     HttpClientJsonpModule,
@@ -75,7 +80,8 @@ import { FilterPipe } from './_helpers/filter.pipe';
     LoadingBarModule,
     LoadingBarHttpClientModule,
     NgxSpinnerModule,
-    OrderModule
+    OrderModule,
+    BrowserAnimationsModule,
   ],
   entryComponents: [
     BoardModalComponent,
