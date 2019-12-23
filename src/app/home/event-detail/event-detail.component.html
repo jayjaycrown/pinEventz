@@ -131,7 +131,28 @@
                 <img [src]="events.eventUrl" class="" alt="" srcset="">
                   <h4 class=""> {{ events.eventName }} </h4>
                   <h6 class=""> {{ events.shortDes }} </h6>
-                  <div class="text-justify" style="font-size: .9rem !important"> {{ events.fullDes }} </div>
+                  <pre>{{ events.fullDes }}</pre>
+
+                  <div class=" mb-3">
+
+                    <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Like">
+                      <i class="fa fa-thumbs-up  text-primary" aria-hidden="true"></i>
+                    </button>
+
+
+                    <button class="btn btn-outline-warning btn-sm" type="button" (click)="pinEvent(pin)"
+                      ngbPopover="Pin this Event to your Board" triggers="mouseenter:mouseleave" popoverTitle="Pin Event"
+                      container="body">
+                      <i class="fas fa-thumbtack" aria-hidden="true"></i>
+                    </button>
+
+
+                    <button class="btn btn-outline-secondary btn-sm" type="button" ngbPopover="Follow the Event Organizer"
+                      triggers="mouseenter:mouseleave" popoverTitle="Follow" container="body">
+                      <i class="far fa-hand-point-right" aria-hidden="true"></i>
+                    </button>
+
+                  </div>
                   <div class=" mb-3 mt-3 text-right">
                     <a name="social" id="" href="#" class="btn btn-facebook btn-sm   border-round" ngbPopover="Share on Facebook" triggers="mouseenter:mouseleave" popoverTitle="Facebook" > <i class="fab fa-facebook" aria-hidden="true"></i> </a>
                     <a ngbPopover="Share on Twitter" triggers="mouseenter:mouseleave" popoverTitle="Twitter" name="" id="" class="btn btn-twitter btn-sm  border-round" href="#" role="button"><i class="fab fa-twitter" aria-hidden="true"></i> </a>
