@@ -131,7 +131,8 @@
                 <img [src]="events.eventUrl" class="" alt="" srcset="">
                   <h4 class=""> {{ events.eventName }} </h4>
                   <h6 class=""> {{ events.shortDes }} </h6>
-                  <pre>{{ events.fullDes }}</pre>
+                  <div [innerHTML]="events.fullDes"></div>
+
 
                   <div class=" mb-3">
 

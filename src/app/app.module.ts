@@ -37,6 +37,7 @@ import { RequestResetComponent } from './request-reset/request-reset.component';
 import { ResponseResetComponent } from './response-reset/response-reset.component';
 import { FilterPipe } from './_helpers/filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewlinePipe } from './_helpers/newline.pipe';
 
 
 
@@ -62,6 +63,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RequestResetComponent,
     ResponseResetComponent,
     FilterPipe,
+    NewlinePipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
